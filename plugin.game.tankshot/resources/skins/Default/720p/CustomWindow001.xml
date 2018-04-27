@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<controls>
+		<!-- ## \/ ##  Options that affect the whole window.  ## \/ ## -->
+		<defaultcontrol always="true">10</defaultcontrol>
+		<!--backgroundcolor>0x00000000</backgroundcolor-->
+		<animation type="WindowOpen">
+			<effect type="fade" time="16000" start="100" end="0" />
+			
+			<!--
+			<effect type="rotatey" start="-160" end="0" time="16000" />
+			
+			-->
+		</animation>
+		<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+		<allowoverlay>yes</allowoverlay>
+		
+		
+		
+		
+		
+		<!--
+		<allowoverlay>no</allowoverlay>
+		<constant name="MaxWidth">ScreenWidth</constant>
+		<constant name="MaxHeight">ScreenHeight</constant>
+		<backgroundcolor>0x00000000</backgroundcolor>
+		<coordinates>
+			<posx>40</posx>
+			<posy>50</posy>
+			<origin x="100" y="50">Window.IsActive(Home)</origin>
+			<width>ScreenWidth</width><height>600</height>
+		</coordinates>
+		<previouswindow>Home</previouswindow>
+		<zorder>2</zorder>
+		
+		
+		
+		
+		-->
+		<!-- ## /\ ##  Options that affect the whole window.  ## /\ ## -->
+		
+		<!-- ## \/ ##  Background layers.  ## \/ ## -->
+		<!--
+		<control type="image" id="1">
+			<description>Background Layer 1 Bottom</description>
+			<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+			<texture>blank1.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<visible>true</visible>
+		</control>
+		-->
+		<control type="button" id="1">
+			<description>Background Layer 1 Bottom</description>
+			<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+			<!--texture>blank1.png</texture-->
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<texture colordiffuse="0xFF000000" flipx="false" flipy="false">black1.png</texture>
+			<texturenofocus colordiffuse="0xFF000000" flipx="false" flipy="false">black1.png</texturenofocus>
+			<texturefocus colordiffuse="0xFF000000" flipx="false" flipy="false">black1.png</texturefocus>
+			<visible>true</visible>
+		</control>
+		<control type="image" id="2">
+			<description>Background Layer 2 Top</description>
+			<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+			<!--
+			<posx>0</posx><posy>0</posy><width>ScreenWidth</width><height>ScreenHeight</height>
+			-->
+			<texture>blank1.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<visible>true</visible>
+			<!--
+			<animation type="WindowOpen">
+				<effect type="fade" time="8000" start="0" end="100" />
+				<effect type="rotatey" start="-160" end="0" time="8000" />
+			</animation>
+			-->
+		</control>
+		<!-- ## /\ ##  Background layers.  ## /\ ## -->
+		
+		<!-- ## \/ ##  Media layers.  ## \/ ## -->-+
+		<control type="videowindow" id="3">
+			<description>preview window</description>
+			<left>0</left><top>0</top><width>1280</width><height>720</height>
+			<visible>true</visible>
+			<aspectratio>stretch</aspectratio>
+			<enable>false</enable>
+		</control>
+		<!--
+		<control type="visualisation" id="8">
+			<description>preview window</description>
+			<left>100</left><top>400</top><width>200</width><height>100</height>
+			<visible>Player.Playing</visible>
+			<aspectratio>stretch</aspectratio>
+			<enable>false</enable>
+		</control>
+		<control type="videowindow" id="9">
+			<description>preview window</description>
+			<left>10</left><top>100</top><width>400</width><height>200</height>
+			<visible>Player.Playing</visible>
+			<aspectratio>stretch</aspectratio>
+			<enable>false</enable>
+		</control>
+		<control type="videowindow" id="7">
+			<description>preview window</description>
+			<left>420</left><top>100</top><width>400</width><height>200</height>
+			<visible>Player.Playing</visible>
+			<aspectratio>stretch</aspectratio>
+			<enable>false</enable>
+			<colordiffuse>FF00FFFF</colordiffuse>
+		</control>
+		<control type="videowindow" id="6">
+			<description>music preview window</description>
+			<left>830</left><top>100</top><width>400</width><height>200</height>
+			<visible>Player.Playing</visible>
+			<aspectratio>stretch</aspectratio>
+			<enable>false</enable>
+		</control>
+		-->
+		<!-- ## /\ ##  Media layers.  ## /\ ## -->
+		
+		
+		
+		
+		
+		
+		<control type="image" id="5">
+			<description>Test Object</description>
+			<left>163r</left><top>0</top><width>163</width><height>100</height>
+			<!-- TestObj1
+			<posx>0</posx><posy>0</posy><width>200</width><height>100</height>
+			<posx>0</posx><posy>0</posy><width>ScreenWidth</width><height>ScreenHeight</height>
+			<texture colordiffuse="FF66FF00">white1.png</texture>
+			-->
+			<texture flipX="false" flipY="false">tank04l.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<visible>false</visible>
+		</control>
+		<control type="group" id="400">
+			<left>0</left><top>100r</top><width>60</width><height>100</height>
+			<control type="image" id="402">
+				<description>Test Object</description>
+				<left>29</left><top>-720</top><width>2</width><height>725</height>
+				<texture colordiffuse="0xFFAA7700" flipx="false" flipy="true">white1.png</texture>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>true</visible>
+			</control>
+			<control type="image" id="401">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>60</width><height>100</height>
+				<!-- TestObj2
+				<left>0</left><top>100r</top><width>60</width><height>100</height>
+				<width>60</width><height>100</height>
+				<posx>0</posx><posy>0</posy><width>200</width><height>100</height>
+				<posx>0</posx><posy>0</posy><width>ScreenWidth</width><height>ScreenHeight</height>
+				<texture colordiffuse="FF0000FF">white1.png</texture>
+				-->
+				<texture flipx="false" flipy="true">tank_down_01.png</texture>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>true</visible>
+				<!--
+				<animation type="Conditional" condition="width=100">
+					<effect type="slide" loop="true" reversible="true" pulse="true" time="16000" start="0,200" end="1180,200" />
+				</animation>
+				<include file="CustomIncludes001.xml"/>
+				<include file="CustomIncludes001.xml">TankSize</include>
+				<include>TankSize</include>
+				<include>Size256x256</include>
+				-->
+			</control>
+		</control>
+		
+		
+		
+		<control type="group" id="20">
+			<description>Test Object Group</description>
+			<left>0</left><top>0</top>
+			<visible>true</visible>
+			<control type="button" id="24">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>60</height>
+				<texture colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank_down_01l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank_down_01l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank_down_01l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj5Animate))</visible>
+				<animation start="1281,30" end="-101,30" time="12000" delay="0" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj5Animate))">conditional</animation>
+			</control>
+			<control type="button" id="25">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj4Animate))</visible>
+				<animation start="1281,30" end="-101,30" time="12000" delay="5000" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj4Animate))">conditional</animation>
+			</control>
+			<control type="button" id="26">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>60</height>
+				<texture colordiffuse="0xCCAA00AA" flipx="false" flipy="false">tank_down_01r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank_down_01r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank_down_01r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj3Animate))</visible>
+				<animation start="-101,92" end="1281,92" time="11000" delay="2700" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj3Animate))">conditional</animation>
+			</control>
+			<control type="button" id="27">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj2Animate))</visible>
+				<animation start="-101,144" end="1281,144" time="7000" delay="4000" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj2Animate))">conditional</animation>
+			</control>
+			<control type="button" id="28">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank04r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj1Animate))</visible>
+				<animation start="-101,144" end="1281,144" time="7000" delay="4500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj1Animate))">conditional</animation>
+			</control>
+			<!-- ------------------------------------------------------ -->
+			<control type="button" id="29">
+				<description>Test Object</description>
+				<left>-101</left><top>400</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj6Animate))</visible>
+				<animation start="0" end="360" center="-101,0" time="14000" delay="4200" effect="rotate" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj6Animate))">conditional</animation>
+			</control>
+			<control type="button" id="30">
+				<description>Test Object</description>
+				<left>1281</left><top>350</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj7Animate))</visible>
+				<animation start="0" end="360" center="1281,0" time="16000" delay="4400" effect="rotate" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj7Animate))">conditional</animation>
+			</control>
+			<!-- ------------------------------------------------------ -->
+			<control type="button" id="31">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj8Animate))</visible>
+				<animation start="1281,194" end="-101,194" time="6000" delay="1000" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj8Animate))">conditional</animation>
+			</control>
+			<control type="button" id="32">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank04l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj9Animate))</visible>
+				<animation start="1281,194" end="-101,194" time="6000" delay="2500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj9Animate))">conditional</animation>
+			</control>
+			<control type="button" id="33">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj10Animate))</visible>
+				<animation start="-101,250" end="1281,250" time="8000" delay="2700" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj10Animate))">conditional</animation>
+			</control>
+			<control type="button" id="34">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank04r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj11Animate))</visible>
+				<animation start="-101,250" end="1281,250" time="8000" delay="3500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj11Animate))">conditional</animation>
+			</control>
+			<!-- ------------------------------------------------------ -->
+			<control type="button" id="35">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj12Animate))</visible>
+				<animation start="1281,298" end="-101,298" time="9000" delay="1000" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj12Animate))">conditional</animation>
+			</control>
+			<control type="button" id="36">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank04l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj13Animate))</visible>
+				<animation start="1281,298" end="-101,298" time="9000" delay="2500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj13Animate))">conditional</animation>
+			</control>
+			<control type="button" id="37">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank03r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank03r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj14Animate))</visible>
+				<animation start="-101,345" end="1281,345" time="5100" delay="2700" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj14Animate))">conditional</animation>
+			</control>
+			<control type="button" id="38">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>46</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">tank04r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">tank04r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj15Animate))</visible>
+				<animation start="-101,345" end="1281,345" time="5100" delay="3500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj15Animate))">conditional</animation>
+			</control>
+			<!-- ------------------------------------------------------ -->
+			<control type="button" id="39">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>78</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">UnscCobra01r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj16Animate))</visible>
+				<animation start="101,-100" end="1281,600" time="9000" delay="3500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj16Animate))">conditional</animation>
+			</control>
+			<control type="button" id="40">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>78</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">UnscCobra01r.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01r.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01r.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj17Animate))</visible>
+				<animation start="301,-100" end="1281,400" time="12000" delay="5500" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj17Animate))">conditional</animation>
+			</control>
+			<!-- ------------------------------------------------------ -->
+			<control type="button" id="41">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>78</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">UnscCobra01l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj18Animate))</visible>
+				<animation start="1281,100" end="-101,500" time="9000" delay="2900" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj18Animate))">conditional</animation>
+			</control>
+			<control type="button" id="42">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>100</width><height>78</height>
+				<texture colordiffuse="0xFFAA00AA" flipx="false" flipy="false">UnscCobra01l.png</texture>
+				<texturenofocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01l.png</texturenofocus>
+				<texturefocus colordiffuse="0x99AA00AA" flipx="false" flipy="false">UnscCobra01l.png</texturefocus>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>!IsEmpty(Container.Property(EnemyObj19Animate))</visible>
+				<animation start="1000,-100" end="-101,320" time="12000" delay="5200" effect="slide" loop="true" reversible="true" pulse="true" condition="!IsEmpty(Container.Property(EnemyObj19Animate))">conditional</animation>
+			</control>
+			<!-- ------------------------------------------------------ -->
+			<!-- ------------------------------------------------------ -->
+			<!-- ------------------------------------------------------ -->
+		</control>
+		
+		
+		<control type="image" id="21">
+			<description>Test Object</description>
+			<left>1281</left><top>721</top><width>100</width><height>100</height>
+			<texture flipx="false" flipy="false">cursor_startrek_001.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<visible>true</visible>
+			<!--
+			<system>0</system>
+			-->
+		</control>
+		
+		
+		<control type="group" id="22">
+			<description>Test Object Group</description>
+			<left>0</left><top>0</top><width>30</width><height>30</height>
+			<visible>true</visible>
+			<control type="image" id="23">
+				<description>Test Object</description>
+				<left>0</left><top>0</top><width>29</width><height>29</height>
+				<texture flipx="false" flipy="false" colordiffuse="0xFFAA00AA">busy.png</texture>
+				<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+				<visible>true</visible>
+				<animation effect="rotate" start="0" end="360" center="15,15" time="1200" loop="true" condition="true">conditional</animation>
+				<!--
+				
+				<system>0</system>
+				-->
+			</control>
+		</control>
+		
+		
+		<control type="label" id="101">
+			<description>Score Label</description>
+			<left>100</left>
+			<top>20</top>
+			<width>1080</width>
+			<height>40</height>
+			<align>center</align>
+			<aligny>bottom</aligny>
+			<font>font35_title</font>
+			<textcolor>77FFFFFF</textcolor>
+			<shadowcolor>33000000</shadowcolor>
+			<label>[B]Wave:    $INFO[Container.Property(WaveNo)]        Enemies Remaining:  $INFO[Container.Property(EnemiesRemaining)][/B]</label>
+		</control>
+		
+		
+		
+		
+		<control type="label">
+			<description>Logo Label</description>
+			<left>50</left>
+			<top>90r</top>
+			<width>500</width>
+			<height>40</height>
+			<align>left</align>
+			<aligny>bottom</aligny>
+			<font>font35_title</font>
+			<textcolor>22FFFFFF</textcolor>
+			<shadowcolor>33000000</shadowcolor>
+			<label>[B]Shoot the enemy tanks![/B]</label>
+			<!--
+			<colordiffuse>FF00FFFF</colordiffuse>
+			<animation type="WindowOpen">
+				<effect type="zoom" time="1" start="0" end="200" />
+				<effect type="fade" time="8000" start="0" end="100" />
+				<effect type="rotatey" start="-160" end="0" time="8000" />
+				
+			</animation>
+			-->
+		</control>
+		
+		
+		<!-- ## \/ ##  Weather.  ## \/ ## -->
+		<control type="group">
+			<left>20</left>
+			<top>0</top>
+			<visible>Skin.HasSetting(homepageWeatherinfo) + !IsEmpty(Weather.Plugin)</visible>
+			<include>Window_OpenClose_Animation</include>
+			<control type="image">
+				<description>Weather image</description>
+				<left>0</left>
+				<top>0</top>
+				<width>60</width>
+				<height>60</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[Weather.Conditions]</texture>
+			</control>
+			<control type="label">
+				<description>Location label</description>
+				<left>65</left>
+				<top>5</top>
+				<width>500</width>
+				<height>15</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font10</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<shadowcolor>FF000000</shadowcolor>
+				<label>$INFO[Window(Weather).Property(Location)]</label>
+			</control>
+			<control type="grouplist">
+				<left>65</left>
+				<top>20</top>
+				<width>1000</width>
+				<height>30</height>
+				<orientation>horizontal</orientation>
+				<align>left</align>
+				<itemgap>0</itemgap>
+				<control type="label">
+					<description>Temp label</description>
+					<width min="0" max="300">auto</width>
+					<height>30</height>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>font28_title</font>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>FF000000</shadowcolor>
+					<label>[B]$INFO[Window(Weather).Property(Current.Temperature)][/B]</label>
+				</control>
+				<control type="label">
+					<description>Temp Units</description>
+					<width min="0" max="100">auto</width>
+					<height>22</height>
+					<font>font10</font>
+					<aligny>center</aligny>
+					<label>$INFO[System.TemperatureUnits]</label>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>FF000000</shadowcolor>
+					<visible>!IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+				</control>
+				<control type="label">
+					<description>Conditions Label</description>
+					<width>500</width>
+					<height>22</height>
+					<font>font10</font>
+					<aligny>center</aligny>
+					<label>$INFO[Window(Weather).Property(Current.Condition),  ]</label>
+					<textcolor>FFBB0000</textcolor>
+					<shadowcolor>FF000000</shadowcolor>
+				</control>
+			</control>
+		</control>
+		
+		<!-- ## \/ ##  Time.  ## \/ ## -->
+		<include>Clock</include>
+		<!-- ## \/ ##  Date.  ## \/ ## -->
+		<control type="label">
+			<description>Date label</description>
+			<right>20</right>
+			<top>35</top>
+			<width>200</width>
+			<height>15</height>
+			<align>right</align>
+			<aligny>center</aligny>
+			<font>font10</font>
+			<textcolor>FFFFFFFF</textcolor>
+			<shadowcolor>FF000000</shadowcolor>
+			<label>$INFO[System.Date]</label>
+			<include>Window_OpenClose_Animation</include>
+			<animation effect="slide" start="0,0" end="-40,0" time="100" condition="Window.IsVisible(Mutebug)">conditional</animation>
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- ## \/ ##  Backup use for exiting.  ## \/ ## -->
+		<control type="button" id="10">
+			<description>Exit Button</description>
+			<left>0</left><top>0</top><width>14</width><height>18</height>
+			<!--
+			<left>18r</left><top>0</top><width>14</width><height>18</height>
+			-->
+			<!--onup>106</onup><ondown>106</ondown><onleft>109</onleft><onright>104</onright-->
+			<label>[B]x[/B]</label><font>font10</font>
+			<textoffsetx>3</textoffsetx><textoffsety>-3</textoffsety>
+			<textcolor>FFFFFFFF</textcolor><focusedcolor>FFFFFFFF</focusedcolor>
+			<align>left</align><aligny>top</aligny>
+			<texturenofocus colordiffuse="FF808080" border="6,6,6,6">white1.png</texturenofocus>
+			<texturefocus colordiffuse="FFAA0000" border="6,6,6,6">white1.png</texturefocus>
+			<visible allowhiddenfocus="true">true</visible>
+		</control>
+		<!-- ## /\ ##  Backup use for exiting.  ## /\ ## -->
+	</controls>
+</window>

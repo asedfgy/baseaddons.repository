@@ -1,0 +1,13 @@
+<settings>
+	<category label="General">
+		<setting visible="true" type="bool" id="show-countdowns"	default="true" label="Show Countdowns" />
+		<setting visible="true" type="bool" id="ani-hands"	default="true"	label="Hand Aninimation During Countdowns" />
+		<setting visible="true" type="text" id="txt-winner"	default="WINNER"	label="WINNER" />
+		<setting visible="true" type="text" id="txt-loser"	default="LOSER"	label="LOSER" />
+		<setting visible="true" type="text" id="txt-beats"	default="beats"	label="beats" />
+		<setting visible="true" type="text" id="txt-draw"	default="DRAW"	label="DRAW" />
+		<setting visible="true" type="text" id="txt-noonewins"	default="NO ONE WINS"	label="NO ONE WINS" />
+		<setting visible="false" type="bool" default="false" id="debug-enable" 	label="Enable Debugging to File" />
+		<setting visible="false" type="bool" default="false" id="debug-show" 		label="Enable Debugging to Notice(s)" />
+	</category>
+</settings>

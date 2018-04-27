@@ -1,0 +1,71 @@
+<settings>
+
+<category label="General">
+
+<setting id="dl_path" type="folder" label="Download Path" default="" />
+<setting id="artworkFolders" type="bool" label="Generate Artwork Folders" default="true" />
+<setting id="meta" type="bool" label="Scrape Game Information" default="true" />
+
+
+</category>
+
+<category label="Autoview">
+
+<setting id="auto-view" type="bool" label="[COLOR blue]Enable Autoview[/COLOR]" default="true"/>
+
+<setting id="addonsView" type="number" label="Games View" default="550" enable="!eq(-1,false)"/>
+
+</category>
+
+
+<category label="Zip Archive Extraction">
+
+<setting id="extractZip" type="bool" label="[COLOR blue]Extract Zip Archives[/COLOR]" default="false" />
+
+<setting id="Atari Jaguar Zip" type="bool" label="Extract Atari Jaguar Zip Archives" default="true" enable="!eq(-1,false)"/>
+<setting id="Atari Lynx Zip" type="bool" label="Extract Atari Lynx Zip Archives" default="true" enable="!eq(-2,false)"/>
+<setting id="CPS2 Zip" type="bool" label="Extract CPS2 Zip Archives" default="true" enable="!eq(-3,false)"/>
+<setting id="MAME Zip" type="bool" label="Extract MAME Zip Archives" default="true" enable="!eq(-4,false)"/>
+<setting id="Neo Geo Zip" type="bool" label="Extract Neo Geo Zip Archives" default="true" enable="!eq(-5,false)"/>
+<setting id="Neo Geo Pocket Zip" type="bool" label="Extract Neo Geo Pocket Zip Archives" default="true" enable="!eq(-6,false)"/>
+<setting id="Nintendo Zip" type="bool" label="Extract Nintendo Zip Archives" default="true" enable="!eq(-7,false)"/>
+<setting id="Nintendo 64 Zip" type="bool" label="Extract Nintendo 64 Zip Archives" default="true" enable="!eq(-8,false)"/>
+<setting id="Nintendo GameBoy Advance Zip" type="bool" label="Extract Nintendo GameBoy Advance Zip Archives" default="true" enable="!eq(-9,false)"/>
+<setting id="Nintendo GameBoy Color Zip" type="bool" label="Extract Nintendo GameBoy Color Zip Archives" default="true" enable="!eq(-10,false)"/>
+<setting id="Super Nintendo Zip" type="bool" label="Extract Super Nintendo Zip Archives" default="true" enable="!eq(-11,false)"/>
+<setting id="Sega CD Zip" type="bool" label="Extract Sega CD Zip Archives" default="true" enable="!eq(-12,false)"/>
+<setting id="Sega Dreamcast Zip" type="bool" label="Extract Sega Dreamcast Zip Archives" default="true" enable="!eq(-13,false)"/>
+<setting id="Sega Game Gear Zip" type="bool" label="Extract Sega Game Gear Zip Archives" default="true" enable="!eq(-14,false)"/>
+<setting id="Sega Genesis Zip" type="bool" label="Extract Sega Genesis Zip Archives" default="true" enable="!eq(-15,false)"/>
+<setting id="Sega Master System Zip" type="bool" label="Extract Sega Master System Zip Archives" default="true" enable="!eq(-16,false)"/>
+<setting id="Sony Playstation Zip" type="bool" label="Extract Sony Playstation Zip Archives" default="true" enable="!eq(-17,false)"/>
+
+</category>
+
+<category label="7Zip Archive Extraction">
+
+
+<setting id="extract7Zip" type="bool" label="[COLOR blue]Extract 7z Archives[/COLOR]" default="false" />
+
+<setting id="Atari Jaguar 7Zip" type="bool" label="Extract Atari Jaguar 7Zip Archives" default="true" enable="!eq(-1,false)"/>
+<setting id="Atari Lynx 7Zip" type="bool" label="Extract Atari Lynx 7Zip Archives" default="true" enable="!eq(-2,false)"/>
+<setting id="CPS2 7Zip" type="bool" label="Extract CPS2 7Zip Archives" default="true" enable="!eq(-3,false)"/>
+<setting id="MAME 7Zip" type="bool" label="Extract MAME 7Zip Archives" default="true" enable="!eq(-4,false)"/>
+<setting id="Neo Geo 7Zip" type="bool" label="Extract Neo Geo 7Zip Archives" default="true" enable="!eq(-5,false)"/>
+<setting id="Neo Geo Pocket 7Zip" type="bool" label="Extract Neo Geo Pocket 7Zip Archives" default="true" enable="!eq(-6,false)"/>
+<setting id="Nintendo 7Zip" type="bool" label="Extract Nintendo 7Zip Archives" default="true" enable="!eq(-7,false)"/>
+<setting id="Nintendo 64 7Zip" type="bool" label="Extract Nintendo 64 7Zip Archives" default="true" enable="!eq(-8,false)"/>
+<setting id="Nintendo GameBoy Advance 7Zip" type="bool" label="Extract Nintendo GameBoy Advance 7Zip Archives" default="true" enable="!eq(-9,false)"/>
+<setting id="Nintendo GameBoy Color 7Zip" type="bool" label="Extract Nintendo GameBoy Color 7Zip Archives" default="true" enable="!eq(-10,false)"/>
+<setting id="Super Nintendo 7Zip" type="bool" label="Extract Super Nintendo 7Zip Archives" default="true" enable="!eq(-11,false)"/>
+<setting id="Sega CD 7Zip" type="bool" label="Extract Sega CD 7Zip Archives" default="true" enable="!eq(-12,false)"/>
+<setting id="Sega Dreamcast 7Zip" type="bool" label="Extract Sega Dreamcast 7Zip Archives" default="true" enable="!eq(-13,false)"/>
+<setting id="Sega Game Gear 7Zip" type="bool" label="Extract Sega Game Gear 7Zip Archives" default="true" enable="!eq(-14,false)"/>
+<setting id="Sega Genesis 7Zip" type="bool" label="Extract Sega Genesis 7Zip Archives" default="true" enable="!eq(-15,false)"/>
+<setting id="Sega Master System 7Zip" type="bool" label="Extract Sega Master System 7Zip Archives" default="true" enable="!eq(-16,false)"/>
+<setting id="Sony Playstation 7Zip" type="bool" label="Extract Sony Playstation 7Zip Archives" default="true" enable="!eq(-17,false)"/>
+
+</category>
+
+</settings>
+

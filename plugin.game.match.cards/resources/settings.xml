@@ -1,0 +1,5 @@
+<settings>
+	<category label="General">
+		<setting id="card-backing" type="labelenum" default="Wizards Tarot" visible="true" label="Deck Graphic" values="Skull Black|Lion Strength|Face Blue|Skull Blue|Tigers|Wizards Tarot|Red 01|Gear|Goblin Tarot|Owl Keys|Nature|Madame|Black and White|Skull with Hair|Eye Keys|Eye Fish" />
+	</category>
+</settings>

@@ -1,0 +1,17 @@
+Version 1.1.6.4
+Fixed Meta Scrapes
+There is an issue with 7-Zip files. The Files will be downloaded but not extracted and will be marked as failed. You can extract the files manually 
+in the download folder. This only effect Snes Games. I will try to fix this when I have time.
+
+Version 1.1.6.3
+Added handling for failed downloads
+
+Version 1.1.6.2
+Updated Gamefaqs scraper to account for site changes.
+
+Version 1.1.6.1
+Added the rest of the pages for game listings
+Added option to disable meta scrapes
+
+Version 1.1.6
+Initial Release

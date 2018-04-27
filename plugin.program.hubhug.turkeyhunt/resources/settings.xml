@@ -1,0 +1,7 @@
+<settings>
+	<category label="General">
+		<setting visible="true" id="dificulty" type="labelenum" label="Dificulty" values="Hard|Medium|Easy" default="Medium"/>
+		<setting visible="false" type="bool" default="false" id="debug-enable" 	label="Enable Debugging to File" />
+		<setting visible="false" type="bool" default="false" id="debug-show" 		label="Enable Debugging to Notice(s)" />
+	</category>
+</settings>

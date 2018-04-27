@@ -1,0 +1,5 @@
+import xbmcaddon
+import base64
+
+MainBase = base64.b64decode ('aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FERE9OQkFTRS9hZGRvbnNiYXNlL21hc3Rlci9YTmFIUjBjSE02THk5d1lYTjBaV0pwYmk1amIyMHZjbUYzTDBKYVJIQXpjbXRvMFpXSnBiaTVqYjIwdmNtRjNMMEphUkhBemNtdG9kZGZnZ2YueG1s')
+addon = xbmcaddon.Addon('script.module.familiaiptv.addon')

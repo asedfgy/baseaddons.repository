@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="projectx.wizard" version="1.1.2" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" provider-name="TVsupertuga">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="baseaddons.repository" version="0.2"/>				
+		<import addon="script.module.projectx.wizard" version="1.0.0"/>	
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="pt">TVsupertuga </summary>
+		<description lang="pt"></description>
+		<platform>all</platform>
+        <facebookgrupo>https://www.facebook.com/TVsupertuga.PT/</facebookgrupo>
+        <email>tvsupertuga@gmail.com</email>		
+		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
+		<website>https://www.facebook.com/TVsupertuga.PT/</website>
+	</extension>
+</addon>

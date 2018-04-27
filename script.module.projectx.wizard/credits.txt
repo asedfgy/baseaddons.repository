@@ -1,0 +1,28 @@
+Credits to all developers that some of the code came from
+WHUFCLEE       :  base code for a few other functions
+][NT3L][G3NC][ :  for apk install code and force close fix
+TVAddons.ag    :  Splash Code and Source for dependencies
+OpenEleq       :  skinSwitch.py and Enable/Disable Addons
+Kodi Team      :  Kodi Log Uploader(Added support for forks and email log url)
+Sean Poyser    :  YouTube module
+Barroni        :  Artwork for Advanced Settings Auto Configurator
+
+Special Thanks to the NaN Team for giving me a home when i was first starting out coding python and helping me out along the way.
+This wizard wouldn't be no where near as good as it is today if it wasnt for them.
+WhufcLee, OpenEleq, Midraal : Various coding help  
+Barroni        :  Artwork for Advanced Settings Auto Configurator
+
+Surfacingx AfterMath   :  Thank you for developing what this wizard started as and having a program that allows people to develope a wizard.  Without this program I never would have known where to start
+and i never would have been able to even get started. Also thank you for answering any questions I have had and always helping out.
+
+TDB Wizard  :  Thank you for allowing people like myself to see your code and learn from it.  Without being able to do that I never would have learned anything about python at all.
+I spent countless hours just staring at the code of your wizard to try and learn whatever I could.  Without being able to do that I never would have been able to even begin to understand anything python.
+
+][NT3L][G3NC][ : APK Drawer. Thank you for all of the help you have been giving me and teaching me along the way.
+
+TeamXKodi   :  Thank you for giving me permission to use your speedtest in the wizard.
+
+For SpinzTV Pro  :###THANK YOU TO THE PEOPLE THAT ORIGINALY WROTE SOME OF THIS CODE "STUART DENTON, PIPCAN, MIKEY1234, WHUFCLEE"
+Also JayBox From GenieTV. Thank you for all of the help and guidance you have been giving me and helping me learn.
+
+Demonstratorz : Thank you for all your help on the download counter as well as various other things you have helped with along the way

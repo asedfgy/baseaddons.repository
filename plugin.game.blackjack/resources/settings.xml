@@ -1,0 +1,7 @@
+<settings>
+	<category label="General">
+		<setting id="card-backing" type="labelenum" default="Wizards Tarot" visible="true" label="Deck Graphic" values="Skull Black|Lion Strength|Face Blue|Skull Blue|Tigers|Wizards Tarot|Red 01|Gear|Goblin Tarot|Owl Keys|Nature|Madame|Black and White|Skull with Hair|Eye Keys|Eye Fish" />
+		<setting id="auto-deal" type="bool" label="Auto-Deal after game results?" default="true" visible="true" />
+		<setting id="use-sfx" type="bool" label="Use Sounds?" default="true" visible="true" />
+	</category>
+</settings>

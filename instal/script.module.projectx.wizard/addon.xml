@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.projectx.wizard" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="1.1.0" provider-name="TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.Community.dl" version="0.1"/>	
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.service" library="startup.py" start="startup" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">TVsupertuga Team Wizard</summary>
+    <description lang="en">TVsupertuga Team Wizard allows you to get access to the latest TVsupertuga Team Custom Builds and Add-ons.
+[CR]
+[CR]TVsupertuga Team Wizard permite-lhe ter acesso às últimas Builds e Add-ons desenvolvidos pela TVsupertuga Team.</description>
+    <platform>all</platform>
+  </extension>
+</addon>

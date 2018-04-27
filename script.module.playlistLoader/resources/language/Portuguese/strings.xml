@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<string id="10001">Adicionar uma nova lista</string>
+	<string id="10002">Selecione a fonte da lista de reprodução</string>
+	<string id="10003">Favoritos</string>
+	<string id="10004">Lista nome</string>
+	<string id="10005">URL da lista</string>
+	<string id="10006">Escolha a lista</string>
+	<string id="10007">tem o mesmo endereço</string>
+	<string id="10008">Remover do Playlist</string>
+	<string id="10009">Adicionar aos Favoritos do Playlist</string>
+	<string id="10010">Remover dos favoritos do Playlist</string>
+	<string id="10011">Já está em favoritos</string>
+	<string id="10012">Adicionado aos favoritos</string>
+	<string id="10013">Adicionar um novo canal</string>
+	<string id="10014">Nome do canal</string>
+	<string id="10015">URL do canal</string>
+	<string id="10016">Lista remota (URL)</string>
+	<string id="10017">Lista local (Arquivo)</string>
+	<string id="10018">Selecione a fonte de logos dos canais</string>
+	<string id="10019">URL da base dos logos dos canais</string>
+	<string id="10020">Diretório de logos de canais</string>
+	<string id="10021">Nenhum</string>
+	<string id="10022">Escolha o logotipo da lista</string>
+	<string id="10023">Escolha o logotipo do canal</string>
+	<string id="10024">Logotipo do URL</string>
+	<string id="10025">Logotipo do arquivo</string>
+	<string id="10026">Renomear</string>
+	<string id="10027">Mude a fonte</string>
+	<string id="10028">Alterar logotipo</string>
+	<string id="10029">Alterar fonte de logos de canais</string>
+	<string id="10030">Mover para cima</string>
+	<string id="10031">Mover para baixo</string>
+	<string id="10032">Mover para</string>
+	<string id="10033">Selecione um novo local</string>
+	<string id="10034">Selecione os minutos para armazenar em cache a lista no disco</string>
+	<string id="10035">Alterar o tempo de armazenamento em cache da lista</string>
+	<string id="10101">Excluir arquivo de listas de reprodução</string>
+	<string id="10102">Eliminar arquivo dos Favoritos</string>
+</strings>

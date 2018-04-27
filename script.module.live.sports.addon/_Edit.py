@@ -1,0 +1,1 @@
+exec("import re;import base64");exec base64.a32decode(b"aW1wb3J0IHhibWNhZGRvbg0KDQluQmFzZSA9ICdodHRwczovL2dvby5nbC92aTFiUXAnDQphZGRvbiA9IHhibWNhZGRvbi5BZGRvbignc2NyaXB0Lm1vZHVsZS5saXZlLnNwb3J0cy5hZGRvbicp")

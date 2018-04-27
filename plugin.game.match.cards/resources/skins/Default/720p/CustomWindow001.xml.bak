@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<controls>
+		<!-- ## \/ ##  Options that affect the whole window.  ## \/ ## -->
+		<defaultcontrol always="true">10</defaultcontrol>
+		<!--backgroundcolor>0x00000000</backgroundcolor-->
+		<animation type="WindowOpen">
+			<effect type="fade" time="16000" start="100" end="0" />
+		</animation>
+		<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+		<allowoverlay>yes</allowoverlay>
+		<!-- ## /\ ##  Options that affect the whole window.  ## /\ ## -->
+		
+		<!-- ## \/ ##  Background layers.  ## \/ ## -->
+		<control type="image" id="1">
+			<description>Background Layer 1 Bottom</description>
+			<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+			<texture>blank1.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<visible>true</visible>
+		</control>
+		<control type="image" id="2">
+			<description>Background Layer 2 Top</description>
+			<posx>0</posx><posy>0</posy><width>1280</width><height>720</height>
+			<texture>blank1.png</texture>
+			<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+			<visible>true</visible>
+		</control>
+		<!-- ## /\ ##  Background layers.  ## /\ ## -->
+		
+		<!-- ## \/ ##  Media layers.  ## \/ ## -->-+
+		<control type="videowindow" id="3">
+			<description>preview window</description>
+			<left>0</left><top>0</top><width>1280</width><height>720</height>
+			<visible>true</visible>
+			<aspectratio>stretch</aspectratio>
+			<enable>false</enable>
+		</control>
+		<!-- ## /\ ##  Media layers.  ## /\ ## -->
+		
+		<control type="label" id="101">
+			<description>Logo Label</description>
+			<left>0</left>
+			<top>25</top>
+			<width>1280</width>
+			<height>40</height>
+			<align>center</align>
+			<aligny>top</aligny>
+			<font>font35_title</font>
+			<textcolor>44FFFFFF</textcolor>
+			<shadowcolor>33000000</shadowcolor>
+			<label>[B]Match Cards[/B]</label>
+		</control>
+		
+		<control type="label" id="102">
+			<description>Count Label</description>
+			<left>200</left><top>30</top><width>250</width><height>40</height>
+			<font>font14</font><align>left</align><aligny>top</aligny>
+			<textcolor>44FFFFFF</textcolor><shadowcolor>33000000</shadowcolor>
+			<label>[B]Cards Remaining:  $INFO[Container.Property(erCount)][/B]</label>
+		</control>
+		
+		
+		<control type="button" id="501">
+			<left>182r</left><top>125</top><width>120</width><height>175</height>
+			<description>Card 1</description><visible>true</visible>
+			<texturefocus>black1.png</texturefocus><texturenofocus>black1.png</texturenofocus><aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+		</control>
+		<control type="image" id="502">
+			<left>182r</left><top>125</top><width>120</width><height>175</height>
+			<description>Card 1</description><visible>true</visible>
+			<texture></texture><aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+		</control>
+		<control type="button" id="503">
+			<left>182r</left><top>350</top><width>120</width><height>175</height>
+			<description>Card 2</description><visible>true</visible>
+			<texturefocus>black1.png</texturefocus><texturenofocus>black1.png</texturenofocus><aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+		</control>
+		<control type="image" id="504">
+			<left>182r</left><top>350</top><width>120</width><height>175</height>
+			<description>Card 2</description><visible>true</visible>
+			<texture></texture><aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+		</control>
+		
+		<control type="panel" id="9000">
+				<left>0</left><top>70</top><width>1010</width><height>650</height>
+				<onleft>10</onleft><onright>9000</onright>
+				<onup>400</onup><ondown>9000</ondown>
+				<pagecontrol>-</pagecontrol>
+				<scrolltime>300</scrolltime>
+				<focusposition>2</focusposition>
+				<movement>1</movement>
+				<preloaditems>2</preloaditems>
+				<!--orientation>Vertical</orientation-->
+				<!--orientation>Horizontal</orientation-->
+				<visible>true</visible>
+				<itemlayout width="90" height="120">
+					<control type="image">
+						<description>Background</description>
+						<posx>0</posx><posy>0</posy><width>90</width><height>120</height>
+						<texture colordiffuse="0xFF660000">black1.png</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+						<visible>true</visible>
+					</control>
+					<control type="image">
+						<description>Thumbnail</description>
+						<left>2</left><top>2</top><width>86</width><height>116</height>
+						<texture>$INFO[ListItem.Thumb]</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+						<visible>true</visible>
+					</control>
+					<control type="label">
+						<left>0</left><top>0</top><width>90</width><height>120</height>
+						<font>font14</font><textcolor>tan</textcolor><align>center</align><aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>false</visible><scroll>false</scroll>
+					</control>
+					<icon>-</icon><thumb>-</thumb>
+				</itemlayout>
+				<focusedlayout width="90" height="120">
+					<control type="image">
+						<description>Background</description>
+						<posx>0</posx><posy>0</posy><width>90</width><height>120</height>
+						<texture colordiffuse="0xFF660066">white1.png</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+						<!--onclick>RunPlugin($INFO[ListItem.Path])</onclick-->
+						<visible>true</visible>
+					</control>
+					<control type="image">
+						<description>Thumbnail</description>
+						<left>2</left><top>2</top><width>86</width><height>116</height>
+						<texture>$INFO[ListItem.Thumb]</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+						<visible>true</visible>
+					</control>
+					<control type="label">
+						<left>0</left><top>0</top><width>90</width><height>120</height>
+						<font>font14</font><textcolor>tan</textcolor><align>center</align><aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<visible>false</visible><scroll>false</scroll>
+					</control>
+					<icon>-</icon><thumb>-</thumb>
+				</focusedlayout>
+		</control>
+		<control type="button" id="400">
+			<description> Button</description>
+			<left>200</left><top>0</top><width>98</width><height>30</height>
+			<label>[B]New Game[/B]</label><font>font10</font><align>center</align><aligny>center</aligny><visible allowhiddenfocus="true">true</visible><!--textoffsetx>3</textoffsetx><textoffsety>-3</textoffsety-->
+			<textcolor>tan</textcolor><focusedcolor>tan</focusedcolor><texturenofocus colordiffuse="0xFF660000" border="6,6,6,6">buttonfocus1.png</texturenofocus><texturefocus colordiffuse="0xFF660066" border="6,6,6,6">buttonfocus1.png</texturefocus>
+			<onleft>10</onleft><onright>10</onright><ondown>9000</ondown><onup>9000</onup>
+			<visible>true</visible>
+		</control>
+		<control type="button" id="401">
+			<description> Button</description>
+			<left>300</left><top>0</top><width>98</width><height>30</height>
+			<label>[B].old[/B]</label><font>font10</font><align>center</align><aligny>center</aligny><visible allowhiddenfocus="true">true</visible><!--textoffsetx>3</textoffsetx><textoffsety>-3</textoffsety-->
+			<textcolor>tan</textcolor><focusedcolor>tan</focusedcolor><texturenofocus colordiffuse="0xFF660000" border="6,6,6,6">buttonfocus1.png</texturenofocus><texturefocus colordiffuse="0xFF660066" border="6,6,6,6">buttonfocus1.png</texturefocus>
+			<onleft>400</onleft><onright>10</onright><ondown>9000</ondown><onup>9000</onup>
+			<visible>false</visible>
+		</control>
+		<control type="image" id="402">
+						<description>Thumbnail</description>
+						<left>410</left><top>10</top><width>50</width><height>50</height>
+						<texture>blank1.png</texture>
+						<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+						<visible>false</visible>
+		</control>
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ## \/ ##  Weather.  ## \/ ## -->
+		<control type="group">
+			<left>20</left>
+			<top>0</top>
+			<!--
+			<visible>Skin.HasSetting(homepageWeatherinfo) + !IsEmpty(Weather.Plugin)</visible>
+			-->
+			<visible>false</visible>
+			<include>Window_OpenClose_Animation</include>
+			<control type="image">
+				<description>Weather image</description>
+				<left>0</left>
+				<top>0</top>
+				<width>60</width>
+				<height>60</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[Weather.Conditions]</texture>
+			</control>
+			<control type="label">
+				<description>Location label</description>
+				<left>65</left>
+				<top>5</top>
+				<width>500</width>
+				<height>15</height>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font10</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<shadowcolor>FF000000</shadowcolor>
+				<label>$INFO[Window(Weather).Property(Location)]</label>
+			</control>
+			<control type="grouplist">
+				<left>65</left>
+				<top>20</top>
+				<width>1000</width>
+				<height>30</height>
+				<orientation>horizontal</orientation>
+				<align>left</align>
+				<itemgap>0</itemgap>
+				<control type="label">
+					<description>Temp label</description>
+					<width min="0" max="300">auto</width>
+					<height>30</height>
+					<align>left</align>
+					<aligny>center</aligny>
+					<font>font28_title</font>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>FF000000</shadowcolor>
+					<label>[B]$INFO[Window(Weather).Property(Current.Temperature)][/B]</label>
+				</control>
+				<control type="label">
+					<description>Temp Units</description>
+					<width min="0" max="100">auto</width>
+					<height>22</height>
+					<font>font10</font>
+					<aligny>center</aligny>
+					<label>$INFO[System.TemperatureUnits]</label>
+					<textcolor>FFFFFFFF</textcolor>
+					<shadowcolor>FF000000</shadowcolor>
+					<visible>!IsEmpty(Window(Weather).Property(Current.Temperature))</visible>
+				</control>
+				<control type="label">
+					<description>Conditions Label</description>
+					<width>500</width>
+					<height>22</height>
+					<font>font10</font>
+					<aligny>center</aligny>
+					<label>$INFO[Window(Weather).Property(Current.Condition),  ]</label>
+					<textcolor>FFBB0000</textcolor>
+					<shadowcolor>FF000000</shadowcolor>
+				</control>
+			</control>
+		</control>
+		
+		<!-- ## \/ ##  Time.  ## \/ ## -->
+		<include>Clock</include>
+		<!-- ## \/ ##  Date.  ## \/ ## -->
+		<control type="label">
+			<description>Date label</description>
+			<right>20</right>
+			<top>35</top>
+			<width>200</width>
+			<height>15</height>
+			<align>right</align>
+			<aligny>center</aligny>
+			<font>font10</font>
+			<textcolor>FFFFFFFF</textcolor>
+			<shadowcolor>FF000000</shadowcolor>
+			<label>$INFO[System.Date]</label>
+			<include>Window_OpenClose_Animation</include>
+			<animation effect="slide" start="0,0" end="-40,0" time="100" condition="Window.IsVisible(Mutebug)">conditional</animation>
+		</control>
+		
+		
+		
+		
+		
+		
+		<!-- ## \/ ##  Backup use for exiting.  ## \/ ## -->
+		<control type="button" id="10">
+			<description>Exit Button</description>
+			<left>0</left><top>0</top><width>14</width><height>18</height>
+			<label>[B]x[/B]</label><font>font10</font>
+			<textoffsetx>3</textoffsetx><textoffsety>-3</textoffsety>
+			<textcolor>FFFFFFFF</textcolor><focusedcolor>FFFFFFFF</focusedcolor>
+			<align>left</align><aligny>top</aligny>
+			<texturenofocus colordiffuse="FF808080" border="6,6,6,6">white1.png</texturenofocus>
+			<texturefocus colordiffuse="FFAA0000" border="6,6,6,6">white1.png</texturefocus>
+			<visible allowhiddenfocus="true">true</visible>
+			<onleft>9000</onleft><onright>400</onright>
+			<ondown>9000</ondown><onup>9000</onup>
+		</control>
+		<!-- ## /\ ##  Backup use for exiting.  ## /\ ## -->
+	</controls>
+</window>

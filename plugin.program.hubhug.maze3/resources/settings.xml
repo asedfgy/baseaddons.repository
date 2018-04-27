@@ -1,0 +1,21 @@
+<settings>
+	<category label="General">
+		<setting visible="true" id="viz-scale-width" type="labelenum" label="Visual Width" values="5|7|9|11|13|15|17|19" default="19"/>
+		<setting visible="true" id="viz-scale-height" type="labelenum" label="Visual Height" values="5|7|9|11" default="11"/>
+		<setting visible="true" id="img-player" type="labelenum" label="Player Avatar" values="08 BlackHaired Boy|01 Boy|02 Boy|03 Boy|06 Boy in Purple|07 Girl|04 Blond Girl|05 BlueHaired Girl|09 BlackHaired Girl in Red|10 Rich Blonde Girl|11 Cleopatra|12 Blonde Princess|SeaGreen|BlueShades1|BlueShades2|GreyHuman|AncientHero|BlackEyedHero|GreenHero|NerdHero|BanditHero|XBMCHero|AndroidHero|Girl1|Girl2|GirlNLove|HoodedGirl" default="08 BlackHaired Boy"/>
+		<setting visible="true" type="bool" default="false" id="select-puzzle" 	label="Select Map" />
+		<setting visible="false" type="bool" default="true" id="show-map" 	label="Show map" />
+		<setting visible="false" type="bool" default="true" id="show-maplocation" 	label="Show location on the map" enable="!eq(-1,false)" />
+		<setting visible="false" type="bool" default="true" id="show-items" 	label="Show items" />
+		<setting visible="true" type="bool" default="true" id="updater" 	label="Auto-Updater" />
+		
+		<setting visible="false" type="bool" default="true" id="savegame-onexit" 	label="Save Game @ User Exit" />
+		<setting visible="false" type="text" id="txt-winner"	default="WINNER"	label="WINNER" />
+		<setting visible="false" type="text" id="txt-loser"	default="LOSER"	label="LOSER" />
+		<setting visible="false" type="text" id="txt-beats"	default="beats"	label="beats" />
+		<setting visible="false" type="text" id="txt-draw"	default="DRAW"	label="DRAW" />
+		<setting visible="false" type="text" id="txt-noonewins"	default="NO ONE WINS"	label="NO ONE WINS" />
+		<setting visible="false" type="bool" default="false" id="debug-enable" 	label="Enable Debugging to File" />
+		<setting visible="false" type="bool" default="false" id="debug-show" 		label="Enable Debugging to Notice(s)" />
+	</category>
+</settings>

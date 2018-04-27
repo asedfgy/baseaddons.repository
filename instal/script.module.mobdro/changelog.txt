@@ -1,0 +1,7 @@
+v 0.3 - Passed Beta Phase. Pop up Dialog Added.
+
+v 0.2 - Fixed Error Created
+
+v 0.1 - Addons Files are Now Stored Online, Bringing Faster Updates. 
+
+

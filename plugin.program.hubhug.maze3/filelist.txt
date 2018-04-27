@@ -1,0 +1,12 @@
+z_CoreFiles.zip
+z_Puzzles.zip
+art2|ArtClient.zip
+art2|ArtNPC.zip
+art2|ArtObjects.zip
+art2|ArtPlayer.zip
+art2|ArtSplash.zip
+art2|ArtTextures.zip
+art2|ASFX.zip
+filelist.txt
+||
+2014-06-11.03

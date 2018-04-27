@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.program.romgrabber"
+       name="FreeRoms Downloader"
+       version="1.1.6.4"
+       provider-name="o9r1sh, Graphics by Marquerite">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.common.plugin.cache" version="0.9.1"/>
+    <import addon="script.module.addon.common" version="1.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Browse and Download Video Games For Your Emulators</summary>
+    <description>Browse and Download Video Games For Your Emulators</description>
+    <platform>all</platform>
+  </extension>
+</addon>
