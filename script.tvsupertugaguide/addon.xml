@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.tvsupertugaguide" name="TVsupertuga Guide" version="0.1" provider-name="Team TVsupertuga">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.simplejson" version="2.0.10"/>
+		<import addon="script.module.creator" version="0.1"/>		
+		<import addon="plugin.video.tviplay" version="0.1"/>		
+		<import addon="plugin.video.rtpplay" version="2.6.0"/>		
+		<import addon="service.tvsupertuga.autosubs" version="0.1"/>		
+	</requires>
+	<extension point="xbmc.python.script" library="addon.py"/>
+    <extension point="xbmc.service" library="service.py" start="login" default="true" />
+	<extension point="xbmc.addon.metadata">
+	<provides>all</provides>
+    <summary>Ferramenta</summary>
+	<description lang="pt">Olá bem vindos a TVsupertugaguide Guide aqui poderão encontrar toda a programação televisiva portuguesa.Desde já os meus agradecimentos para o [COLOR yellow]Marco João[/COLOR] por nós ajudar neste projecto. ..</description>	
+    <disclaimer lang="pt">[COLOR red]COMO ATIVAR
+Passo -1 : (ir a configurar)
+Passo -2 : (ir a ajuda)
+Passo -3 : (ir a ativar programação e TV)[/COLOR]</disclaimer>
+	<summary lang="pt">Facebook Support www.facebook.com/TVsupertuga.PT/</summary>	
+    <website>www.facebook.com/TVsupertuga.PT/</website>
+     <email>tvsupertuga@gmail.com</email>	
+    <language>pt</language>
+	<platform>all</platform>
+	</extension>
+</addon>

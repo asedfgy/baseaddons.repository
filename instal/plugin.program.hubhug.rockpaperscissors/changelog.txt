@@ -1,0 +1,19 @@
+[B]Version 0.0.4[/B]
+- 2 Options in Addon Settings for the Count Down System.
+- Hand Shake Animations During Count Down System.
+
+[B]Version 0.0.3[/B]
+- Got the CountDown system to slightly function.
+- Hands Thrown down from the side now.
+- 3 2 1 Graphics added.
+- Left Hand graphics for the Right side of the screen added.
+
+[B]Version 0.0.2[/B]
+- AspectRatio Fix
+
+[B]Version 0.0.1[/B]
+- Added Some Graphic(s) by Marquerite.
+- Added HUB HUG Movement Series Fanart Graphic by Marquerite.
+- Added Some Graphic(s) by TheHighway.
+- Initial Build.
+

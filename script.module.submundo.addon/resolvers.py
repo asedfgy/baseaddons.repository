@@ -1,0 +1,1 @@
+[{"url": "http://tvsupertuga.tvsupertuga.website/Apiapi.phpaction=subcount&name=mundo.html", "fanart": "https://i86.servimg.com/u/f86/19/44/91/43/menu_110.png", "title": "FDP CONTINUAS BURRO!"}]

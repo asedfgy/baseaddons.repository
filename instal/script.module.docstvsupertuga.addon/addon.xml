@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.docstvsupertuga.addon" 
+         name="World Documentaries" 
+         version="0.1"
+         provider-name="TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.urlresolver"/>
+    <import addon="plugin.video.youtube" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension> 
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">This addon provides documenraries from a variety of sources.</summary>
+    <description lang="en">This addon provides documenraries from a variety of sources.</description>
+    <disclaimer lang="en">We do not host any of the streams provided within the addon.</disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum></forum>
+    <website></website>
+    <email></email>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>

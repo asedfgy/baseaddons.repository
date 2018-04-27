@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog">
+	<allowoverlay>no</allowoverlay>
+	<defaultcontrol always="false">4000</defaultcontrol>
+	<coordinates>
+		<system>1</system>
+		<posx>700</posx>
+		<posy>268</posy>
+	</coordinates>
+    <animation effect="slide" start="300,0" end="0,0" time="500">WindowOpen</animation>
+    <animation effect="slide" start="0,0" end="300,0" time="500">WindowClose</animation>
+    <controls>
+
+        <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>513</width>
+            <height>451</height>
+            <texture>tvguide-menu-bkgrd.png</texture>
+        </control>
+        <control type="image">
+            <posx>-670</posx>
+            <posy>-238</posy>
+            <width>1220</width>
+            <height>660</height>
+            <texture>menubg.png</texture>
+        </control>
+			<control type="image">
+                <description>iVue logo</description>
+                <posx>-599</posx>
+                <posy>-218</posy>
+                <width>220</width>
+                <height>110</height>
+                <aspectratio>keep</aspectratio>
+                <fadetime>500</fadetime>
+                <texture>iVuetvguide-logo.png</texture>
+            </control>
+        <control type="image" id="4100">
+            <posx>-572</posx>
+            <posy>265</posy>
+            <width>150</width>
+            <height>80</height>
+            <aspectratio>keep</aspectratio>
+        </control>
+<control type="label">
+                    <description>Selected Channel</description>
+                    <posx>-576</posx>
+                    <posy>330</posy>
+                    <width>250</width>
+                    <height>50</height>
+                    <textcolor>ffffffff</textcolor>
+                    <font>font13</font>
+					<align>left</align>
+                    <aligny>center</aligny>
+					<label>Selected Channel</label>
+<visible>true</visible>
+                </control>
+        <control type="label" id="4101">
+            <posx>-0</posx>
+            <posy>-0</posy>
+            <width>240</width>
+            <height>30</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>osdTitle</font>
+            <textcolor>ffffffff</textcolor>
+<visible>false </visible>
+        </control>
+
+        <control type="button" id="4000"><!-- watch -->
+            <posx>-170</posx>
+            <posy>-120</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4000</onup>
+            <ondown>4002</ondown>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+<visible>false </visible>
+        </control>
+		
+        <control type="label" id="4102"><!-- Show Title -->
+            <posx>-750</posx>
+            <posy>-140</posy>
+            <width>500</width>
+            <height>30</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>tvg_font13</font>
+            <textcolor>ffffffff</textcolor>
+			<visible>false </visible>
+        </control>
+
+        <control type="button" id="4001"><!-- Choose Stream -->
+            <posx>-617</posx>
+            <posy>-85</posy>
+            <width>240</width>
+            <height>30</height>
+			<texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4004</onup>
+            <ondown>4003</ondown>
+            <onleft>4001</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>tvg_font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>$ADDON[script.tvsupertugaguide 30304]</label>
+        </control>
+		
+#        <control type="label"> <!-- Choose Stream Text -->
+#            <posx>-170</posx>
+#            <posy>-20</posy>
+#            <width>240</width>
+#            <height>200</height>
+#            <font>tvg_font13</font>
+#            <textcolor>ffffffff</textcolor>
+#            <label>$ADDON[script.tvsupertugaguide 30305]</label>
+#            <wrapmultiline>true</wrapmultiline>
+#        </control>
+
+        <control type="button" id="4003"><!-- CHANNELS -->
+            <posx>-617</posx>
+            <posy>-35</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4001</onup>
+            <ondown>4002</ondown>
+            <onleft>4003</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>tvg_font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>$ADDON[script.tvsupertugaguide 30307]</label>
+        </control>
+		
+        <control type="button" id="4002"><!-- REMINDER -->
+            <posx>-617</posx>
+            <posy>15</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4003</onup>
+            <ondown>4447</ondown>
+            <onleft>4002</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>tvg_font13</font>
+            <textcolor>ffffffff</textcolor>
+        </control>
+		
+        <control type="button" id="4447"><!-- RTP Play -->
+            <onclick>RunAddon(plugin.video.rtpplay)</onclick>
+            <posx>-617</posx>
+            <posy>65</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4002</onup>
+            <ondown>4441</ondown>
+            <onleft>4447</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+	        <label>RTP Play</label>
+			<label>$ADDON[script.tvsupertugaguide 4447]</label>
+			<visible>true </visible>
+        </control>
+
+        <control type="button" id="4441"><!-- TVI Player -->
+            <onclick>RunAddon(plugin.video.tviplayer)</onclick>
+            <posx>-617</posx>
+            <posy>115</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4447</onup>
+            <ondown>4442</ondown>
+            <onleft>4441</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+			<label>TVI Player</label>
+			<visible>true </visible>
+        </control>
+		
+        <control type="button" id="4442"><!-- SuperFaves -->
+            <onclick>RunAddon(plugin.program.super.favourites)</onclick>
+            <posx>-617</posx>
+            <posy>165</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4441</onup>
+            <ondown>4004</ondown>
+            <onleft>4442</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+			<label>$ADDON[script.tvsupertugaguide 80004]</label>
+			<visible>true</visible>
+        </control>
+
+        <control type="button" id="4004"><!-- QUIT -->
+            <posx>-617</posx>
+            <posy>215</posy>
+            <width>240</width>
+            <height>30</height>
+          <texturefocus>menu button-focus.png</texturefocus>
+			<texturenofocus>menu button.png</texturenofocus>
+            <onup>4442</onup>
+            <ondown>4001</ondown>
+            <onleft>4004</onleft>
+            <onright>4446</onright>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>tvg_font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>$ADDON[script.tvsupertugaguide 30308]</label>
+        </control>
+
+        <control type="button" id="80000"><!-- GENESIS -->
+            <posx>130</posx>
+            <posy>130</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>tvguide-program-menu-focus.png</texturefocus>
+			<texturenofocus>tvguide-program-grey2.png</texturenofocus>
+            <onup>4002</onup>
+            <ondown>80001</ondown>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+			<label>$ADDON[script.tvsupertugaguide 80000]</label>
+<visible>false </visible>
+        </control>
+
+        <control type="button" id="80003"><!-- My Recordings -->
+            <posx>130</posx>
+            <posy>220</posy>
+            <width>240</width>
+            <height>30</height>
+            <texturefocus>tvguide-program-menu-focus.png</texturefocus>
+			<texturenofocus>tvguide-program-grey2.png</texturenofocus>
+            <onup>80002</onup>
+            <ondown>80004</ondown>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+			<label>$ADDON[script.tvsupertugaguide 80003]</label>
+<visible>false </visible>
+        </control>
+		
+
+        <control type="button" id="4446"><!-- TV Shows -->
+            <onclick>ActivateWindow(Videos,"plugin://plugin.video.zen/?action=tvshows&amp;url=popular",return)</onclick>
+            <posx>-260</posx>
+            <posy>-179</posy>
+            <width>235</width>
+            <height>66</height>
+            <texturefocus>tvshows_focus.png</texturefocus>
+			<texturenofocus>tvshows.png</texturenofocus>
+            <onup>7006</onup>
+            <ondown>7002</ondown>
+			<onleft>4001</onleft>
+			<onright>4445</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="7002"><!-- Exodus TV -->
+            <onclick>ActivateWindow(Videos,"plugin://plugin.video.exodus/?action=tvNavigator",return)</onclick>
+            <posx>-260</posx>
+            <posy>-85</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>exodustv_focus.png</texturefocus>
+			<texturenofocus>exodustv.png</texturenofocus>
+            <onup>4446</onup>
+            <ondown>7004</ondown>
+			<onleft>4001</onleft>
+			<onright>7003</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+		
+        <control type="button" id="7004"><!-- Specto TV -->
+            <onclick>ActivateWindow(Videos,"plugin://plugin.video.specto/?action=tvNavigator",return)</onclick>
+            <posx>-260</posx>
+            <posy>75</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>spectotv_focus.png</texturefocus>
+			<texturenofocus>spectotv.png</texturenofocus>
+            <onup>7002</onup>
+            <ondown>7006</ondown>
+			<onleft>4001</onleft>
+			<onright>7005</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="7006"><!-- 123Movies -->
+            <onclick>ActivateWindow(10025,&quot;plugin://script.module.vod.tvsupertuga.addon/?fanart=http%3a%2f%2fimg01.deviantart.net%2f19da%2fi%2f2013%2f118%2fd%2fa%2fvikings_wallpaper_by_iamsointense-d62xwvb.jpg&amp;iconimage=https%3a%2f%2fraw.githubusercontent.com%2fPROJECTOTEAM%2fPRINCIPAL%2fmaster%2fvod%2fICONS%2fS%25C3%2589RIES.png&amp;mode=2&amp;name=%5bCOLOR%20white%5d%5bB%5dS%c3%89RIES%5b%2fB%5d%5b%2fCOLOR%5d%20&amp;url=http%3a%2f%2fteamtuga4ever.net23.net%2fvod%2fCjxpdGVtPgo8dGl0bGU%2bW0NPTE9SIGJsdWVdLltDT0xPUiBza3libHVlXS5PbmUgQ2hhbm5lbCBNb3ZpZXNbL0NPTE9SXTwvdGl0bGjxsaW5rPmh0dHA6Ly9pZ25vcmEubWU8L2xpbjxleH.xml&quot;,return)</onclick>
+            <posx>-260</posx>
+            <posy>230</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>123movies_focus.png</texturefocus>
+			<texturenofocus>123movies.png</texturenofocus>
+            <onup>7004</onup>
+            <ondown>4446</ondown>
+            <onleft>4001</onleft>
+            <onright>7007</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="4445"><!-- Movies -->
+            <onclick>ActivateWindow(Videos,"plugin://plugin.video.zen/?action=movies&amp;url=theaters",return)</onclick>
+            <posx>0</posx>
+            <posy>-179</posy>
+            <width>235</width>
+            <height>66</height>
+            <texturefocus>movies_focus.png</texturefocus>
+			<texturenofocus>movies.png</texturenofocus>
+            <onup>7007</onup>
+            <ondown>7003</ondown>
+            <onleft>4446</onleft>
+            <onright>7001</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="7003"><!-- Exodus Movies -->
+            <onclick>ActivateWindow(Videos,"plugin://plugin.video.exodus/?action=movieNavigator",return)</onclick>
+            <posx>0</posx>
+            <posy>-85</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>exodusmovies_focus.png</texturefocus>
+			<texturenofocus>exodusmovies.png</texturenofocus>
+            <onup>4445</onup>
+            <ondown>7005</ondown>
+            <onleft>7002</onleft>
+            <onright>4443</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+		
+        <control type="button" id="7005"><!-- Specto Movies -->
+            <onclick>ActivateWindow(Videos,"plugin://plugin.video.specto/?action=movieNavigator",return)</onclick>
+            <posx>0</posx>
+            <posy>75</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>spectomovies_focus.png</texturefocus>
+			<texturenofocus>spectomovies.png</texturenofocus>
+            <onup>7003</onup>
+            <ondown>7007</ondown>
+            <onleft>7004</onleft>
+            <onright>4444</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="7007"><!-- HDBox -->
+            <onclick>ActivateWindow(10025,&quot;plugin://script.module.vod.tvsupertuga.addon/?fanart=http%3a%2f%2fi97.servimg.com%2fu%2ff97%2f19%2f44%2f91%2f43%2f69183010.jpg&amp;iconimage=https%3a%2f%2fraw.githubusercontent.com%2fPROJECTOTEAM%2fPRINCIPAL%2fmaster%2fvod%2fICONS%2fICON-BASE.png&amp;mode=2&amp;name=%5bCOLOR%20white%5d%5bB%5dFILMES%5b%2fB%5d%5b%2fCOLOR%5d&amp;url=http%3a%2f%2fteamtuga4ever.net23.net%2fvod%2fCjxpdGVtPgo8dGl0bGU%2bW0NPTE9SIGJsdWVdLltDT0xPUiBza3libHVlXS5PbmUgQ2hhbm5lbCBNb3ZpZXNbL0NPTE9SXTwvdGl0bGjxsaW5rPmh0dHA6Ly9pZ25vcmEubWU8L2xpbjxleH.xml&quot;,return)</onclick>
+            <posx>0</posx>
+            <posy>230</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>hdbox_focus.png</texturefocus>
+			<texturenofocus>hdbox.png</texturenofocus>
+            <onup>7005</onup>
+            <ondown>4445</ondown>
+            <onleft>7006</onleft>
+            <onright>7008</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="7001"><!-- Settings -->
+            <onclick>Addon.openSettings(script.tvsupertugaguide)</onclick>
+            <posx>260</posx>
+            <posy>-179</posy>
+            <width>235</width>
+            <height>66</height>
+            <texturefocus>IVUEsettings_focus.png</texturefocus>
+			<texturenofocus>IVUEsettings.png</texturenofocus>
+            <onup>7008</onup>
+            <ondown>4443</ondown>
+            <onleft>4445</onleft>
+            <onright>4446</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+		
+        <control type="button" id="4443"><!-- IvueCreator -->
+            <onclick>ActivateWindow(Videos,"plugin://script.module.creator",return)</onclick>
+            <posx>260</posx>
+            <posy>-85</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>IVUEcreator-focus.png</texturefocus>
+			<texturenofocus>IVUEcreator.png</texturenofocus>
+            <onup>7001</onup>
+            <ondown>4444</ondown>
+            <onleft>7003</onleft>
+            <onright>7002</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+		</control>
+
+        <control type="button" id="4444"><!-- YouTube -->
+            <onclick>RunAddon(plugin.video.youtube)</onclick>
+            <posx>260</posx>
+            <posy>75</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>youtube-focus.png</texturefocus>
+			<texturenofocus>youtube.png</texturenofocus>
+            <onup>4443</onup>
+            <ondown>7008</ondown>
+            <onleft>7005</onleft>
+            <onright>7004</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>
+
+        <control type="button" id="7008"><!-- TVsupertuga AutoSubs -->
+		            <onclick>Addon.openSettings(service.tvsupertuga.autosubs)</onclick>
+            <posx>260</posx>
+            <posy>230</posy>
+            <width>235</width>
+            <height>130</height>
+            <texturefocus>radio_focus.png</texturefocus>
+			<texturenofocus>radio.png</texturenofocus>
+            <onup>4444</onup>
+            <ondown>7001</ondown>
+            <onleft>7007</onleft>
+            <onright>7006</onright>
+			<label>$ADDON[script.tvsupertugaguide 80005]</label>
+        </control>		
+
+		</controls>
+</window>

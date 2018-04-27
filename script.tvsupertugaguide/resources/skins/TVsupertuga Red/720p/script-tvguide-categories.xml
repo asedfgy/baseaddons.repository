@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog">
+    <allowoverlay>no</allowoverlay>
+    <defaultcontrol always="true">7004</defaultcontrol>
+    <coordinates>
+        <system>1</system>
+        <posx>0</posx>
+        <posy>0</posy>
+    </coordinates>
+
+    <controls>
+
+        <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1280</width>
+            <height>246</height>
+            <texture>menbg.png</texture>
+            <visible>true</visible>
+        </control>
+
+		<!-- Logo -->
+			<control type="image">
+				<description>iVue logo</description>
+				<posx>522</posx>
+				<posy>10</posy>
+				<width>236</width>
+				<height>83</height>
+				<aspectratio>keep</aspectratio>
+				<fadetime>500</fadetime>
+				<texture>iVuetvguide-logo.png</texture>
+			</control>
+
+        <control type="button" id="80005">
+            <description>add category</description>
+            <posx>347</posx>
+            <posy>678</posy>
+            <width>180</width>
+            <height>40</height>
+            <texturefocus>menu-grey-focus.png</texturefocus>
+            <texturenofocus></texturenofocus>
+            <onup>7004</onup>
+            <ondown></ondown>
+            <onright>7003</onright>
+			<onleft>9901</onleft>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>Add Category</label>
+            <visible>true</visible>
+        </control>
+
+        <control type="list" id="7004">
+            <description>categories</description>
+            <posx>10</posx>
+            <posy>200</posy>
+            <width>1280</width>
+            <height>260</height>
+            <visible>true</visible>
+            <onup></onup>
+            <ondown>7003</ondown>
+            <onleft></onleft>
+            <onright></onright>
+            <viewtype label="3D list">list</viewtype>
+            <orientation>horizontal</orientation>
+
+            <itemlayout width="180" height="40">
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>180</width>
+                    <height>40</height>
+                    <texture></texture>
+                    <visible>true</visible>
+                </control>
+                <control type="label">
+                    <posx>10</posx>
+                    <posy>0</posy>
+                    <width>180</width>
+                    <height>40</height>
+                    <font>font13</font>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <textcolor>FFFFFFFF</textcolor>
+                    <selectedcolor>FFFFFFFF</selectedcolor>
+                    <align>left</align>
+                    <info>ListItem.Label</info>
+                </control>
+            </itemlayout>
+            <focusedlayout height="40" width="180">
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>180</width>
+                    <height>40</height>
+                    <texture>menu-grey-focus.png</texture>
+                    <visible>true</visible>
+                </control>
+                <control type="image">
+                    <width>15</width>
+                    <height>15</height>
+                    <posx>25r</posx>
+                    <posy>14</posy>
+                    <texture>tvguide-bullet.png</texture>
+                    <visible>true</visible>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>180</width>
+                    <height>40</height>
+                    <texture>menu-grey-focus.png</texture>
+                    <visible>Control.HasFocus(7004)</visible>
+                </control>
+                <control type="label">
+                    <posx>10</posx>
+                    <posy>0</posy>
+                    <width>180</width>
+                    <height>40</height>
+                    <font>font13</font>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <textcolor>FFFFFFFF</textcolor>
+                    <selectedcolor>fffea800</selectedcolor>
+                    <align>left</align>
+                    <info>ListItem.Label</info>
+                </control>
+                <control type="label">
+                    <posx>10</posx>
+                    <posy>0</posy>
+                    <width>180</width>
+                    <height>40</height>
+                    <font>font13</font>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <textcolor>white</textcolor>
+                    <selectedcolor>ffffffff</selectedcolor>
+                    <align>left</align>
+                    <info>ListItem.Label</info>
+                    <visible>Control.HasFocus(7004)</visible>
+                </control>
+                <control type="image">
+                    <width>15</width>
+                    <height>15</height>
+                    <posx>25r</posx>
+                    <posy>14</posy>
+                    <visible>Control.HasFocus(7004)</visible>
+                    <texture>tvguide-bullet.png</texture>
+                </control>
+            </focusedlayout>
+        </control>
+
+        <control type="button" id="7003"><!-- Quit -->
+            <description>QUIT</description> 
+            <posx>577</posx>
+            <posy>678</posy>
+            <width>180</width>
+            <height>40</height>
+            <texturefocus>menu-grey-focus.png</texturefocus>
+			<texturenofocus></texturenofocus>
+            <onup>7004</onup>
+            <ondown></ondown>
+            <onright>9901</onright>
+			<onleft>80005</onleft>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>Exit TV Guide</label>
+        </control>
+
+		<control type="button" id="9901"><!-- Cancel -->
+            <description>CANCEL</description> 
+            <posx>807</posx>
+            <posy>678</posy>
+            <width>180</width>
+            <height>40</height>
+            <texturefocus>menu-grey-focus.png</texturefocus>
+			<texturenofocus></texturenofocus>
+            <onup>7004</onup>
+            <ondown></ondown>
+            <onright>80005</onright>
+			<onleft>7003</onleft>
+            <align>center</align>
+            <aligny>center</aligny>
+            <font>font13</font>
+            <textcolor>ffffffff</textcolor>
+            <label>Cancel</label>
+			<onclick>Back</onclick>
+        </control>
+
+		
+    </controls>
+</window>

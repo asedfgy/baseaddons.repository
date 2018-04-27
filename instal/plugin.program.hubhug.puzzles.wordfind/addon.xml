@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.program.hubhug.puzzles.wordfind" provider-name="The[COLOR tan]Highway[/COLOR]"
+       version="0.0.2" name="Word Find Puzzles">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0" />
+  	<import addon="script.module.addon.common"  />
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable game</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+  	<summary>This is part of the HUB-HUG movement, to release playful addons of a fun, enjoyable nature... to inspire happiness, togetherness, and good vibes.  Let's all work together to promote joyful, peaceful, even playful movements online.  Down with the bad tidings, up with the HUB.  ONWARDS AND HUBWARDS.</summary>
+  	<description></description>
+  	<disclaimer>By using this, you take reponsibility for anything that happens.  This is project is for a LEARNING EXPERIANCE.</disclaimer>
+  	<language>en</language>
+  	<platform>all</platform>
+  	<forum></forum>
+  	<website></website>
+  	<source></source>
+  	<email></email>
+  </extension>
+</addon>
