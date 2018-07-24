@@ -1275,7 +1275,7 @@ provider-name="Team TVsupertuga">
   </extension>
 </addon>
 
-<addon id="script.module.livetv" name="live TV Online" version="0.5" provider-name="team tvsupertuga">
+<addon id="script.module.livetv" name="live TV Online" version="0.6" provider-name="Team tvsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.pyamf" />
@@ -1283,7 +1283,7 @@ provider-name="Team TVsupertuga">
     <import addon="script.module.requests" />
     <import addon="script.module.routing" />
   </requires>
-  <extension point="xbmc.python.pluginsource" library="r.py">
+  <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
@@ -1961,7 +1961,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
-<addon id="script.module.ukusa" name="UK USA Live" version="0.1" provider-name="TVsupertuga">
+<addon id="script.module.ukusa" name="UK USA Live" version="0.2" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.livestreamer" />
@@ -2144,6 +2144,30 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
 		<website>https://www.facebook.com/TVsupertuga.PT/</website>
 	</extension>
+</addon>
+
+<addon id="script.module.worldiptv" name="worldiptv" version="0.1" provider-name="TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.livestreamer" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.routing" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_gb">worldiptv  Dependency</summary>
+    <description lang="en_gb">worldiptv Dependency</description>
+    <disclaimer lang="en_gb"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license></license>
+    <forum></forum>
+    <website></website>
+    <email></email>
+    <source></source>
+  </extension>
 </addon>
 
 <addon id="script.streamtvsupertuga.artwork" version="0.3" name="Stream TVsupertuga Artwork" provider-name="Team TVsupertuga">

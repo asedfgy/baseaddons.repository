@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.livetv" name="live TV Online" version="0.5" provider-name="team tvsupertuga">
+<addon id="script.module.livetv" name="live TV Online" version="0.6" provider-name="Team tvsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.pyamf" />
@@ -7,7 +7,7 @@
     <import addon="script.module.requests" />
     <import addon="script.module.routing" />
   </requires>
-  <extension point="xbmc.python.pluginsource" library="r.py">
+  <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
@@ -27,3 +27,4 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<website>https://www.facebook.com/TVsupertuga.PT/</website>
 	</extension>
 </addon>
+
