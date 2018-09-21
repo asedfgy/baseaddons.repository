@@ -1,21 +1,16 @@
-'''
-    Covenant Add-on
-    Copyright (C) 2016 Covenant
+# -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-'''
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: MuadDib
 import re
 import urllib
 import urlparse
@@ -26,14 +21,10 @@ from resources.lib.modules import client, cleantitle, directstream, dom_parser2
 
 class source:
     def __init__(self):
-        '''
-        Constructor defines instances variables
-
-        '''
         self.priority = 1
         self.language = ['en']
-        self.domains = ['123hulu.com']
-        self.base_link = 'http://123hulu.com'
+        self.domains = ['123hulu.com','123hulu.unblockall.org']
+        self.base_link = 'http://123hulu.unblockall.org'
         self.movies_search_path = ('search-movies/%s.html')
 
     def movie(self, imdb, title, localtitle, aliases, year):

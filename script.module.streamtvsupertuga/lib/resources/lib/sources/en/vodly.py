@@ -1,5 +1,16 @@
 # -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: Supremacy
 
 import re,traceback,urlparse,urllib,base64
 
@@ -15,8 +26,8 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['vodly.us', 'vodly.unblocked.tv']
-        self.base_link = 'http://watch32.is'
-        self.search_link = '%s/search?q=watch32.is+%s+%s'
+        self.base_link = 'http://vodly.us'
+        self.search_link = '%s/search?q=vodly.us+%s+%s'
         self.goog = 'https://www.google.co.uk'
 
     def movie(self, imdb, title, localtitle, aliases, year):

@@ -8,9 +8,9 @@
  # ----------------------------------------------------------------------------
 #######################################################################
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: MuadDib
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: Supremacy
 
 
 import os.path

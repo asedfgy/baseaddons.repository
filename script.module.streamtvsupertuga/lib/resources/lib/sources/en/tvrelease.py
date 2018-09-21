@@ -1,5 +1,16 @@
 # -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: Supremacy
 
 import re,traceback,urllib,urlparse
 
@@ -8,6 +19,7 @@ from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import source_utils
 from resources.lib.modules import dom_parser2
+from resources.lib.modules import cfscrape
 
 class source:
     def __init__(self):
@@ -16,6 +28,7 @@ class source:
         self.domains = ['tv-release.pw', 'tv-release.immunicity.st']
         self.base_link = 'http://tv-release.pw'
         self.search_link = '?s=%s'
+        self.scraper = cfscrape.create_scraper()
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
@@ -72,7 +85,7 @@ class source:
             url = self.search_link % urllib.quote_plus(query)
             url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url)
+            r = self.scraper.get(url).content
             r = client.parseDOM(r, 'h2')
             r = [re.findall('''<a.+?href=["']([^"']+)["']>(.+?)</a>''', i, re.DOTALL) for i in r]
 
@@ -92,7 +105,7 @@ class source:
 
                     if not y == hdlr: raise Exception()
 
-                    data = client.request(urlparse.urljoin(self.base_link, item[0][0]))
+                    data = self.scraper.get(urlparse.urljoin(self.base_link, item[0][0])).content
                     data = dom_parser2.parse_dom(data, 'a', attrs={'target': '_blank'})
                     u = [(t, i.content) for i in data]
                     items += u

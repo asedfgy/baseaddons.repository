@@ -1,5 +1,16 @@
 # -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: Supremacy
 
 import re,traceback,urllib,urlparse
 
@@ -14,7 +25,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['2ddl.io']
-        self.base_link = 'http://2ddl.io'
+        self.base_link = 'http://2ddl.io/'
         self.search_link = '/search/%s/feed/rss2/'
 
     def movie(self, imdb, title, localtitle, aliases, year):

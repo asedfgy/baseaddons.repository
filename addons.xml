@@ -1855,7 +1855,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="script.module.streamtvsupertuga" name="Stream TVsupertuga Module" version="0.5" provider-name="Team TVsupertuga">
+<addon id="script.module.streamtvsupertuga" name="Stream TVsupertuga Module" version="0.6" provider-name="Team TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

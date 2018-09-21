@@ -1,5 +1,16 @@
 # -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: Supremacy
 
 import re,traceback,urllib,urlparse
 
@@ -106,7 +117,7 @@ class source:
 
                             if 'ftp' in url: host = 'COV'; direct = True;
                             else: direct = False; host= 'turbobit.net'
-                            #if not host in hostDict: continue
+                            
 
                             host = client.replaceHTMLCodes(host)
                             host = host.encode('utf-8')

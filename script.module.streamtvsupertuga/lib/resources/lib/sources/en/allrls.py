@@ -1,10 +1,22 @@
 # -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: MuadDib
 
 import re,traceback,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import debrid
 from resources.lib.modules import control
 from resources.lib.modules import log_utils
 from resources.lib.modules import source_utils
@@ -13,8 +25,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['allrls.co']
-        self.base_link = 'http://allrls.co'
+        self.domains = ['allrls.pw']
+        self.base_link = 'http://allrls.pw'
         self.search_link = '?s=%s+%s&go=Search'
 
     def movie(self, imdb, title, localtitle, aliases, year):
@@ -86,6 +98,7 @@ class source:
             sources = []
 
             if url == None: return sources
+            if debrid.status() == False: raise Exception()
 
             hostDict = hostprDict + hostDict
             pages = url
@@ -99,7 +112,7 @@ class source:
 
                         if any(x in url for x in ['.rar', '.zip', '.iso']): continue
 
-                        quality, info = source_utils.get_release_quality(url)
+                        quality, infoo = source_utils.get_release_quality(url)
 
                         info = []
 
@@ -109,7 +122,7 @@ class source:
 
                         host = client.replaceHTMLCodes(host)
                         host = host.encode('utf-8')
-                        sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': False})
+                        sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                     except:
                         pass
             return sources

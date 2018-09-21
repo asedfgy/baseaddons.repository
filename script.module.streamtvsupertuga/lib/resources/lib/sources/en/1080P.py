@@ -1,4 +1,16 @@
 # -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @tantrumdev wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
+
+# Addon Name: Yoda
+# Addon id: plugin.video.Yoda
+# Addon Provider: Supremacy
 
 
 import re,traceback,urllib,urlparse,json,base64
@@ -6,14 +18,13 @@ import re,traceback,urllib,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
-from resources.lib.modules import log_utils
 from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['1080pmovie.com']
+        self.domains = ['watchhdmovie.net']
         self.base_link = 'https://watchhdmovie.net'
         self.search_link = '%s/wp-json/wp/v2/posts?search=%s'
 

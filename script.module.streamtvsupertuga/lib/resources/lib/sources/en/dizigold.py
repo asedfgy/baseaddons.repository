@@ -1,9 +1,7 @@
-# NEEDS FIXING
-
 # -*- coding: utf-8 -*-
 
 '''
-    Covenant Add-on
+    Yoda Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
