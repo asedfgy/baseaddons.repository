@@ -55,15 +55,15 @@ def start(type):
 				tvguidesetup()
 				addonsettings('ADS2','')
 				xbmc.executebuiltin('Container.Refresh')
-			#tools.addDir('[COLOR ffff0000][B]M[/COLOR][COLOR white]y Premium Information[/COLOR][/B]','url',999996,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Access Your Account Information, Inlcuding Username, Password and More")
-			#tools.addDir('[COLOR ffff0000][B]L[/COLOR][COLOR white]ive Tv[/COLOR][/B]','url',999991,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Get Access to All of Your Favourite Channels, In Stunning HD")
-			#tools.addDir('[COLOR ffff0000][B]L[/COLOR][COLOR white]ive Events[/COLOR][/B]','LIVE',999991,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Containing Live Events, Including: NBA, NFL, NHL, MLB, English Premier League and PPV!")
-			#tools.addDir('[COLOR ffff0000][B]C[/COLOR][COLOR white]atchup Tv[/COLOR][/B]','url',9999912,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Get Access To Full 7 Days Catchup Tv On A Whole Bunch Of Channels!")
+			tools.addDir('[COLOR ffff0000][B]M[/COLOR][COLOR white]y Premium Information[/COLOR][/B]','url',999996,'https://s18.postimg.org/rhnmrvxp5/myinfo.png',fanart,"Access Your Account Information, Inlcuding Username, Password and More")
+			tools.addDir('[COLOR ffff0000][B]L[/COLOR][COLOR white]ive Tv[/COLOR][/B]','url',999991,'https://s18.postimg.org/ggshmv5g9/livetv.png',fanart,"Get Access to All of Your Favourite Channels, In Stunning HD")
+			tools.addDir('[COLOR ffff0000][B]L[/COLOR][COLOR white]ive Events[/COLOR][/B]','LIVE',999991,'https://s18.postimg.org/ggshmv5g9/livetv.png',fanart,"Containing Live Events, Including: NBA, NFL, NHL, MLB, English Premier League and PPV!")
+			tools.addDir('[COLOR ffff0000][B]C[/COLOR][COLOR white]atchup Tv[/COLOR][/B]','url',9999912,'https://s18.postimg.org/wp8pwceah/CATCHUP.png',fanart,"Get Access To Full 7 Days Catchup Tv On A Whole Bunch Of Channels!")
 			if xbmc.getCondVisibility('System.HasAddon(pvr.iptvsimple)'):
-				tools.addDir('[COLOR ffff0000][B]T[/COLOR][COLOR white]V Guide[/COLOR][/B]','pvr',999997,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Open Kodi's Inbuilt Tv Guide")
-			#tools.addDir('[COLOR ffff0000][B]O[/COLOR][COLOR white]n Demand[/COLOR][/B]','vod',999993,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,'')
-			tools.addDir('[COLOR ffff0000][B]S[/COLOR][COLOR white]earch[/COLOR][/B]','url',999995,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Search Through StreamHub's Premium Content")
-			tools.addDir('[COLOR ffff0000][B]E[/COLOR][COLOR white]xtras[/COLOR][/B]','url',9999916,'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8411923.jpg',fanart,"Some Extra Features, Inlcuding Football Guides. Setting Tweaks and More")
+				tools.addDir('[COLOR ffff0000][B]T[/COLOR][COLOR white]V Guide[/COLOR][/B]','pvr',999997,'https://s18.postimg.org/479gw7l95/TVGUIDE.png',fanart,"Open Kodi's Inbuilt Tv Guide")
+			tools.addDir('[COLOR ffff0000][B]O[/COLOR][COLOR white]n Demand[/COLOR][/B]','vod',999993,'https://s18.postimg.org/82cuys4ex/VOD.png',fanart,'')
+			tools.addDir('[COLOR ffff0000][B]S[/COLOR][COLOR white]earch[/COLOR][/B]','url',999995,'https://s2.postimg.org/oeceg5ort/search.png',fanart,"Search Through StreamHub's Premium Content")
+			tools.addDir('[COLOR ffff0000][B]E[/COLOR][COLOR white]xtras[/COLOR][/B]','url',9999916,'https://s18.postimg.org/i7biocmzd/extras.png',fanart,"Some Extra Features, Inlcuding Football Guides. Setting Tweaks and More")
 		else:
 			d = xbmcgui.Dialog().yesno(user.name, 'Your Login Details Are Incorrect, Would You Like To Re-Enter?')
 			if not d:

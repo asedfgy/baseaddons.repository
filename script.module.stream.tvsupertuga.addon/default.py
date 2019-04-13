@@ -1,500 +1,1 @@
-# -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @tantrumdev wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
-
-# Addon Name: Stream TVsupertuga
-# Addon id: script.module.stream.tvsupertuga.addon
-# Addon Provider: Team TVsupertuga
-
-import urlparse,sys,urllib
-from resources.lib.modules import log_utils
-
-params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
-
-action = params.get('action')
-
-subid = params.get('subid')
-
-docu_category = params.get('docuCat')
-
-docu_watch = params.get('docuPlay')
-
-podcast_show = params.get('podcastshow')
-
-podcast_cat = params.get('podcastlist')
-
-podcast_cats = params.get('podcastcategories')
-
-podcast_episode = params.get('podcastepisode')
-
-name = params.get('name')
-
-title = params.get('title')
-
-year = params.get('year')
-
-imdb = params.get('imdb')
-
-tvdb = params.get('tvdb')
-
-tmdb = params.get('tmdb')
-
-season = params.get('season')
-
-episode = params.get('episode')
-
-tvshowtitle = params.get('tvshowtitle')
-
-premiered = params.get('premiered')
-
-url = params.get('url')
-
-image = params.get('image')
-
-meta = params.get('meta')
-
-select = params.get('select')
-
-query = params.get('query')
-
-source = params.get('source')
-
-content = params.get('content')
-
-windowedtrailer = params.get('windowedtrailer')
-windowedtrailer = int(windowedtrailer) if windowedtrailer in ("0","1") else 0
-
-if action == None:
-    from resources.lib.indexers import navigator
-    from resources.lib.modules import cache
-    cache.cache_version_check()
-    navigator.navigator().root()
-
-elif action == 'newsNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().news()
-
-elif action == 'movieNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().movies()
-
-elif action == 'movieliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().movies(lite=True)
-
-elif action == 'mymovieNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mymovies()
-
-elif action == 'mymovieliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mymovies(lite=True)
-
-elif action == 'tvNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().tvshows()
-
-elif action == 'tvliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().tvshows(lite=True)
-
-elif action == 'mytvNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mytvshows()
-
-elif action == 'mytvliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mytvshows(lite=True)
-
-elif action == 'downloadNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().downloads()
-
-elif action == 'libraryNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().library()
-
-elif action == 'toolNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().tools()
-
-elif action == 'searchNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().search()
-
-elif action == 'viewsNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().views()
-
-elif action == 'clearCache':
-    from resources.lib.indexers import navigator
-    navigator.navigator().clearCache()
-
-elif action == 'clearCacheSearch':
-    from resources.lib.indexers import navigator
-    navigator.navigator().clearCacheSearch()
-
-elif action == 'clearAllCache':
-    from resources.lib.indexers import navigator
-    navigator.navigator().clearCacheAll()
-
-elif action == 'clearMetaCache':
-    from resources.lib.indexers import navigator
-    navigator.navigator().clearCacheMeta()
-    
-elif action == 'infoCheck':
-    from resources.lib.indexers import navigator
-    navigator.navigator().infoCheck('')
-
-elif action == 'movies':
-    from resources.lib.indexers import movies
-    movies.movies().get(url)
-
-elif action == 'moviePage':
-    from resources.lib.indexers import movies
-    movies.movies().get(url)
-
-elif action == 'movieWidget':
-    from resources.lib.indexers import movies
-    movies.movies().widget()
-
-elif action == 'movieSearch':
-    from resources.lib.indexers import movies
-    movies.movies().search()
-
-elif action == 'movieSearchnew':
-    from resources.lib.indexers import movies
-    movies.movies().search_new()
-
-elif action == 'movieSearchterm':
-    from resources.lib.indexers import movies
-    movies.movies().search_term(name)
-
-elif action == 'moviePerson':
-    from resources.lib.indexers import movies
-    movies.movies().person()
-
-elif action == 'movieGenres':
-    from resources.lib.indexers import movies
-    movies.movies().genres()
-
-elif action == 'movieLanguages':
-    from resources.lib.indexers import movies
-    movies.movies().languages()
-
-elif action == 'movieCertificates':
-    from resources.lib.indexers import movies
-    movies.movies().certifications()
-
-elif action == 'movieYears':
-    from resources.lib.indexers import movies
-    movies.movies().years()
-
-elif action == 'moviePersons':
-    from resources.lib.indexers import movies
-    movies.movies().persons(url)
-
-elif action == 'movieUserlists':
-    from resources.lib.indexers import movies
-    movies.movies().userlists()
-
-elif action == 'channels':
-    from resources.lib.indexers import channels
-    channels.channels().get()
-
-elif action == 'tvshows':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().get(url)
-
-elif action == 'tvshowPage':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().get(url)
-
-elif action == 'tvSearch':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().search()
-
-elif action == 'tvSearchnew':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().search_new()
-
-elif action == 'tvSearchterm':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().search_term(name)
-    
-elif action == 'tvPerson':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().person()
-
-elif action == 'tvGenres':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().genres()
-
-elif action == 'tvReviews':
-    from resources.lib.indexers import youtube
-    if subid == None:
-        youtube.yt_index().root(action)
-    else:
-        youtube.yt_index().get(action, subid)
-
-elif action == 'movieReviews':
-    from resources.lib.indexers import youtube
-    if subid == None:
-        youtube.yt_index().root(action)
-    else:
-        youtube.yt_index().get(action, subid)
-
-elif action == 'tvNetworks':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().networks()
-
-elif action == 'tvLanguages':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().languages()
-
-elif action == 'tvCertificates':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().certifications()
-
-elif action == 'tvPersons':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().persons(url)
-
-elif action == 'tvUserlists':
-    from resources.lib.indexers import tvshows
-    tvshows.tvshows().userlists()
-
-elif action == 'seasons':
-    from resources.lib.indexers import episodes
-    episodes.seasons().get(tvshowtitle, year, imdb, tvdb)
-
-elif action == 'episodes':
-    from resources.lib.indexers import episodes
-    episodes.episodes().get(tvshowtitle, year, imdb, tvdb, season, episode)
-
-elif action == 'calendar':
-    from resources.lib.indexers import episodes
-    episodes.episodes().calendar(url)
-
-elif action == 'tvWidget':
-    from resources.lib.indexers import episodes
-    episodes.episodes().widget()
-
-elif action == 'calendars':
-    from resources.lib.indexers import episodes
-    episodes.episodes().calendars()
-
-elif action == 'episodeUserlists':
-    from resources.lib.indexers import episodes
-    episodes.episodes().userlists()
-
-elif action == 'refresh':
-    from resources.lib.modules import control
-    control.refresh()
-
-elif action == 'queueItem':
-    from resources.lib.modules import control
-    control.queueItem()
-
-elif action == 'openSettings':
-    from resources.lib.modules import control
-    control.openSettings(query)
-
-elif action == 'artwork':
-    from resources.lib.modules import control
-    control.artwork()
-
-elif action == 'addView':
-    from resources.lib.modules import views
-    views.addView(content)
-
-elif action == 'moviePlaycount':
-    from resources.lib.modules import playcount
-    playcount.movies(imdb, query)
-
-elif action == 'episodePlaycount':
-    from resources.lib.modules import playcount
-    playcount.episodes(imdb, tvdb, season, episode, query)
-
-elif action == 'tvPlaycount':
-    from resources.lib.modules import playcount
-    playcount.tvshows(name, imdb, tvdb, season, query)
-
-elif action == 'trailer':
-    from resources.lib.modules import trailer
-    trailer.trailer().play(name, url, windowedtrailer)
-
-elif action == 'traktManager':
-    from resources.lib.modules import trakt
-    trakt.manager(name, imdb, tvdb, content)
-
-elif action == 'authTrakt':
-    from resources.lib.modules import trakt
-    trakt.authTrakt()
-
-elif action == 'urlResolver':
-    try: import resolveurl
-    except: pass
-    resolveurl.display_settings()
-
-elif action == 'download':
-    import json
-    from resources.lib.modules import sources
-    from resources.lib.modules import downloader
-    try: downloader.download(name, image, sources.sources().sourcesResolve(json.loads(source)[0], True))
-    except: pass
-
-elif action == 'kidscorner':
-    from resources.lib.indexers import youtube
-    if subid == None:
-        youtube.yt_index().root(action)
-    else:
-        youtube.yt_index().get(action, subid)
-
-elif action == 'fitness':
-    from resources.lib.indexers import youtube
-    if subid == None:
-        youtube.yt_index().root(action)
-    else:
-        youtube.yt_index().get(action, subid)
-
-elif action == 'legends':
-    from resources.lib.indexers import youtube
-    if subid == None:
-        youtube.yt_index().root(action)
-    else:
-        youtube.yt_index().get(action, subid)
-
-elif action == 'podcastNavigator':
-    from resources.lib.indexers import podcast
-    podcast.podcast().root()
-
-elif action == 'podcastOne':
-    from resources.lib.indexers import podcast
-    if not podcast_show == None:
-        podcast.podcast().pco_show(podcast_show)
-    elif not podcast_cat == None:
-        podcast.podcast().pco_cat(podcast_cat)
-    elif not podcast_cats == None:
-        podcast.podcast().pcocats_list()
-    elif not podcast_episode == None:
-        podcast.podcast().podcast_play(action, podcast_episode)
-    else:
-        podcast.podcast().pco_root()
-
-elif action == 'docuHeaven':
-    from resources.lib.indexers import docu
-    if not docu_category == None:
-        docu.documentary().docu_list(docu_category)
-    elif not docu_watch == None:
-        docu.documentary().docu_play(docu_watch)
-    else:
-        docu.documentary().root()
-
-elif action == 'podbay':
-    from resources.lib.indexers import podcast
-    if not podcast_show == None:
-        podcast.podcast().pb_show(podcast_show)
-    elif not podcast_cat == None:
-        podcast.podcast().pb_cat(podcast_cat)
-    elif not podcast_cats == None:
-        podcast.podcast().pb_root()
-    elif not podcast_episode == None:
-        podcast.podcast().podcast_play(action, podcast_episode)
-    else:
-        podcast.podcast().pb_root()
-
-elif action == 'sectionItem':
-    pass # Placeholder. This is a non-clickable menu item for notes, etc.
-
-elif action == 'play':
-    from resources.lib.modules import sources
-    sources.sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
-
-elif action == 'addItem':
-    from resources.lib.modules import sources
-    sources.sources().addItem(title)
-
-elif action == 'playItem':
-    from resources.lib.modules import sources
-    sources.sources().playItem(title, source)
-
-elif action == 'alterSources':
-    from resources.lib.modules import sources
-    sources.sources().alterSources(url, meta)
-
-elif action == 'clearSources':
-    from resources.lib.modules import sources
-    sources.sources().clearSources()
-
-elif action == 'random':
-    rtype = params.get('rtype')
-    if rtype == 'movie':
-        from resources.lib.indexers import movies
-        rlist = movies.movies().get(url, create_directory=False)
-        r = sys.argv[0]+"?action=play"
-    elif rtype == 'episode':
-        from resources.lib.indexers import episodes
-        rlist = episodes.episodes().get(tvshowtitle, year, imdb, tvdb, season, create_directory=False)
-        r = sys.argv[0]+"?action=play"
-    elif rtype == 'season':
-        from resources.lib.indexers import episodes
-        rlist = episodes.seasons().get(tvshowtitle, year, imdb, tvdb, create_directory=False)
-        r = sys.argv[0]+"?action=random&rtype=episode"
-    elif rtype == 'show':
-        from resources.lib.indexers import tvshows
-        rlist = tvshows.tvshows().get(url, create_directory=False)
-        r = sys.argv[0]+"?action=random&rtype=season"
-    from resources.lib.modules import control
-    from random import randint
-    import json
-    try:
-        rand = randint(1,len(rlist))-1
-        for p in ['title','year','imdb','tvdb','season','episode','tvshowtitle','premiered','select']:
-            if rtype == "show" and p == "tvshowtitle":
-                try: r += '&'+p+'='+urllib.quote_plus(rlist[rand]['title'])
-                except: pass
-            else:
-                try: r += '&'+p+'='+urllib.quote_plus(rlist[rand][p])
-                except: pass
-        try: r += '&meta='+urllib.quote_plus(json.dumps(rlist[rand]))
-        except: r += '&meta='+urllib.quote_plus("{}")
-        if rtype == "movie":
-            try: control.infoDialog(rlist[rand]['title'], control.lang(32536).encode('utf-8'), time=30000)
-            except: pass
-        elif rtype == "episode":
-            try: control.infoDialog(rlist[rand]['tvshowtitle']+" - Season "+rlist[rand]['season']+" - "+rlist[rand]['title'], control.lang(32536).encode('utf-8'), time=30000)
-            except: pass
-        control.execute('RunPlugin(%s)' % r)
-    except:
-        control.infoDialog(control.lang(32537).encode('utf-8'), time=8000)
-
-elif action == 'movieToLibrary':
-    from resources.lib.modules import libtools
-    libtools.libmovies().add(name, title, year, imdb, tmdb)
-
-elif action == 'moviesToLibrary':
-    from resources.lib.modules import libtools
-    libtools.libmovies().range(url)
-
-elif action == 'tvshowToLibrary':
-    from resources.lib.modules import libtools
-    libtools.libtvshows().add(tvshowtitle, year, imdb, tvdb)
-
-elif action == 'tvshowsToLibrary':
-    from resources.lib.modules import libtools
-    libtools.libtvshows().range(url)
-
-elif action == 'updateLibrary':
-    from resources.lib.modules import libtools
-    libtools.libepisodes().update(query)
-
-elif action == 'service':
-    from resources.lib.modules import libtools
-    libtools.libepisodes().service()
+'''   Stream TVsupertuga   Copyright (C) 2017 Mister-X   This program is free software: you can redistribute it and/or modify   it under the terms of the GNU General Public License as published by   the Free Software Foundation, either version 3 of the License, or   (at your option) any later version.   This program is distributed in the hope that it will be useful,   but WITHOUT ANY WARRANTY; without even the implied warranty of   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the   GNU General Public License for more details.   You should have received a copy of the GNU General Public License   along with this program.  If not, see <http://www.gnu.org/licenses/>.'''import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,urlparse,base64from t0mm0.common.addon import Addonfrom metahandler import metahandlersfrom resources.lib import utilsfrom resources.cloudflare import cloudflarefrom resources.lib.sites import *addon_id = utils.addon_idaddDir = utils.addDirselfAddon = utils.selfAddonaddon = utils.addonfanart = utils.fanarticon = utils.addonnext = utils.nextart = utils.artmode = utils.modename = utils.nameurl = utils.urldescription = utils.addLink.description=''iconimage = utils.iconimagemetaset = utils.metasetThree21Movies = selfAddon.getSetting('321Movies')DirectTV = selfAddon.getSetting('DirectTV')eMovies = selfAddon.getSetting('eMovies')SerieOnline = selfAddon.getSetting('SerieOnline')SolarMovie24 = selfAddon.getSetting('SolarMovie24')PrimeWireAG = selfAddon.getSetting('PrimeWire')TikiMoviesCom = selfAddon.getSetting('TikiMoviesCom')Moviez2Ucom = selfAddon.getSetting('Moviez2Ucom')GOMovies = selfAddon.getSetting('GOMovies')def CATEGORIES():	if GOMovies == 'true':		addDir('GO Movies','http://ignorme',502,art+'gomovies.png',fanart)	if Three21Movies == 'true':		addDir('321Movies','http://ignorme',202,art+'321movies.png',fanart)	if PrimeWireAG == 'true':		addDir('PrimeWire','http://ignorme',221,art+'primewire.png',fanart)	if Moviez2Ucom == 'true':		addDir('Moviez2U','http://ignorme',481,art+'moviez2u.png',fanart)	if TikiMoviesCom == 'true':		addDir('TikiMovies','http://ignorme',487,art+'tikimovies.png',fanart)			if SolarMovie24 == 'true':			addDir('SolarMovie24','http://ignorme',203,art+'solarmovie24.png',fanart)	if SerieOnline == 'true':		addDir('Series Online','http://ignorme',208,art+'seriesonline.png',fanart)	if DirectTV == 'true':		addDir('Direct TV - [B][COLOR red](Only TV Shows)[/COLOR][/B]','http://ignorme',400,art+'directtv.png',fanart)	if eMovies == 'true':		addDir('eMovies','http://ignorme',460,art+'emovies.png',fanart)	xbmc.executebuiltin('Container.SetViewMode(50)')	if mode==None or url==None or len(url)<1: CATEGORIES()elif mode==2: ThreeTwoOneMovies.GETTV(url,name)elif mode==3: ThreeTwoOneMovies.SEARCH_MOVIES(url)elif mode==4: ThreeTwoOneMovies.GETEPISODE(url,name)elif mode==5: ThreeTwoOneMovies.GETGENRES(url,name)elif mode==6: ThreeTwoOneMovies.GETRELEASE(url,name)elif mode==7: ThreeTwoOneMovies.MOVIESINDEX()elif mode==8: ThreeTwoOneMovies.TVSHOWINDEX()elif mode==9: ThreeTwoOneMovies.GETTV1(url,name)elif mode==10: ThreeTwoOneMovies.GETEPISODE1(url,name)elif mode==11: ThreeTwoOneMovies.GETTRENDING(url,name)elif mode==12: ThreeTwoOneMovies.GETSOURCE(name, url)elif mode==16: ThreeTwoOneMovies.GETHD(url)elif mode==17: ThreeTwoOneMovies.GETSEARCHMOVIES(url)elif mode==18: ThreeTwoOneMovies.GETTVSHOWLINK(url)elif mode==19: ThreeTwoOneMovies.GETMOVIES(url)elif mode==200: ThreeTwoOneMovies.GETEPISODE2(url,name)elif mode==201: ThreeTwoOneMovies.resolve(description,url,iconimage)elif mode==202: ThreeTwoOneMovies.MAIN()elif mode==203: solarmovie24.MAIN()elif mode==204: solarmovie24.GETMOVIES(url)elif mode==205: solarmovie24.resolve(name,url,iconimage)elif mode==206: solarmovie24.GETSOURCE(name,url)elif mode==207: solarmovie24.GETGENRES(url,name)elif mode==220: solarmovie24.GETRELEASE(url,name)elif mode==208: SeriesOnline.MAIN()elif mode==209: SeriesOnline.GETMOVIES(url)elif mode==210: SeriesOnline.resolve(name,url,iconimage)elif mode==211: SeriesOnline.GETSOURCE(name,url)elif mode==212: SeriesOnline.GETGOOGLE(name,url)elif mode==213: SeriesOnline.GETTVSHOWS(url)elif mode==214: SeriesOnline.GETEPISODE(url)elif mode==215: SeriesOnline.SEARCH(url)elif mode==216: SeriesOnline.GENRES(url)elif mode==217: SeriesOnline.COUNTRY(url)elif mode==218: SeriesOnline.GETSEARCH(url)elif mode==219: SeriesOnline.GETGOOGLE2(name,url)elif mode==221: primewire.MAIN()elif mode==222: primewire.GETMOVIES(url)elif mode==223: primewire.GETSOURCE(name,url)elif mode==224: primewire.resolve(name,url,iconimage)elif mode==225: primewire.MOVIES()elif mode==226: primewire.TVSHOWS()elif mode==227: primewire.GETTVSHOWS(url)elif mode==228: primewire.GETSEASONS(url)elif mode==229: primewire.GETEPISODE(url)elif mode==230: primewire.SEARCH(url)elif mode==400: directtvfree.MAIN()elif mode==401: directtvfree.GETTVSHOWS(url)elif mode==402: directtvfree.GETEPISODE(url)elif mode==403: directtvfree.GETSOURCE(name,url)elif mode==404: directtvfree.GETGENRES(url,name)elif mode==405: directtvfree.GETRELEASE(url,name)elif mode==406: directtvfree.SEARCH(url)elif mode==450: directtvfree.resolve(name,url,iconimage)elif mode==460: emovies.MAIN()elif mode==461: emovies.GETMOVIES(url)elif mode==462: emovies.MOVIES()elif mode==463: emovies.TVSHOWS()elif mode==464: emovies.SEARCH(url)elif mode==480: emovies.resolve(name,url,iconimage)elif mode==451: moviez2u.MOVIES()elif mode==452: moviez2u.TVSHOWS()elif mode==453: moviez2u.GENRES(url)elif mode==454: moviez2u.SEARCH(url)elif mode==481: moviez2u.MAIN()elif mode==482: moviez2u.GETMOVIES(url)elif mode==483: moviez2u.resolve(name,url,iconimage)elif mode==484: moviez2u.GETSOURCE(url)elif mode==485: moviez2u.GETTVSHOWS(url)elif mode==486: moviez2u.GETEPISODE(url)elif mode==487: tikimovies.MAIN()elif mode==488: tikimovies.GETMOVIES(url)elif mode==489: tikimovies.SEARCH(url)elif mode==490: tikimovies.GETSOURCE(url)elif mode==491: tikimovies.resolve(name,url,iconimage)elif mode==492: tikimovies.GOOGLE(name,url,iconimage)elif mode==493: tikimovies.MOVIES()elif mode==494: tikimovies.TVSHOWS()elif mode==495: tikimovies.GETTVSHOWS(url)elif mode==496: tikimovies.GETEPISODE(url)elif mode==497: tikimovies.GETSEASONS(url)elif mode==498: tikimovies.GETEPISODE2(url)elif mode==499: tikimovies.GETEPISODE3(url)elif mode==500: tikimovies.GENRES(url)elif mode==501: tikimovies.RELEASE(url)elif mode==502: gomovies.MAIN()elif mode==503: gomovies.GETMOVIES(url)elif mode==504: gomovies.GETSOURCE(url)elif mode==505: gomovies.resolve(name, url, iconimage)elif mode==506: gomovies.MOVIES()elif mode==507: gomovies.TVSHOWS()elif mode==508: gomovies.GOOGLE(name, url, iconimage)elif mode==509: gomovies.GETEPISODE(url)elif mode==510: gomovies.SEARCH(url)elif mode==511: gomovies.GENRES(url)elif mode==512: gomovies.COUNTRY(url)elif mode==513: gomovies.GETSOURCE2(url)xbmcplugin.endOfDirectory(int(sys.argv[1]))

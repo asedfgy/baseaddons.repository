@@ -13,9 +13,9 @@ def cat():
 	addDir('[COLOR magenta]FILMES TV[/COLOR]','movies',4,'https://i62.servimg.com/u/f62/19/44/91/43/filmes10.png',fanart,'')
 	addDir('[COLOR magenta]SERIES TV[/COLOR]','shows',4,'https://i62.servimg.com/u/f62/19/44/91/43/syyrie10.png',fanart,'')
 	addDir('[COLOR magenta]MUSICA TV[/COLOR]','music',4,'https://i62.servimg.com/u/f62/19/44/91/43/mysica10.png',fanart,'')
-	addDir('[COLOR magenta]IPTV ZERO COM[/COLOR]','edoctor',4,'https://i62.servimg.com/u/f62/19/44/91/43/zero_c10.jpg',fanart,'')
+	#addDir('eDoctor IPTV','edoctor',4,'https://lh3.googleusercontent.com/qydRpyUiySg1MuswXdbQE88PBfyPH8uJYhONBL3UO1Ij4yEHtftHFK3pKXHXppFUCmk=w300',fanart,'')
 	#addDir('Geo Streamz','geotv',4,'https://image.winudf.com/v2/image/Y29tLnNuci5lbnRfaWNvbl8wX2I0N2VlYjZi/icon.png?w=170&fakeurl=1&type=.png',fanart,'')
-	#addDir('[COLOR magenta]IPTV ZERO COM[/COLOR]','iptvrestream',4,'https://i62.servimg.com/u/f62/19/44/91/43/zero_c10.png',fanart,'')
+	addDir('[COLOR magenta]IPTV ZERO COM[/COLOR]','iptvrestream',4,'https://i62.servimg.com/u/f62/19/44/91/43/zero_c10.png',fanart,'')
 	#addDir('Mega IPTV','megaiptv',4,'https://i.ytimg.com/vi/xiMZ231EBus/hqdefault.jpg',fanart,'')
 	#addDir('Dhamka TV','dhamkatv',4,'https://lh3.googleusercontent.com/j-IM8JRk5bLHIA8h9F5QITT0aIetO6C-mgzCwt-gtzIjHRrHZ6-MnFb-Y4ckoieR=h900',fanart,'')
 	#addDir('Pak India Sports','pakindiasport',4,'http://www.madhyamam.com/en/sites/default/files/india-pak.jpg',fanart,'')
@@ -188,7 +188,7 @@ def dhamkatv():
 
 		
 def iptvrestream():
-	open = requests.get('http://zero-com.tvsupertuga.club/zero-com/lista.txt',verify=False).text
+	open = requests.get('http://teamproject.pe.hu/crashoverridelistasubmundo/lista.txt',verify=False).text
 	
 	m3u  = requests.get(open,headers={'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.3.1; WT19M-FI Build/JLS36I)'}).text
 	
@@ -248,7 +248,7 @@ def mobiletvchans(url):
 		addDir(name,url,10,icon,fanart,'')
 
 def edoctor():
-	open = OPEN_URL('http://zero-com.tvsupertuga.club/zero-com/ZERO_COLL_IPTV.m3u')
+	open = OPEN_URL('https://raw.githubusercontent.com/hadjistyllis/myapp/master/TV%20category.m3u')
 	regex = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE|re.DOTALL).findall(open)
 	for name,url in regex:
 		if not 'youtube' in name:
@@ -331,7 +331,7 @@ def sports():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/despor10.png',fanart,'')
+				addDir('%s'%name,url,10,'https://i.imgur.com/3py0Se0.png',fanart,'')
 				
 def channels():
         import re
@@ -343,7 +343,7 @@ def channels():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/world_11.png',fanart,'')
+				addDir('%s'%name,url,10,'http://img2.turbomilk.com/portfolio/new/an-msdn-tv-logo.png',fanart,'')
 				
 def news():
         import re
@@ -355,7 +355,7 @@ def news():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/notici10.png',fanart,'')
+				addDir('%s'%name,url,10,'https://affirmativhealth.com/wp-content/uploads/2017/01/NewsWatch-Logo-Mark-Only--768x897.png',fanart,'')
 				
 def kids():
         import re
@@ -367,7 +367,7 @@ def kids():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/infant10.png',fanart,'')
+				addDir('%s'%name,url,10,'http://www.breakinoutfestival.com/wp-content/uploads/2017/07/Breathtaking-Kids-Ministry-Logo-40-On-Logo-Design-with-Kids-Ministry-Logo-945x1223.jpg',fanart,'')
 				
 				
 def music():
@@ -380,7 +380,7 @@ def music():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/mysica10.png',fanart,'')
+				addDir('%s'%name,url,10,'http://pngimages.net/sites/default/files/blue-note-symbol-png-image-44184.png',fanart,'')
 				
 def movies():
         import re
@@ -392,7 +392,7 @@ def movies():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/filmes10.png',fanart,'')
+				addDir('%s'%name,url,10,'http://www.ask4glass.co.uk/images/targetwebsite35.nrgdigital.net/images/round_24-7_logo__cropped_.png',fanart,'')
 				
 def shows():
         import re
@@ -404,7 +404,7 @@ def shows():
 			
             all   = re.compile('\n([^:]+):(mpd://[^\n]+)').findall(data)
             for name,url in all:
-				addDir('%s'%name,url,10,'https://i62.servimg.com/u/f62/19/44/91/43/syyrie10.png',fanart,'')
+				addDir('%s'%name,url,10,'http://www.ask4glass.co.uk/images/targetwebsite35.nrgdigital.net/images/round_24-7_logo__cropped_.png',fanart,'')
 		
 def swiftstreams():
 	import json,requests

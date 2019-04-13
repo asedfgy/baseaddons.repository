@@ -546,7 +546,7 @@ SOURCES = [{"title": "TVsupertuga ", "url": "http://bit.ly/29ojshgsgbsfhbfkjbbgj
 # https://raw.githubusercontent.com/M3U/master/icon.png
 
 
-Q1RWQmFzZQ0K = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLnR2c3VwZXJ0dWdhLndlYnNpdGUvSEVSQ1VMRVMuaHRtbA==')
+Q1RWQmFzZQ0K = base64.b64decode('aHR0cDovL3RlYW10dWdhNGV2ZXIubmV0MjMubmV0L1RWJTIwU1VQRVIlMjBUVUdBJTIwQUREJTIwRVNUUlVUVVJBJTIwMS9NZW51JTIwUHJpbmNpcGFsLnhtbA==')
 
 
 # borrow from https://github.com/enen92/P2P-Streams-XBMC/blob/master/plugin.video.p2p-streams/resources/core/livestreams.py

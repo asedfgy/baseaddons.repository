@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import unicode_literals
+from __future__ import unicode_literals, absolute_import
 
 import xbmc
 import xbmcgui
@@ -24,13 +24,14 @@ import xbmcplugin
 from xbmcgui import ListItem
 from routing import Plugin
 
-import requests
+import sys
+import os
+import io
 import time
 import json
-import io
-import os
-import sys
+import requests
 import datetime
+from datetime import timedelta
 from base64 import b64decode, urlsafe_b64encode
 from itertools import chain
 
@@ -39,32 +40,23 @@ try:
 except ImportError:
     from urllib import quote as orig_quote
 
-from resources.lib.lntv_config import lntvConfig
-from resources.lib.lntv_channels import lntvChannels
+from resources.lib.rbtv_config import rbtvConfig
+from resources.lib.rbtv_channels import rbtvChannels
+
 
 addon = xbmcaddon.Addon()
 plugin = Plugin()
-plugin.name = addon.getAddonInfo("name")
 s = requests.Session()
-
-# plugin conf
+plugin.name = addon.getAddonInfo("name")
+user_agent = "Dalvik/2.1.0 (Linux; U; Android 5.1.1; AFTT Build/LVY48F)"
 USER_DATA_DIR = xbmc.translatePath(addon.getAddonInfo("profile")).decode("utf-8")
-ADDON_DATA_DIR = xbmc.translatePath(addon.getAddonInfo("path")).decode("utf-8")
-RESOURCES_DIR = os.path.join(ADDON_DATA_DIR, "resources")
-channel_list_file = os.path.join(USER_DATA_DIR, "channels.json")
-app_config_file = os.path.join(USER_DATA_DIR, "config.json")
-implemented = ["0", "23", "29", "32", "33", "38", "44", "48"]
-
 if not os.path.exists(USER_DATA_DIR):
     os.makedirs(USER_DATA_DIR)
+implemented = ["0", "38", "21", "48"]
 
-user_agent = "Dalvik/2.1.0 (Linux; U; Android 5.1.1; AFTS Build/LVY48F)"
-
-_reset = addon.getSetting("reset") or "0"
-if int(_reset) < int(31):
-    addon.setSetting("user_id", "")
-    addon.setSetting("data_time", "")
-    addon.setSetting("reset", "31")
+user_file = os.path.join(USER_DATA_DIR, "user.json")
+app_config_file = os.path.join(USER_DATA_DIR, "config.json")
+channel_list_file = os.path.join(USER_DATA_DIR, "channels.json")
 
 data_time = int(addon.getSetting("data_time") or "0")
 cache_time = int(addon.getSetting("cache_time") or "0")
@@ -75,18 +67,26 @@ def quote(s, safe=""):
     return orig_quote(s.encode("utf-8"), safe.encode("utf-8"))
 
 
+try:
+    with io.open(user_file, "r", encoding="utf-8") as f:
+        user = json.loads(f.read())
+except IOError:
+    user = ""
+
 current_time = int(time.time())
 if current_time - data_time > cache_time * 60 * 60:
     try:
-        new_config = lntvConfig()
+        new_config = rbtvConfig(user=user)
         app_config = new_config.get_data()
+        with io.open(user_file, "w", encoding="utf-8") as f:
+            f.write(json.dumps(new_config.user, indent=2, sort_keys=True, ensure_ascii=False))
         with io.open(app_config_file, "w", encoding="utf-8") as f:
             f.write(json.dumps(app_config, indent=2, sort_keys=True, ensure_ascii=False))
     except:
         with io.open(app_config_file, "r", encoding="utf-8") as f:
             app_config = json.loads(f.read())
     try:
-        new_channels = lntvChannels(app_config, user_id)
+        new_channels = rbtvChannels(app_config, user_id)
         channel_list = new_channels.get_channel_list()
         addon.setSetting("user_id", new_channels.user)
         with io.open(channel_list_file, "w", encoding="utf-8") as f:
@@ -119,63 +119,24 @@ def fix_auth_date(auth):
     return "".join(_in)
 
 
-# star sports
-def get_auth_token_33(referer):
-    if referer == None:
-        referer = ""
-    wms_url = b64decode(app_config.get("ZmFtYW50YXJhbmFfdGF0aTAw")[1:])
-    auth = b64decode(app_config.get("dGVydHRleWFj")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
+def get_auth_token_38():
+    wms_url = b64decode(app_config[0].get("YmVsZ2lfMzgw")[1:])
+    auth = b64decode(app_config[0].get("Z2Vsb29mc2JyaWVm")[1:])
+    mod_value = int(b64decode(app_config[0].get("TW9vbl9oaWsx")[1:]))
     modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
-    fix_auth = lambda auth: "".join([auth[:-56], auth[-55:-50], auth[-49:-42], auth[-41:-34], auth[-33:]])
-    req = requests.Request(
-        "GET",
-        wms_url,
-        headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Referer": referer, "Modified": modified(mod_value), "Authorization": auth},
-    )
-    prq = req.prepare()
-    r = s.send(prq)
-    return fix_auth(r.text)
-
-
-# eurosport
-def get_auth_token_38(referer):
-    if referer == None:
-        referer = ""
-    wms_url = b64decode(app_config.get("YmVsZ2lfMzgw")[1:])
-    auth = b64decode(app_config.get("Z2Vsb29mc2JyaWVm")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
-    modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
-    fix_auth = lambda auth: "".join([auth[:-66], auth[-65:-56], auth[-55:-46], auth[-45:-36], auth[-35:]])
-    req = requests.Request(
-        "GET",
-        wms_url,
-        headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Referer": referer, "Modified": modified(mod_value), "Authorization": auth},
-    )
-    prq = req.prepare()
-    r = s.send(prq)
-    return fix_auth(r.text)
-
-
-# ane
-def get_auth_token_44():
-    wms_url = b64decode(app_config.get("YmVsa2lpdW1uXzk2")[1:])
-    auth = b64decode(app_config.get("dGVydHRleWFj")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
-    modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
+    fix_auth = lambda auth: "".join([auth[:-59], auth[-58:-52], auth[-51:-43], auth[-42:-34], auth[-33:]])
     req = requests.Request(
         "GET", wms_url, headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Modified": modified(mod_value), "Authorization": auth}
     )
     prq = req.prepare()
     r = s.send(prq)
-    return fix_auth_date(r.text)
+    return fix_auth(r.text)
 
 
-# canada
-def get_auth_token_23():
-    wms_url = b64decode(app_config.get("dGhlX3RlYXMw")[1:])
-    auth = b64decode(app_config.get("TWVuX2Nob2Jpc18w")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
+def get_auth_token_21():
+    wms_url = b64decode(app_config[0].get("Y2FsYWFtb19pa3Mw")[1:])
+    auth = b64decode(app_config[0].get("WXJfd3lmX3luX2JhaXMw")[1:])
+    mod_value = int(b64decode(app_config[0].get("TW9vbl9oaWsx")[1:]))
     modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
     req = requests.Request(
         "GET", wms_url, headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Modified": modified(mod_value), "Authorization": auth}
@@ -185,63 +146,17 @@ def get_auth_token_23():
     return r.text
 
 
-# bt sports 1
-def get_auth_token_48(referer):
-    if referer == None:
-        referer = ""
-    wms_url = b64decode(app_config.get("Ym9ya3lsd3VyXzQ4")[1:])
-    auth = b64decode(app_config.get("dGVydHRleWFj")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
+def get_auth_token_48():
+    wms_url = b64decode(app_config[0].get("Ym9ya3lsd3VyXzQ4")[1:])
+    auth = b64decode(app_config[0].get("dGVydHRleWFj")[1:])
+    mod_value = int(b64decode(app_config[0].get("TW9vbl9oaWsx")[1:]))
     modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
     req = requests.Request(
-        "GET",
-        wms_url,
-        headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Referer": referer, "Modified": modified(mod_value), "Authorization": auth},
+        "GET", wms_url, headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Modified": modified(mod_value), "Authorization": auth}
     )
     prq = req.prepare()
     r = s.send(prq)
     return fix_auth_date(r.text)
-
-
-# bein 1
-def get_stream_32(stream):
-    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36"
-    api_url = b64decode(app_config.get("dWt1c3VzYV91a3ViaGFsYV9iYXRlczAw")[1:])
-    auth = b64decode(app_config.get("amFnX3Ryb3JfYXR0X2Vu")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
-    modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
-
-    response_body_api_url = b64decode(app_config.get("bWFya2llcmlzX2J0aXMw")[1:])
-    response_body_auth = b64decode(app_config.get("bXdlbnRlcnR5")[1:])
-    req = requests.Request("GET", response_body_api_url, headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Authorization": response_body_auth})
-    prq = req.prepare()
-    r = s.send(prq)
-    response_body = r.text
-
-    data = {"data": json.dumps({"token": 32, "response_body": response_body, "stream_url": stream})}
-    req = requests.Request(
-        "POST", api_url, headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Modified": modified(mod_value), "Authorization": auth}, data=data
-    )
-    prq = req.prepare()
-    r = s.send(prq)
-    return r.json().get("stream_url")
-
-
-# bt sports 1
-def get_stream_29(stream):
-    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36"
-    api_url = b64decode(app_config.get("Y2hlaWxlYWRoIF9DZWFuZ2FsX29udGlz")[1:])
-    auth = b64decode(app_config.get("amFnX3Ryb3JfYXR0X2Vu")[1:])
-    mod_value = int(b64decode(app_config.get("TW9vbl9oaWsx")[1:]))
-    modified = lambda value: "".join(chain(*zip(str(int(time.time()) ^ value), "0123456789")))
-
-    data = {"data": json.dumps({"token": 29, "response_body": "f", "stream_url": stream})}
-    req = requests.Request(
-        "POST", api_url, headers={"User-Agent": user_agent, "Accept-Encoding": "gzip", "Modified": modified(mod_value), "Authorization": auth}, data=data
-    )
-    prq = req.prepare()
-    r = s.send(prq)
-    return r.json().get("stream_url")
 
 
 @plugin.route("/")
@@ -262,9 +177,6 @@ def root():
 def list_channels(cat=None):
     list_items = []
     for channel in channel_list.get("eY2hhbm5lbHNfbGlzdA=="):
-        if channel.get("cat_id") == "8":
-            channel["cat_id"] = "1"
-
         if channel.get("cat_id") == cat:
             if len([stream for stream in channel.get("Qc3RyZWFtX2xpc3Q=") if b64decode(stream.get("AdG9rZW4=")[:-1]) in implemented]) == 0:
                 continue
@@ -310,28 +222,20 @@ def play(c_id):
         selected_stream = stream_list[0]
 
     if "AdG9rZW4=" in selected_stream:
-        if b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "33":
-            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_33(selected_stream.get("referer"))
-        elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "38":
-            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_38(selected_stream.get("referer"))
-        elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "44":
-            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_44()
-        elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "23":
-            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_23()
+        if b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "38":
+            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_38()
+        elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "21":
+            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_21()
         elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "48":
-            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_48(selected_stream.get("referer"))
-        elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "32":
-            media_url = get_stream_32(b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]))
-        elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "29":
-            media_url = get_stream_29(b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]))
+            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + get_auth_token_48()
         elif b64decode(selected_stream.get("AdG9rZW4=")[:-1]) == "0":
             media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:])
-        else:
-            media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:]) + b64decode(selected_stream.get("AdG9rZW4=")[:-1])
     else:
         media_url = b64decode(selected_stream.get("Bc3RyZWFtX3VybA==")[1:])
 
-    if selected_stream.get("player_user_agent", user_agent) == None or selected_stream.get("player_user_agent", user_agent) == "null" or selected_stream.get("player_user_agent", user_agent) == "":
+    if selected_stream.get("player_user_agent", user_agent) == None \
+    or selected_stream.get("player_user_agent", user_agent) == "null" \
+    or selected_stream.get("player_user_agent", user_agent) == "":
         selected_stream["player_user_agent"] = user_agent
 
     media_url = "{0}|User-Agent={1}".format(media_url, quote(selected_stream.get("player_user_agent", user_agent)))

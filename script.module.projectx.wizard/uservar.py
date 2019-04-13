@@ -8,19 +8,19 @@ ADDON_ID       = xbmcaddon.Addon().getAddonInfo('id')
 ADDONTITLE     = base64.b64decode('UHJvamVjdCBYIFdpemFyZA==')
 EXCLUDES       = [ADDON_ID, 'tvsupertuga.repository', 'projectx.wizard']
 # Text File with build info in it.
-BUILDFILE      = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLndlYnNpdGUvd2l6YXJkL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9wcm9qZWN0eHdpemFyZC50eHQ=')
+BUILDFILE      = base64.b64decode('aHR0cDovL3Byb2plY3R4d2l6YXJkLjE2bWIuY29tL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9wcm9qZWN0eHdpemFyZC50eHQ=')
 # How often you would list it to check for build updates in days
 # 0 being every startup of kodi
 UPDATECHECK    = 0
 # Text File with apk info in it.
-APKFILE        = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLndlYnNpdGUvd2l6YXJkL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9wcm9qZWN0eHdpemFyZGFway50eHQ=')
+APKFILE        = base64.b64decode('aHR0cDovL3Byb2plY3R4d2l6YXJkLjE2bWIuY29tL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9wcm9qZWN0eHdpemFyZGFway50eHQ=')
 # Text File with Youtube Videos urls.  Leave as 'http://' to ignore
 YOUTUBETITLE   = base64.b64decode('UHJvamVjdCBYIFlvdXR1YmU=')
-YOUTUBEFILE    = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLndlYnNpdGUvd2l6YXJkL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy95b3V0dWJlLnhtbA==')
+YOUTUBEFILE    = base64.b64decode('aHR0cDovL3Byb2plY3R4d2l6YXJkLjE2bWIuY29tL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy95b3V0dWJlLnhtbA==')
 # Text File for addon installer.  Leave as 'http://' to ignore
-ADDONFILE      = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLndlYnNpdGUvd2l6YXJkL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9hZGRvbnMudHh0')
+ADDONFILE      = base64.b64decode('aHR0cDovL3Byb2plY3R4d2l6YXJkLjE2bWIuY29tL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9hZGRvbnMudHh0')
 # Text File for advanced settings.  Leave as 'http://' to ignore
-ADVANCEDFILE   = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLndlYnNpdGUvd2l6YXJkL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9hZHZhbmNlZHNldHRpbmdzLnR4dA==')
+ADVANCEDFILE   = base64.b64decode('aHR0cDovL3Byb2plY3R4d2l6YXJkLjE2bWIuY29tL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9hZHZhbmNlZHNldHRpbmdzLnR4dA==')
 
 # Dont need to edit just here for icons stored locally
 PATH           = xbmcaddon.Addon().getAddonInfo('path')
@@ -104,9 +104,9 @@ AUTOINSTALL    = 'yes'
 # Addon ID for the repository
 REPOID         = base64.b64decode('dHZzdXBlcnR1Z2EucmVwb3NpdG9yeQ==')
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML   = base64.b64decode('aHR0cDovL3JlcG9zaXRvcnkudHZzdXBlcnR1Z2Eub3JnL2FkZG9ucy54bWw=')
+REPOADDONXML   = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLnh5ei90dnN1cGVydHVnYS5yZXBvc2l0b3J5L3R2c3VwZXJ0dWdhLnJlcG9zaXRvcnkvYWRkb24ueG1s')
 # Url to folder zip is located in
-REPOZIPURL     = base64.b64decode('aHR0cDovL3JlcG9zaXRvcnkudHZzdXBlcnR1Z2Eub3JnL2luc3RhbC90dnN1cGVydHVnYS5yZXBvc2l0b3J5Lw==')
+REPOZIPURL     = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLnh5ei90dnN1cGVydHVnYS5yZXBvc2l0b3J5L2luc3RhbC90dnN1cGVydHVnYS5yZXBvc2l0b3J5Lw==')
 #########################################################
 
 #########################################################
@@ -115,7 +115,7 @@ REPOZIPURL     = base64.b64decode('aHR0cDovL3JlcG9zaXRvcnkudHZzdXBlcnR1Z2Eub3JnL
 # Enable Notification screen Yes or No
 ENABLE         = 'Yes'
 # Url to notification file
-NOTIFICATION   = base64.b64decode('aHR0cDovL3R2c3VwZXJ0dWdhLndlYnNpdGUvd2l6YXJkL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9wcm9qZWN0eHdpemFyZG5vdGlmaWNhdGlvbi54bWw=')
+NOTIFICATION   = base64.b64decode('aHR0cDovL3Byb2plY3R4d2l6YXJkLjE2bWIuY29tL3Byb2plY3R4d2l6YXJkNC9zdWJtZW51cy9wcm9qZWN0eHdpemFyZG5vdGlmaWNhdGlvbi54bWw=')
 # Use either 'Text' or 'Image'
 HEADERTYPE     = base64.b64decode('VGV4dA==')
 HEADERMESSAGE  = base64.b64decode('UHJvamVjdCBYIFdpemFyZA==')

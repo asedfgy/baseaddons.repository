@@ -16,12 +16,33 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
-from __generic_resolver__ import GenericResolver
+import random
+from lib import helpers
+from urlresolver import common
+from urlresolver.resolver import UrlResolver, ResolverError
 
-class RapidVideoResolver(GenericResolver):
+class RapidVideoResolver(UrlResolver):
     name = "rapidvideo.com"
     domains = ["rapidvideo.com", "raptu.com"]
-    pattern = '(?://|\.)((?:rapidvideo|raptu)\.com)/(?:[ev]/|embed/|\?v=)?([0-9A-Za-z]+)'
+    pattern = '(?://|\.)((?:rapidvideo|raptu)\.com)/(?:embed/|\?v=)?([0-9A-Za-z]+)'
+
+    def __init__(self):
+        self.net = common.Net()
+
+    def get_media_url(self, host, media_id):
+        web_url = self.get_url(host, media_id)
+        headers = {'User-Agent': common.FF_USER_AGENT}
+        html = self.net.http_GET(web_url, headers=headers).content
+        data = helpers.get_hidden(html)
+        data['confirm.y'] = random.randint(0, 120)
+        data['confirm.x'] = random.randint(0, 120)
+        headers['Referer'] = web_url
+        post_url = web_url + '#'
+        html = self.net.http_POST(post_url, form_data=data, headers=headers).content.encode('utf-8')
+        sources = helpers.parse_sources_list(html)
+        try: sources.sort(key=lambda x: x[0], reverse=True)
+        except: pass
+        return helpers.pick_source(sources)
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://{host}/embed/{media_id}')
+        return self._default_get_url(host, media_id, template='https://www.raptu.com/embed/{media_id}')

@@ -80,7 +80,7 @@ def INDEX():
 
 	
 def THEMEOLDMENU():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/themeoldmenu.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/themeoldmenu.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -88,7 +88,7 @@ def THEMEOLDMENU():
     
 	
 def THEMESNEWMENU():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/themesnewmenu.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/themesnewmenu.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -98,7 +98,7 @@ def THEMESNEWMENU():
 
 	
 def KRYPTONMENU2():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/kryptonmenu2.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/kryptonmenu2.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -109,7 +109,7 @@ def KRYPTONMENU2():
 
 	
 def THEMEOLDMENU1():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/themeoldmenu1.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/themeoldmenu1.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -117,7 +117,7 @@ def THEMEOLDMENU1():
     
 	
 def THEMESNEWMENU1():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/themesnewmenu1.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/themesnewmenu1.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -127,7 +127,7 @@ def THEMESNEWMENU1():
 
 	
 def KRYPTONMENU3():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/kryptonmenu3.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/kryptonmenu3.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -138,7 +138,7 @@ def KRYPTONMENU3():
 
 
 def KRYPTONTHEMESARC():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/kryptonthemesarc.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/kryptonthemesarc.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -146,7 +146,7 @@ def KRYPTONTHEMESARC():
 	
 	
 def NEWTHEMESARC():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/newthemesarc.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/newthemesarc.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)
@@ -155,7 +155,7 @@ def NEWTHEMESARC():
 	
 	
 def BACKGROUNDS():
-    link = OPEN_URL('http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/skins/backgrounds.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/skins/backgrounds.xml').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,5,iconimage,fanart,description)

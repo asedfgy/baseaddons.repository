@@ -17,14 +17,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 import re
 import urlparse
-import urllib, urllib2
+import urllib
 from lib import helpers
 from urlresolver import common
 from urlresolver.resolver import ResolverError
 
-logger = common.log_utils.Logger.get_logger(__name__)
-logger.disable()
-
+SORT_KEY = {'High': 3, 'Middle': 2, 'Low': 1}
 net = common.Net()
 
 def get_media_url(url):
@@ -35,8 +33,8 @@ def get_media_url(url):
         headers.update({'Referer': url})
         for match in re.finditer('''<script[^>]*src=["']([^'"]+)''', html):
             _html = get_js(match.group(1), headers, hostname)
-            
-        match = re.search('''href=['"]([^"']+/playvideo-[^"']+)''', html)
+                
+        match = re.search('''href=['"]([^'"]+)''', html)
         if match:
             playvid_url = match.group(1)
             html = net.http_GET(playvid_url, headers=headers).content
@@ -46,37 +44,36 @@ def get_media_url(url):
                 match = re.search('''!=\s*null.*?get\(['"]([^'"]+).*?\{([^:]+)''', js, re.DOTALL)
                 if match:
                     fx_url, fx_param = match.groups()
-                    fx_url = resolve_url(urlparse.urljoin('http://www.flashx.tv', fx_url) + '?' + urllib.urlencode({fx_param: "y"}) + '&' + urllib.urlencode({"fxfx": 6}))
-                    common.logger.log('fxurl: %s' % (fx_url))
+                    fx_url = resolve_url(urlparse.urljoin('http://www.flashx.tv', fx_url) + '?' + urllib.urlencode({fx_param: 1}))
+                    common.log_utils.log('fxurl: %s' % (fx_url))
                     _html = net.http_GET(fx_url, headers=headers).content
                     
             headers.update({'Referer': url})
             html = net.http_GET(playvid_url, headers=headers).content
-            html += helpers.get_packed_data(html)
+            html = helpers.add_packed_data(html)
         
-        sources = helpers.scrape_sources(html, patterns=["""src:\s*["'](?P<url>[^"']+).+?res:\s*["']?(?P<label>\d+)"""], result_blacklist=["trailer.mp4"], generic_patterns=False)
-        
-        if sources: return helpers.pick_source(sources) + helpers.append_headers(headers)
+        common.log_utils.log(html)
+        sources = helpers.parse_sources_list(html)
+        try: sources.sort(key=lambda x: SORT_KEY.get(x[0], 0), reverse=True)
+        except: pass
+        source = helpers.pick_source(sources)
+        return source + helpers.append_headers(headers)
         
     except Exception as e:
-        logger.log_debug('Exception during flashx resolve parse: %s' % e)
+        common.log_utils.log_debug('Exception during flashx resolve parse: %s' % e)
         raise
     
     raise ResolverError('Unable to resolve flashx link. Filelink not found.')
 
 def get_js(js_url, headers, hostname):
     js = ''
-    if js_url.startswith('//'):
-        js_url = 'http:%s' % js_url
-    elif not js_url.startswith('http'):
+    if not js_url.startswith('http'):
         base_url = 'http://' + hostname
         js_url = urlparse.urljoin(base_url, js_url)
     
-    if 'flashx' in js_url:
-        common.logger.log('Getting JS: |%s| - |%s|' % (js_url, headers))
-        try: js = net.http_GET(js_url, headers=headers).content
-        except urllib2.HTTPError as e: common.logger.log('Error Getting JS: |%s| - |%s|' % (js_url, e))
-        
+    if hostname in js_url:
+        common.log_utils.log('Getting JS: |%s| - |%s|' % (js_url, headers))
+        js = net.http_GET(js_url, headers=headers).content
     return js
     
 def resolve_url(url):
@@ -91,5 +88,4 @@ def resolve_url(url):
         elif segment not in ('./', '.'):
             resolved.append(segment)
     parts[2] = ''.join(resolved)
-    
     return urlparse.urlunsplit(parts)

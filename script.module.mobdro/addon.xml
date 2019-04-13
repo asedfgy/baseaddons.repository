@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.mobdro" name="Mobdro TV" version="0.5" provider-name="TEAM TVsupertuga">
+<addon id="script.module.mobdro" name="Mobdro TV" version="0.2" provider-name="TEAM TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.livestreamer" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.routing" />
+	<import addon="script.module.requests" />
+	<import addon="script.video.F4mProxy" />
   </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>all</provides>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <reuselanguageinvoker>true</reuselanguageinvoker>
 		<summary lang="pt">live TV Online </summary>
 		<description lang="pt">[COLOR blue][B]
 	

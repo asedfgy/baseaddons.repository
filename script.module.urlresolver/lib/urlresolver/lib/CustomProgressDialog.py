@@ -19,8 +19,6 @@ import xbmcgui
 import kodi
 import log_utils
 
-logger = log_utils.Logger.get_logger(__name__)
-
 DIALOG_XML = 'ProgressDialog.xml'
 
 class ProgressDialog(object):
@@ -68,21 +66,21 @@ class ProgressDialog(object):
             pass
             
         def onAction(self, action):
-            # logger.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG, COMPONENT)
+            # log_utils.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG, COMPONENT)
             if action == self.ACTION_PREVIOUS_MENU or action == self.ACTION_BACK:
                 self.cancel = True
                 self.close()
     
         def onControl(self, control):
-            # logger.log('onControl: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # log_utils.log('onControl: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
             pass
     
         def onFocus(self, control):
-            # logger.log('onFocus: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # log_utils.log('onFocus: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
             pass
     
         def onClick(self, control):
-            # logger.log('onClick: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
+            # log_utils.log('onClick: %s' % (control), log_utils.LOGDEBUG, COMPONENT)
             if control == self.CANCEL_BUTTON:
                 self.cancel = True
                 self.close()

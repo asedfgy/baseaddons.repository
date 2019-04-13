@@ -15,11 +15,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
 import abc
 from lib import helpers
 from urlresolver.resolver import UrlResolver
-
 
 class GenericResolver(UrlResolver):
     __metaclass__ = abc.ABCMeta
@@ -33,11 +31,7 @@ class GenericResolver(UrlResolver):
     """
     name = 'generic'
     domains = ['example.com']
-    pattern = None
-
-    def __init__(self):
-        if self.pattern is None:
-            self.pattern = '(?://|\.)(%s)/(?:embed[/-])?([A-Za-z0-9]+)' % re.escape('|'.join(self.domains))
+    pattern = '(?://|\.)(example\.com)/(?:embed/)?([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         """

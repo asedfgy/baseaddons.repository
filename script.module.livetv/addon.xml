@@ -2,7 +2,6 @@
 <addon id="script.module.livetv" name="live TV Online" version="0.8" provider-name="Team tvsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.pyamf" />
     <import addon="script.module.livestreamer" />
     <import addon="script.module.requests" />
     <import addon="script.module.routing" />
@@ -23,8 +22,7 @@ of research over the Internet.
 CHANNELS REQUESTS OR MORE INFORMATION PLEASE
 SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<platform>all</platform>
-		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
-		<website>https://www.facebook.com/TVsupertuga.PT/</website>
+		<forum>http://forumtvsupertuga.xyz</forum>
+		<website>https://www.facebook.com/Tvsupertuga.team/</website>
 	</extension>
 </addon>
-

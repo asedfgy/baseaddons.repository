@@ -17,12 +17,12 @@ APKFILE        = ''
 YOUTUBETITLE   = 'Project X Youtube'
 YOUTUBEFILE    = ''
 # Text File for addon installer.  Leave as 'http://' to ignore
-ADDONFILE      = 'http://tvsupertuga.website/wizard/projectxwizard4/submenus/Community.dl/themes.txt'
+ADDONFILE      = 'http://projectxwizard.16mb.com/projectxwizard4/submenus/Community.dl/themes.txt'
 # Text File for advanced settings.  Leave as 'http://' to ignore
 ADVANCEDFILE   = ''
 # Text file for roms and emus
-ROMPACK        = 'http://tvsupertuga.website/wizard/projectxwizard4/submenus/power%20installer/programas%20windows/rom-packs.txt.txt'
-EMUAPKS        = 'http://tvsupertuga.website/wizard/projectxwizard4/submenus/power%20installer/programas%20windows/programas%20windows.txt'
+ROMPACK        = 'http://projectxwizard.16mb.com/projectxwizard4/submenus/power%20installer/programas%20windows/rom-packs.txt.txt'
+EMUAPKS        = 'http://projectxwizard.16mb.com/projectxwizard4/submenus/power%20installer/programas%20windows/programas%20windows.txt'
 
 # Dont need to edit just here for icons stored locally
 PATH           = xbmcaddon.Addon().getAddonInfo('path')

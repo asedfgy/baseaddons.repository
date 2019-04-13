@@ -15,9 +15,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
 import json
-import urllib
+import re
 import urllib2
 from urlresolver import common
 from urlresolver.common import i18n
@@ -41,21 +40,28 @@ class VidUpMeResolver(UrlResolver):
         }
         headers.update(self.headers)
         html = self.net.http_GET(web_url, headers=headers).content
-        sources = helpers.parse_sources_list(html)
+        sources = self.__parse_sources_list(html)
         if sources:
-            if len(sources) > 1:
-                try: sources.sort(key=lambda x: int(re.sub("\D", '', x[0])), reverse=True)
-                except: common.logger.log_debug('Scrape sources sort failed |int(re.sub(r"""\D""", '', x[0])|')
             try:
                 vt = self.__auth_ip(media_id)
                 if vt:
-                    params = {'direct': 'false', 'ua': 1, 'vt': vt}
-                    return helpers.pick_source(sources) + '?' + urllib.urlencode(params) + helpers.append_headers(self.headers)
+                    source = helpers.pick_source(sources)
+                    return '%s?direct=false&ua=1&vt=%s' % (source, vt) + helpers.append_headers({'User-Agent': common.SMU_USER_AGENT})
             except urllib2.HTTPError:
                 source = helpers.pick_source(sources)
                 return source
         else:
-            raise ResolverError('Video Token Missing')
+            raise ResolverError('Unable to locate links')
+
+    def __parse_sources_list(self, html):
+        sources = []
+        match = re.search('sources\s*:\s*\[(.*?)\]', html, re.DOTALL)
+        if match:
+            for match in re.finditer('''['"]?file['"]?\s*:\s*['"]([^'"]+)['"][^}]*['"]?label['"]?\s*:\s*['"]([^'"]*)''', match.group(1), re.DOTALL):
+                stream_url, label = match.groups()
+                stream_url = stream_url.replace('\/', '/')
+                sources.append((label, stream_url))
+        return sources
 
     def __auth_ip(self, media_id):
         header = i18n('vidup_auth_header')
@@ -66,22 +72,13 @@ class VidUpMeResolver(UrlResolver):
             return cd.start(self.__check_auth, [media_id])
         
     def __check_auth(self, media_id):
-        common.logger.log('Checking Auth: %s' % (media_id))
+        common.log_utils.log('Checking Auth: %s' % (media_id))
         url = 'https://vidup.me/pair?file_code=%s&check' % (media_id)
         try: js_result = json.loads(self.net.http_GET(url, headers=self.headers).content)
-        except ValueError:
-            raise ResolverError('Unusable Authorization Response')
-        except urllib2.HTTPError as e:
-            if e.code == 401:
-                js_result = json.loads(e.read())
-            else:
-                raise
-            
-        common.logger.log('Auth Result: %s' % (js_result))
+        except ValueError: raise ResolverError('Unusable Authorization Response')
+        common.log_utils.log('Auth Result: %s' % (js_result))
         if js_result.get('status'):
             return js_result.get('response', {}).get('vt')
-        else:
-            return {}
         
     def get_url(self, host, media_id):
         return self._default_get_url(host, media_id)
