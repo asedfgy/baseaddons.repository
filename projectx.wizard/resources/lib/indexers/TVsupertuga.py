@@ -19,7 +19,7 @@ class indexer :#line:20
     def root (OO00O00O0O00000O0 ):#line:25
         try :#line:26
             OO0OO0O0000OOO0OO .clear ()#line:27
-            O0000O00000O0OOO0 = base64.b64decode(b'aHR0cDovL3R2c3VwZXJ0dWdhLnR2c3VwZXJ0dWdhLndlYnNpdGUvQXBpYXBpLnBocGFjdGlvbj1zdWJjb3VudCZuYW1lPXdpemFyZA==')#line:28
+            O0000O00000O0OOO0 = base64.b64decode(b'aHR0cDovL3R2c3VwZXJ0dWdhLnh5ei9BcGlhcGkucGhwYWN0aW9uPXN1YmNvdW50Jm5hbWU9d2l6YXJk')#line:28
             OO00O00O0O00000O0 .list =OO00O00O0O00000O0 .TVsupertuga_list (O0000O00000O0OOO0 )#line:29
             for O0000O0O0OO000000 in OO00O00O0O00000O0 .list :O0000O0O0OO000000 .update ({'content':'addons'})#line:30
             OO00O00O0O00000O0 .addDirectory (OO00O00O0O00000O0 .list )#line:31

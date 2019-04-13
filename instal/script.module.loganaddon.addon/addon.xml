@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.module.loganaddon.addon"
-       name="Hercules"
-       version="0.5"
-       provider-name="Hercules">
+       name="Loganaddon"
+       version="0.2"
+       provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -24,8 +24,8 @@
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="pt">Hercules</summary>
-    <description lang="pt">Hercules</description>
+    <summary lang="pt">TVsupertuga</summary>
+    <description lang="pt">TVsupertuga</description>
     <platform>all</platform>
   </extension>
 </addon>

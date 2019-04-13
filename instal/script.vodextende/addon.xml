@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.vodextende" name="VOD EXTENDE" version="0.1" provider-name="Team TVsupertuga">
+  <requires>
+    <import addon="xbmc.python"                     version="2.19.0"/>
+	<import addon="baseaddons.repository"/>
+    <import addon="script.module.vod.tvsupertuga.addon"/>
+    <import addon="plugin.video.metalliq"/>
+    <import addon="plugin.video.youtube"/>	
+    <import addon="service.subtitles.tvsupertuga"/>
+    <import addon="script.module.pil"/>
+    <import addon="script.module.requests"/>
+    <import addon="script.module.simplejson"/>
+    <import addon="script.module.urlresolver"/>
+    <import addon="script.module.youtube.dl"/>
+  </requires>
+  <extension point="xbmc.python.script"             library="default.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.python.library"            library="default.py" />
+  <extension point="xbmc.python.pluginsource"       library="plugin.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <language/>
+    <summary lang="en">Extensao TVsupertuga</summary>
+    <description lang="en">extensao vod tvsupertuga addon</description>
+    <summary lang="pt">Extensao TVsupertuga</summary>
+    <description lang="pt">extensao vod tvsupertuga addon</description>
+    <platform>all</platform>
+    <genre>movies,tv,trailers</genre>
+    <video_guide>3nlzITuJizg</video_guide>
+    <video_preview>OIp3Ry7qml8</video_preview>
+    <license>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</license>
+    <forum>http://forumtvsupertuga.pe.hu/</forum>
+    <source>http://repo.tvsupertuga.xyz/</source>
+    <email>tvsupertuga@gmail.com</email>
+  </extension>
+</addon>

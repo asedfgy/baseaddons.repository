@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="tvsupertuga.repository" name="[COLOR cyan]TV[/COLOR][COLOR red]supertuga[/COLOR].[COLOR limegreen]Repository[/COLOR]" version="0.1.0" provider-name="TVsupertuga">
-    <extension point="xbmc.addon.repository" name="TVsupertuga Repository">
-            <info compressed="false">http://repository.tvsupertuga.org/addons.xml</info>
-            <checksum>http://repository.tvsupertuga.org/addons.xml.md5</checksum>
-            <datadir zip="true">http://repository.tvsupertuga.org/instal/</datadir>
-    </extension>
+<addon id="tvsupertuga.repository" name="[COLOR cyan]TV[/COLOR][COLOR red]supertuga[/COLOR].[COLOR limegreen]Repository[/COLOR]" version="0.2.0" provider-name="TVsupertuga">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="[COLOR cyan]TV[/COLOR][COLOR red]supertuga[/COLOR].[COLOR limegreen]Repository[/COLOR]">
+            <dir>
+			<info compressed="false">https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/instal/</datadir>
+            <hashes>false</hashes>
+			</dir>
+            <dir>
+			<info compressed="false">https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://github.com/repotvsupertuga/tvsupertuga.repository/tree/master/instal</datadir>
+            </dir>
+
+        </extension>
     <extension point="xbmc.addon.metadata">
 		<summary lang="pt">TVsupertuga </summary>
-		<description lang="pt">rdftgyhu</description>
+		<description lang="pt">Quer ver Sport TV grátis? O addon TV Super Tuga é um dos melhores addons Kodi para este efeito. Eu diria mesmo que este se trata de um super addon, isto porque o concentra outros addons conhecidos, tais como o Loganaddon e vários outros.
+
+A maior vantagem deste é a grande quantidade de fontes disponíveis para stream de vários tipos de canais, incluindo canais desportivos premium como Sport TV.</description>
 		<forum>http://forumtvsupertuga.xyz</forum>
-		<website>https://www.facebook.com/TVsupertuga.PT/</website>		
+		<website>https://www.facebook.com/Tvsupertuga.team/</website>		
         <platform>all</platform>
     </extension>
 </addon>
