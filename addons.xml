@@ -1704,7 +1704,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
 
 <addon id="script.module.schism.addon"
        name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]"
-       version="2.2"
+       version="2.5"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
