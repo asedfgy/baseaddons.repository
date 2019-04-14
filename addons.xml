@@ -659,7 +659,7 @@ For updates check the readme.
   </extension>
 </addon>
 
-<addon id="plugin.video.TVsupertuga" version="1.1.0" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" provider-name="TVsupertuga">
+<addon id="plugin.video.TVsupertuga" version="0.0.9" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" provider-name="TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="tvsupertuga.repository" version="0.0.6"/>
@@ -671,13 +671,16 @@ For updates check the readme.
 		<import addon="script.video.F4mProxy" version="2.8.6"/>
 		<import addon="repository.TVsupertugamovies" version="0.1"/>
 		<import addon="script.module.TVsupertuga" version="0.0.3"/>
+		<import addon="script.module.adryan.addon" version="0.3"/>
 	    <import addon="script.module.livetv" version="0.1"/>
 		<import addon="script.module.media3d" version="0.1"/>
 		<import addon="script.module.live.sports.addon" version="0.4"/>
 		<import addon="script.module.livetv.addon" version="1.3"/>
+		<import addon="script.module.loganaddon.addon" version="0.1"/>
 		<import addon="script.module.schism.addon" version="2.1"/>
 		<import addon="plugin.video.SportsDevil" version="2017.09.02"/>
 		<import addon="script.module.vod.tvsupertuga.addon" version="0.3"/>
+		<import addon="script.module.stream.tvsupertuga.addon" version="0.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -738,61 +741,59 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.4.8" provider-name="bromix">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
+<addon id="plugin.video.youtube" name="YouTube" version="5.3.12" provider-name="jdf76, bromix">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
         <import addon="script.module.requests" version="2.12.4"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="resources/lib/default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="resources/lib/startup.py" start="startup"/>
-    <extension point="xbmc.python.module" library="resources/lib/"/>
-    <extension point="xbmc.addon.metadata">
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+    <extension point="xbmc.service" library="startup.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
         <news>
-[fix] Signature deciphering
+[fix/upd] replace custom simple_requests with script.module.requests to resolve ssl and cross-platform issues
+[add] 'Reset access manager' added to Maintenance section, sign out process(available when logged out) to clean up tokens in settings.xml
+[upd] set default for SSL certificate verification to 'true'
         </news>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
         </assets>
-        <summary lang="en_gb">Plugin for YouTube</summary>
-        <description lang="en_gb">YouTube is one of the biggest video-sharing websites of the world.</description>
-        <summary lang="he_il">תוסף עבור YouTube</summary>
-        <description lang="he_il">YouTube הוא אחד מאתרי שיתוף הווידאו הגדולים בעולם.</description>
-        <summary lang="de_de">Plugin für YouTube</summary>
-        <description lang="de_de">YouTube ist eines der größten Video-Sharing-Websites der Welt.</description>
-        <summary lang="pl_pl">Wtyczka YouTube</summary>
-        <description lang="pl_pl">YouTube jest jednym z największych na świecie serwisów udostępniania wideo.</description>
-        <summary lang="hu_hu">YouTube kiegészítő</summary>
-        <description lang="hu_hu">A YouTube világ egyik legnagyobb videómegosztó weboldala.</description>
-        <summary lang="es_es">Plugin para YouTube</summary>
-        <description lang="es_es">YouTube es uno de los mayores sitios web de intercambio de vídeos del mundo.</description>
-        <summary lang="ru_ru">Видеодополнение YouTube</summary>
-        <description lang="ru_ru">Данное дополнение позволяет находить и смотреть видео на всеми любимом сайте.</description>
-        <summary lang="fr_fr">Plugin pour YouTube</summary>
-        <description lang="fr_fr">YouTube est l'un des plus grands sites de partage vidéos du monde.</description>
-        <summary lang="zh_cn">YouTube附加元件</summary>
-        <description lang="zh_cn">「Youtube」是全世界最大的影片分享網站</description>
-        <summary lang="bg_bg">Добавка за YouTube</summary>
-        <description lang="bg_bg">YouTube е един от най-големите уеб сайтове за споделяне на видео в целия свят.</description>
-        <summary lang="el_gr">Πρόσθετο YouTube</summary>
-        <description lang="el_gr">Το YouTube είναι μία από τις μεγαλύτερες ιστοσελίδες διαμοιρασμού βίντεο στον κόσμο.</description>
-        <summary lang="nb_no">Tillegg for YouTube</summary>
-        <description lang="nb_no">YouTube er en av verdens største nettsider for videodeling.</description>
-        <disclaimer lang="en_gb"></disclaimer>
-        <language></language>
-        <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-        <forum>https://forum.kodi.tv/showthread.php?tid=325740</forum>
-        <website>https://www.youtube.com</website>
-        <email>ytplugin at datanet dot ws</email>
-        <source>https://github.com/jdf76/plugin.video.youtube</source>
-        <size>1408185</size>
-    </extension>
+        <summary lang="en">Plugin for YouTube</summary>
+        <description lang="en">YouTube is one of the biggest video-sharing websites of the world.</description>
+		<summary lang="de">Plugin für YouTube</summary>
+        <description lang="de">YouTube ist eines der größten Video-Sharing-Websites der Welt.</description>
+        <summary lang="pl">Wtyczka YouTube</summary>
+        <description lang="pl">YouTube jest jednym z największych na świecie serwisów udostępniania wideo.</description>
+		<summary lang="hu">Kiegészítő  a YouTube-hoz</summary>
+        <description lang="hu">A YouTube világ egyik legnagyobb videómegosztó weboldala.</description>
+        <summary lang="es">Plugin para YouTube</summary>
+        <description lang="es">YouTube es un uno de los mayores sitios web de intercambio de vídeos del mundo.</description>
+        <summary lang="ru">Видеодополнение YouTube</summary>
+        <description lang="ru">Данное дополнение позволяет находить и смотреть видео на всеми любимом сайте.</description>
+        <summary lang="fr">Plugin pour YouTube</summary>
+        <description lang="fr">YouTube est l'un des plus grands sites de partage vidéos du monde.</description>
+        <summary lang="zh">YouTube附加元件</summary>
+        <description lang="zh">「Youtube」是全世界最大的影片分享網站</description>
+        <summary lang="bg">Добавка за YouTube</summary>
+        <description lang="bg">YouTube е един от най-големите уеб сайтове за споделяне на видео в целия свят.</description>
+		<summary lang="el">Πρόσθετο YouTube</summary>
+        <description lang="el">Το YouTube είναι μία από τις μεγαλύτερες ιστοσελίδες διαμοιρασμού βίντεο στον κόσμο.</description>
+        <summary lang="no">Tillegg for YouTube</summary>
+        <description lang="no">YouTube er en av verdens største nettsider for videodeling.</description>
+        <disclaimer lang="en"></disclaimer>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<forum>http://forum.kodi.tv/showthread.php?tid=267160</forum>
+		<website>http://www.youtube.com</website>
+		<email>ytplugin at datanet dot ws</email>
+		<source>https://github.com/Kolifanes/plugin.video.youtube</source>
+	</extension>
 </addon>
 
-<addon id="projectx.wizard" version="1.1.2" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" provider-name="TVsupertuga">
+<addon id="projectx.wizard" version="1.0.2" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" provider-name="TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="baseaddons.repository" version="0.2"/>
@@ -896,7 +897,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.module.adryan.addon"
        name="Adryan"
-       version="0.5"
+       version="0.4"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -982,7 +983,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="script.module.bildscommunity" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="0.2" provider-name="TVsupertuga">
+<addon id="script.module.bildscommunity" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="0.1" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1046,7 +1047,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="script.module.Community.dl" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="0.4" provider-name="TVsupertuga">
+<addon id="script.module.Community.dl" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="0.3" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.skinwizard" version="0.1"/>
@@ -1213,7 +1214,7 @@ provider-name="Team TVsupertuga">
 
 <addon id="script.module.live.sports.addon"
        name="Live Sports"
-       version="1.0"
+       version="0.5"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1226,13 +1227,13 @@ provider-name="Team TVsupertuga">
     <import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.urlresolver" />
     <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
 
   </requires>
-  <extension point="xbmc.python.pluginsource" library="resolvers.py">
+  <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
@@ -1292,7 +1293,6 @@ provider-name="Team TVsupertuga">
 <addon id="script.module.livetv" name="live TV Online" version="0.8" provider-name="Team tvsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.pyamf" />
     <import addon="script.module.livestreamer" />
     <import addon="script.module.requests" />
     <import addon="script.module.routing" />
@@ -1313,8 +1313,8 @@ of research over the Internet.
 CHANNELS REQUESTS OR MORE INFORMATION PLEASE
 SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<platform>all</platform>
-		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
-		<website>https://www.facebook.com/TVsupertuga.PT/</website>
+		<forum>http://forumtvsupertuga.xyz</forum>
+		<website>https://www.facebook.com/Tvsupertuga.team/</website>
 	</extension>
 </addon>
 
@@ -1350,9 +1350,9 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 </addon>
 
 <addon id="script.module.loganaddon.addon"
-       name="Hercules"
-       version="0.5"
-       provider-name="Hercules">
+       name="Loganaddon"
+       version="0.2"
+       provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -1374,8 +1374,8 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="pt">Hercules</summary>
-    <description lang="pt">Hercules</description>
+    <summary lang="pt">TVsupertuga</summary>
+    <description lang="pt">TVsupertuga</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -1448,18 +1448,48 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="script.module.mobdro" name="Mobdro TV" version="0.5" provider-name="TEAM TVsupertuga">
+<addon id="script.module.mikafilmes.addon"
+       name="MIKA FILMES"
+       version="2.1"
+       provider-name="MIKAEL ALVES">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.livestreamer" />
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
-    <import addon="script.module.routing" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.livestreamer" optional="true"/>
+
+   </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <reuselanguageinvoker>true</reuselanguageinvoker>
+    <summary lang="en">Add-on de Filmes</summary>
+    <description lang="en">Filmes Organizados Por Categorias</description>
+	<platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="script.module.mobdro" name="Mobdro TV" version="0.2" provider-name="TEAM TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.requests" />
+	<import addon="script.video.F4mProxy" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
 		<summary lang="pt">live TV Online </summary>
 		<description lang="pt">[COLOR blue][B]
 
@@ -1575,7 +1605,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="script.module.projectx.wizard" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="1.1.0" provider-name="TVsupertuga">
+<addon id="script.module.projectx.wizard" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="1.0.2" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.Community.dl" version="0.1"/>
@@ -1636,20 +1666,16 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.module.requests"
        name="requests"
-       version="2.18.4"
-       provider-name="kennethreitz">
+       version="2.9.1"
+       provider-name="kennethreitz, beenje">
   <requires>
-    <import addon="xbmc.python" version="2.25.0"/>
-    <import addon="script.module.urllib3" version="1.22"/>
-    <import addon="script.module.chardet" version="3.0.4"/>
-    <import addon="script.module.idna" version="2.6"/>
-    <import addon="script.module.certifi" version="2017.07.27.1"/>
+    <import addon="xbmc.python" version="2.14.0"/>
   </requires>
   <extension point="xbmc.python.module"
              library="lib" />
   <extension point="xbmc.addon.metadata">
-    <summary lang="en_GB">Python HTTP for Humans</summary>
-    <description lang="en_GB">Packed for KODI from https://github.com/requests/requests</description>
+    <summary>Python HTTP for Humans</summary>
+    <description>Packed for KODI from https://github.com/kennethreitz/requests</description>
     <platform>all</platform>
     <language></language>
     <license>Apache2</license>
@@ -1678,7 +1704,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
 
 <addon id="script.module.schism.addon"
        name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]"
-       version="2.4"
+       version="2.2"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1762,7 +1788,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
   </extension>
 </addon>
 
-<addon id="script.module.skinwizard" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="0.3" provider-name="TVsupertuga">
+<addon id="script.module.skinwizard" name="[COLOR White]Project[/COLOR] [COLOR cyan]X[/COLOR] [COLOR White]Wizard[/COLOR]" version="0.2" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1784,7 +1810,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
 
 <addon id="script.module.stallion.addon"
        name="Mobdro TV"
-       version="0.7"
+       version="0.6"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1814,45 +1840,27 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
   </extension>
 </addon>
 
-<addon id="script.module.stream.tvsupertuga.addon" version="0.5" name="Stream TVsupertuga" provider-name="Team TVsupertuga">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="baseaddons.repository" />
-        <import addon="repository.universalscrapers"/>
-		<import addon="script.module.streamtvsupertuga" />
-		<import addon="script.streamtvsupertuga.artwork" version="0.3" />
-		<import addon="script.streamtvsupertuga.metadata" version="0.3" />
-        <import addon="script.module.universalscrapers" version="1.0.0" />
-		<import addon="script.module.resolveurl" />
-		<import addon="script.module.requests" />
-		<import addon="script.module.metahandler" version="1.0.0" />
-        <import addon="plugin.video.youtube"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-        <provides>audio</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="pt">Covenant Fork from Echo/Colossus era with Team Afterbirth's updates and new code.</summary>
-		<description>Movies and TV Shows on Stream TVsupertuga</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
-The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
-This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.
-</disclaimer>
-		<platform>all</platform>
-		<forum>http://forumtvsupertuga.xyz/</forum>
-		<website>https://www.facebook.com/TVsupertuga.PT/</website>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-		</assets>
-		<news>- Initial release
-- Free movies
-- Free TV Shows</news>
-	</extension>
+<addon id="script.module.stream.tvsupertuga.addon" name="Stream TVsupertuga" version="0.1" provider-name="TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.urlresolver"  />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.youtube.dl" />
+	<import addon="script.module.requests" />
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream TVsupertuga</summary>
+    <description lang="en"></description>
+	<disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="script.module.streamtvsupertuga" name="Stream TVsupertuga Module" version="0.6" provider-name="Team TVsupertuga">
@@ -1871,7 +1879,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 
 <addon id="script.module.submundo.addon"
        name="[COLOR red][B]TV[/B][/COLOR] [COLOR white][B]Sub[/B][/COLOR][COLOR red][B]Mundo[/B][/COLOR]"
-       version="0.7"
+       version="0.5"
        provider-name="TeAm TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1958,7 +1966,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
-<addon id="script.module.TVsupertuga" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" version="0.0.4" provider-name="TVsupertuga">
+<addon id="script.module.TVsupertuga" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" version="0.0.3" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.requests" />
@@ -2049,29 +2057,22 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
-<addon id="script.module.urlresolver" name="URLResolver" version="4.0.16" provider-name="Eldorado, tknorris, tvaddons">
+<addon id="script.module.urlresolver" name="URLResolver" version="3.0.3" provider-name="Eldorado">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" optional="true" />
-		<import addon="script.module.python.twitch" optional="true" />
-		<import addon="script.module.cryptopy" version="1.2.6" optional="true" />
 	</requires>
 	<extension point="xbmc.python.module" library="lib" />
 	<extension point="xbmc.python.pluginsource" library="lib/default.py" />
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
 		<summary lang="en">Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
-		<summary lang="hr">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju.</summary>
 		<description lang="en">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
-		<description lang="hr">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju, pojednostavnjuje razvoj priključaka za video dodatke koji zahtjevaju višestruke video izvore.</description>
-        <forum>https://www.tvaddons.co/forums</forum>
-        <website>https://www.tvaddons.co</website>
 	</extension>
 </addon>
 
 <addon id="script.module.vod.tvsupertuga.addon"
        name="VOD TVsupertuga"
-       version="1.0"
+       version="0.6"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2079,6 +2080,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
+    <import addon="plugin.video.metalliq" version="2.0.16krypton"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
     <import addon="script.module.httplib2" />
@@ -2088,8 +2090,9 @@ This is a Non-profit resource, organized solely for educational purposes which i
     <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
+
   </requires>
-  <extension point="xbmc.python.pluginsource" library="resolvers.py">
+  <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
@@ -2162,7 +2165,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="script.module.worldiptv" name="worldiptv" version="0.1" provider-name="TVsupertuga">
+<addon id="script.module.worldiptv" name="worldiptv" version="0.3" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.livestreamer" />
@@ -2183,6 +2186,21 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <website></website>
     <email></email>
     <source></source>
+  </extension>
+</addon>
+
+<addon id="script.playlistLoader" name="Playlist Loader" version="0.1" provider-name="Team TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="baseaddons.repository" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Playlist</summary>
+    <description lang="en">Playlist</description>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -2398,6 +2416,44 @@ Passo -3 : (ir a ativar programação e TV)[/COLOR]</disclaimer>
   </extension>
 </addon>
 
+<addon id="script.vodextende" name="VOD EXTENDE" version="0.1" provider-name="Team TVsupertuga">
+  <requires>
+    <import addon="xbmc.python"                     version="2.19.0"/>
+	<import addon="baseaddons.repository"/>
+    <import addon="script.module.vod.tvsupertuga.addon"/>
+    <import addon="plugin.video.metalliq"/>
+    <import addon="plugin.video.youtube"/>
+    <import addon="service.subtitles.tvsupertuga"/>
+    <import addon="script.module.pil"/>
+    <import addon="script.module.requests"/>
+    <import addon="script.module.simplejson"/>
+    <import addon="script.module.urlresolver"/>
+    <import addon="script.module.youtube.dl"/>
+  </requires>
+  <extension point="xbmc.python.script"             library="default.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.python.library"            library="default.py" />
+  <extension point="xbmc.python.pluginsource"       library="plugin.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <language/>
+    <summary lang="en">Extensao TVsupertuga</summary>
+    <description lang="en">extensao vod tvsupertuga addon</description>
+    <summary lang="pt">Extensao TVsupertuga</summary>
+    <description lang="pt">extensao vod tvsupertuga addon</description>
+    <platform>all</platform>
+    <genre>movies,tv,trailers</genre>
+    <video_guide>3nlzITuJizg</video_guide>
+    <video_preview>OIp3Ry7qml8</video_preview>
+    <license>GNU GENERAL PUBLIC LICENSE Version 2, June 1991</license>
+    <forum>http://forumtvsupertuga.pe.hu/</forum>
+    <source>http://repo.tvsupertuga.xyz/</source>
+    <email>tvsupertuga@gmail.com</email>
+  </extension>
+</addon>
+
 <addon id="service.addon_activador"
        name="[COLOR blue]Kodi 17,18 Addon Activador[/COLOR]"
 	   version="0.1"
@@ -2509,17 +2565,31 @@ v5.0.15 (2016-11-26) by amet
   </extension>
 </addon>
 
-<addon id="tvsupertuga.repository" name="[COLOR cyan]TV[/COLOR][COLOR red]supertuga[/COLOR].[COLOR limegreen]Repository[/COLOR]" version="0.1.0" provider-name="TVsupertuga">
-    <extension point="xbmc.addon.repository" name="TVsupertuga Repository">
-            <info compressed="false">http://repository.tvsupertuga.org/addons.xml</info>
-            <checksum>http://repository.tvsupertuga.org/addons.xml.md5</checksum>
-            <datadir zip="true">http://repository.tvsupertuga.org/instal/</datadir>
-    </extension>
+<addon id="tvsupertuga.repository" name="[COLOR cyan]TV[/COLOR][COLOR red]supertuga[/COLOR].[COLOR limegreen]Repository[/COLOR]" version="0.2.0" provider-name="TVsupertuga">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="[COLOR cyan]TV[/COLOR][COLOR red]supertuga[/COLOR].[COLOR limegreen]Repository[/COLOR]">
+            <dir>
+			<info compressed="false">https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/instal/</datadir>
+            <hashes>false</hashes>
+			</dir>
+            <dir>
+			<info compressed="false">https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/repotvsupertuga/tvsupertuga.repository/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://github.com/repotvsupertuga/tvsupertuga.repository/tree/master/instal</datadir>
+            </dir>
+
+        </extension>
     <extension point="xbmc.addon.metadata">
 		<summary lang="pt">TVsupertuga </summary>
-		<description lang="pt">rdftgyhu</description>
+		<description lang="pt">Quer ver Sport TV grátis? O addon TV Super Tuga é um dos melhores addons Kodi para este efeito. Eu diria mesmo que este se trata de um super addon, isto porque o concentra outros addons conhecidos, tais como o Loganaddon e vários outros.
+
+A maior vantagem deste é a grande quantidade de fontes disponíveis para stream de vários tipos de canais, incluindo canais desportivos premium como Sport TV.</description>
 		<forum>http://forumtvsupertuga.xyz</forum>
-		<website>https://www.facebook.com/TVsupertuga.PT/</website>
+		<website>https://www.facebook.com/Tvsupertuga.team/</website>
         <platform>all</platform>
     </extension>
 </addon>
