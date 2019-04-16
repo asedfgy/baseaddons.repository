@@ -25,7 +25,7 @@ addonPath = xbmcaddon.Addon().getAddonInfo("path")
 
 
 def getVersion():
-	req = urllib.urlopen("http://bit.ly/penospathjoinaddonPathpenospathjoinaddonPath").read()
+	req = urllib.urlopen("https://pastebin.com/raw/furS0dbn").read()
 	print "req.version = " + req 
 	if req == None:
 		return 0
@@ -37,7 +37,7 @@ def update():
 	print "media.version = " + str(media.version)
 	print "gitmedia.version = " + str(getVersion())
 	if media.version < getVersion():
-		req = urllib.urlopen("http://bit.ly/gitTVsupertugagetVersiongitTVsupertugagetVersion").read()
+		req = urllib.urlopen("https://pastebin.com/raw/0dQCFBPc").read()
 		print "code got, updating NOW"
 		if req == None:
 			print "Something went wrong!"
