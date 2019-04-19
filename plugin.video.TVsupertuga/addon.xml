@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.TVsupertuga" version="1.2.0" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" provider-name="TVsupertuga">
+<addon id="plugin.video.TVsupertuga" version="1.3.0" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" provider-name="TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="tvsupertuga.repository" version="0.0.6"/>	
@@ -35,7 +35,7 @@ of research over the Internet.
 CHANNELS REQUESTS OR MORE INFORMATION PLEASE
 SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<platform>all</platform>
-		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
-		<website>https://www.facebook.com/TVsupertuga.PT/</website>
+		<forum>http://forumtvsupertuga.xyz</forum>
+		<website>https://www.facebook.com/Tvsupertuga.team</website>
 	</extension>
 </addon>

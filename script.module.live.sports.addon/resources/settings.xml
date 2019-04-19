@@ -3,12 +3,14 @@
     <setting id="save_location" type="folder"  label="Select a download location." default=""/>
     <setting id="use_thumb" type="bool" label="Use Thumbnails as Fanart" default="true" />
     <setting id="logo-folderPath" type="folder"  label="Select Directory for logo." default=""/>
-    <setting id="add_playlist" type="bool" label="Add items with multiple links as play lists" default="false"/>
+    <setting id="add_playlist" type="bool" label="Add items with multiple links as play lists" default="true"/>
+    <setting id="ask_playlist_items" type="bool" label="Ask playlist items to choose from dialog" default="true" />
+    <setting id="debug" type="bool" label="Enable Add-on Debugging" default="true"/>
     <setting id="donotshowbychannels" label="Do Not show items under channel name" type="bool" default="true"/>
 	<setting id="searchotherplugins" label="Search Other plugins" type="bool" default="true"/>
     
-
-    </category>
+  </category>
+ 
 	
 	
 	
