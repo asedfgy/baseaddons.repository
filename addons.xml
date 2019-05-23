@@ -1876,7 +1876,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
 
 <addon id="script.module.submundo.addon"
        name="[COLOR red][B]TV[/B][/COLOR] [COLOR white][B]Sub[/B][/COLOR][COLOR red][B]Mundo[/B][/COLOR]"
-       version="0.5"
+       version="0.8"
        provider-name="TeAm TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2158,6 +2158,36 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 		<forum>http://tvsupertuga.forum-gratuito.com/</forum>
 		<website>https://www.facebook.com/TVsupertuga.PT/</website>
 	</extension>
+</addon>
+
+<addon id="script.module.world.iptv.addon"
+       name="World iptv"
+       version="2.1"
+       provider-name="TeAm TVsupertuga">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="pt">WORLD IPTV CHANNELS</summary>
+    <description lang="pt">WORLD IPTV CHANNELS</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="script.module.worldiptv" name="worldiptv" version="0.3" provider-name="TVsupertuga">
