@@ -1,5 +1,19 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
+'''
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+'''
 
 from resources.lib.modules import trakt
 from resources.lib.modules import cleantitle
@@ -18,9 +32,6 @@ params = dict(urlparse.parse_qsl(sys.argv[2].replace('?',''))) if len(sys.argv) 
 
 action = params.get('action')
 
-control.moderator()
-
-
 class seasons:
     def __init__(self):
         self.list = []
@@ -28,31 +39,19 @@ class seasons:
         self.lang = control.apiLanguage()['tvdb']
         self.showunaired = control.setting('showunaired') or 'true'
         self.unairedcolor = control.setting('unaired.identify')
-        if self.unairedcolor == '': self.unairedcolor = 'red'
-        self.unairedcolor = self.getUnairedColor(self.unairedcolor)
+        if self.unairedcolor == '':
+            self.unairedcolor = 'red'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.today_date = (self.datetime).strftime('%Y-%m-%d')
-        self.tvdb_key = 'MUQ2MkYyRjkwMDMwQzQ0NA=='
-
-        self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (self.tvdb_key.decode('base64'), '%s', '%s')
+        self.tvdb_key = control.setting('tvdb.user')
+        if self.tvdb_key == '' or self.tvdb_key == None:
+            self.tvdb_key = '1D62F2F90030C444'
+        self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (self.tvdb_key, '%s', '%s')
         self.tvdb_by_imdb = 'http://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid=%s'
         self.tvdb_by_query = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s'
         self.tvdb_image = 'http://thetvdb.com/banners/'
         self.tvdb_poster = 'http://thetvdb.com/banners/_cache/'
 
-    def getUnairedColor(self, n):
-        if n == '0': n = 'blue'
-        elif n == '1': n = 'red'
-        elif n == '2': n = 'yellow'
-        elif n == '3': n = 'deeppink'
-        elif n == '4': n = 'cyan'
-        elif n == '5': n = 'lawngreen'
-        elif n == '6': n = 'gold'
-        elif n == '7': n = 'magenta'
-        elif n == '8': n = 'yellowgreen'
-        elif n == '9': n = 'nocolor'
-        else: n == 'blue'
-        return n
 
     def get(self, tvshowtitle, year, imdb, tvdb, idx=True, create_directory=True):
         if control.window.getProperty('PseudoTVRunning') == 'True':
@@ -163,8 +162,11 @@ class seasons:
             item = result[0] ; item2 = result2[0]
 
             episodes = [i for i in result if '<EpisodeNumber>' in i]
-            episodes = [i for i in episodes if not '<SeasonNumber>0</SeasonNumber>' in i or control.setting('show_season0')  != 'false']
-            episodes = [i for i in episodes if not '<EpisodeNumber>0</EpisodeNumber>' in i]
+            if control.setting('tv.specials') == 'true':
+                episodes = [i for i in episodes]
+            else:
+                episodes = [i for i in episodes if not '<SeasonNumber>0</SeasonNumber>' in i]
+                episodes = [i for i in episodes if not '<EpisodeNumber>0</EpisodeNumber>' in i]
 
             seasons = [i for i in episodes if '<EpisodeNumber>1</EpisodeNumber>' in i]
 
@@ -432,7 +434,7 @@ class seasons:
                 label = '%s %s' % (labelMenu, i['season'])
                 try:
                     if i['unaired'] == 'true':
-                        label = '[COLOR %s][I]%s[/I][/COLOR]' % (self.unairedcolor, label)
+                        label = '[COLOR darkred][I]%s[/I][/COLOR]' % label
                 except:
                     pass
                 systitle = sysname = urllib.quote_plus(i['tvshowtitle'])
@@ -529,18 +531,17 @@ class episodes:
 
         self.trakt_link = 'http://api.trakt.tv'
         self.tvmaze_link = 'http://api.tvmaze.com'
-        self.tvdb_key = 'NzFCQjk5MzY5NDI0RjE2Nw=='
+        self.tvdb_key = control.setting('tvdb.user')
+        if self.tvdb_key == '' or self.tvdb_key == None:
+            self.tvdb_key = '1D62F2F90030C444'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.systime = (self.datetime).strftime('%Y%m%d%H%M%S%f')
         self.today_date = (self.datetime).strftime('%Y-%m-%d')
         self.trakt_user = control.setting('trakt.user').strip()
         self.lang = control.apiLanguage()['tvdb']
         self.showunaired = control.setting('showunaired') or 'true'
-        self.unairedcolor = control.setting('unaired.identify')
-        if self.unairedcolor == '': self.unairedcolor = 'red'
-        self.unairedcolor = self.getUnairedColor(self.unairedcolor)
 
-        self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (self.tvdb_key.decode('base64'), '%s', '%s')
+        self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (self.tvdb_key, '%s', '%s')
         self.tvdb_image = 'http://thetvdb.com/banners/'
         self.tvdb_poster = 'http://thetvdb.com/banners/_cache/'
 
@@ -552,24 +553,11 @@ class episodes:
         self.progress_link = 'http://api.trakt.tv/users/me/watched/shows'
         self.hiddenprogress_link = 'http://api.trakt.tv/users/hidden/progress_watched?limit=1000&type=show'
         self.calendar_link = 'http://api.tvmaze.com/schedule?date=%s'
-
+        self.onDeck_link = 'http://api.trakt.tv/sync/playback/episodes?extended=full&limit=10'
         self.traktlists_link = 'http://api.trakt.tv/users/me/lists'
         self.traktlikedlists_link = 'http://api.trakt.tv/users/likes/lists?limit=1000000'
         self.traktlist_link = 'http://api.trakt.tv/users/%s/lists/%s/items'
 
-    def getUnairedColor(self, n):
-        if n == '0': n = 'blue'
-        elif n == '1': n = 'red'
-        elif n == '2': n = 'yellow'
-        elif n == '3': n = 'deeppink'
-        elif n == '4': n = 'cyan'
-        elif n == '5': n = 'lawngreen'
-        elif n == '6': n = 'gold'
-        elif n == '7': n = 'magenta'
-        elif n == '8': n = 'yellowgreen'
-        elif n == '9': n = 'nocolor'
-        else: n == 'blue'
-        return n
 
     def get(self, tvshowtitle, year, imdb, tvdb, season=None, episode=None, idx=True, create_directory=True):
         try:
@@ -597,8 +585,13 @@ class episodes:
             try: url = getattr(self, url + '_link')
             except: pass
 
+            if self.trakt_link in url and url == self.onDeck_link:
+                self.blist = cache.get(self.trakt_episodes_list, 720, url, self.trakt_user, self.lang)
+                self.list = []
+                self.list = cache.get(self.trakt_episodes_list, 0, url, self.trakt_user, self.lang)
+                self.list = self.list[::-1]
 
-            if self.trakt_link in url and url == self.progress_link:
+            elif self.trakt_link in url and url == self.progress_link:
                 self.blist = cache.get(self.trakt_progress_list, 720, url, self.trakt_user, self.lang)
                 self.list = []
                 self.list = cache.get(self.trakt_progress_list, 0, url, self.trakt_user, self.lang)
@@ -720,6 +713,9 @@ class episodes:
             itemlist = []
             items = trakt.getTraktAsJson(u)
         except:
+            print("Unexpected error in info builder script:", sys.exc_info()[0])
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(exc_type, exc_tb.tb_lineno)
             return
 
         for item in items:
@@ -802,7 +798,6 @@ class episodes:
                 pass
 
         itemlist = itemlist[::-1]
-
         return itemlist
 
 
@@ -1429,7 +1424,7 @@ class episodes:
                 
                 try:
                     if i['unaired'] == 'true':
-                        label = '[COLOR %s][I]%s[/I][/COLOR]' % (self.unairedcolor, label)
+                        label = '[COLOR darkred][I]%s[/I][/COLOR]' % label
                 except:
                     pass
 
@@ -1494,6 +1489,8 @@ class episodes:
 
                 cm.append((addToLibrary, 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
 
+                cm.append(('Exodus Redux Settings', 'RunPlugin(%s?action=openSettings&query=(0,0))' % sysaddon))
+                
                 item = control.item(label=label)
 
                 art = {}

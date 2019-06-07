@@ -1,6 +1,20 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
+'''
 
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+'''
 
 import requests,os,sys,re,datetime,urlparse,json,xbmcgui,xbmcplugin
 
@@ -9,7 +23,7 @@ from resources.lib.modules import cache
 from resources.lib.modules import client
 from resources.lib.modules import control
 
-sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1]) ; control.moderator()
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 artPath = control.artPath() ; addonFanart = control.addonFanart()
 
 class documentary:
@@ -75,7 +89,6 @@ class documentary:
         return self.list
 
     def docu_play(self, url):
-        control.moderator()
         try:
             docu_page = client.request(url)
             docu_item = client.parseDOM(docu_page, 'meta', attrs={'itemprop':'embedUrl'}, ret='content')[0]

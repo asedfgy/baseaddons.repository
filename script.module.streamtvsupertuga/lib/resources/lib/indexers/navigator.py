@@ -24,11 +24,11 @@ class navigator:
     HOMEPATH      = xbmc.translatePath('special://home/')
     ADDONSPATH    = os.path.join(HOMEPATH, 'addons')
     THISADDONPATH = os.path.join(ADDONSPATH, ADDON_ID)
-    NEWSFILE      = base64.b64decode(b'aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L25tWkpoekxK')
+    NEWSFILE      = base64.b64decode(b'aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L2UyZDRrV25t')
     LOCALNEWS     = os.path.join(THISADDONPATH, 'whatsnew.txt')
     
     def root(self):
-        self.addDirectoryItem('[B][COLOR cyan]Noticias e Atualizacoes[/COLOR][/B]', 'newsNavigator', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR cyan]NOTICIAS E ATUALIZACOES[/COLOR][/B]', 'newsNavigator', 'tools.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
         self.addDirectoryItem(32002, 'tvNavigator', 'tvshows.png', 'DefaultTVShows.png')
 
@@ -44,12 +44,12 @@ class navigator:
 
         if self.getMenuEnabled('navi.docu') == True:
             self.addDirectoryItem(32631, 'docuHeaven', 'movies.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.kidscorner') == True:
-            self.addDirectoryItem(32610, 'kidscorner', 'kidscorner.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.fitness') == True:
-            self.addDirectoryItem(32611, 'fitness', 'fitness.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.legends') == True:
-            self.addDirectoryItem(32612, 'legends', 'legends.png', 'DefaultMovies.png')
+        #if self.getMenuEnabled('navi.kidscorner') == True:
+            #self.addDirectoryItem(32610, 'kidscorner', 'kidscorner.png', 'DefaultMovies.png')
+        #if self.getMenuEnabled('navi.fitness') == True:
+            #self.addDirectoryItem(32611, 'fitness', 'fitness.png', 'DefaultMovies.png')
+        #if self.getMenuEnabled('navi.legends') == True:
+            #self.addDirectoryItem(32612, 'legends', 'legends.png', 'DefaultMovies.png')
 
         if self.getMenuEnabled('navi.podcasts') == True:
             self.addDirectoryItem(32620, 'podcastNavigator', 'podcast.png', 'DefaultVideoPlaylists.png')
@@ -64,9 +64,11 @@ class navigator:
             self.addDirectoryItem(32009, 'downloadNavigator', 'downloads.png', 'DefaultFolder.png')
 
         self.addDirectoryItem(32010, 'searchNavigator', 'search.png', 'DefaultFolder.png')
-        #self.addDirectoryItem('[COLOR=cyan]like on Facebook: www.facebook.com/TVsupertuga.PT/[/COLOR]', 'sectionItem', 'icon.png', 'DefaultAddonProgram.png')
-        #self.addDirectoryItem('[COLOR=cyan]YouTube:  http://youtube.[/COLOR]', 'sectionItem', 'icon.png', 'DefaultAddonProgram.png')
-
+        self.addDirectoryItem('..................................................................................................................................................................', 'sectionItem', 'icon.png', 'DefaultAddonProgram.png')		
+        self.addDirectoryItem('[B][COLOR cyan]NAO SE ESQUECA DE NOS SEGUIR NO FACEBOOK.COM[/COLOR][/B] [B][COLOR red]/TVsupertuga.pt[/COLOR][/B]', 'sectionItem', 'facebook.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR cyan]NAO SE ESQUECA DE NOS SEGUIR NO TWITTER.COM[/COLOR][/B] [B][COLOR red]@tvsupertuga[/COLOR][/B]', 'sectionItem', 'twitter.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR cyan]NAO SE ESQUECA DE NOS SEGUIR NO INSTAGRAM.COM[/COLOR][/B] [B][COLOR red]/tvsupertuga[/COLOR][/B]', 'sectionItem', 'instagram.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR cyan]MUITO OBRIGADO[/COLOR][/B] [B][COLOR red]Team TVsupertuga[/COLOR][/B]', 'sectionItem', 'thumb.png', 'DefaultAddonProgram.png')
         self.endDirectory()
 
     def getMenuEnabled(self, menu_title):
