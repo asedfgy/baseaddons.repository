@@ -20,12 +20,13 @@
 from urlresolver import common
 import re
 import xbmcgui
-import xbmc
 import os
 import recaptcha_v2
+import helpers
 
 net = common.Net()
-IMG_FILE = 'captcha_img.png'
+IMG_FILE = 'captcha_img.gif'
+
 
 def get_response(img):
     try:
@@ -33,19 +34,13 @@ def get_response(img):
         wdlg = xbmcgui.WindowDialog()
         wdlg.addControl(img)
         wdlg.show()
-        xbmc.sleep(3000)
-        kb = xbmc.Keyboard('', 'Type the letters in the image', False)
-        kb.doModal()
-        if (kb.isConfirmed()):
-            solution = kb.getText()
-            if solution == '':
-                raise Exception('You must enter text in the image to access video')
-            else:
-                return solution
-        else:
-            raise Exception('Captcha Error')
+        common.kodi.sleep(3000)
+        solution = common.kodi.get_keyboard(common.i18n('letters_image'))
+        if not solution:
+            raise Exception('captcha_error')
     finally:
         wdlg.close()
+
 
 def do_captcha(html):
     solvemedia = re.search('<iframe[^>]+src="((?:https?:)?//api.solvemedia.com[^"]+)', html)
@@ -70,17 +65,15 @@ def do_captcha(html):
         else:
             return {}
 
+
 def do_solvemedia_captcha(captcha_url):
-    common.log_utils.log_debug('SolveMedia Captcha: %s' % (captcha_url))
+    common.logger.log_debug('SolveMedia Captcha: %s' % captcha_url)
     if captcha_url.startswith('//'): captcha_url = 'http:' + captcha_url
     html = net.http_GET(captcha_url).content
     data = {
         'adcopy_challenge': ''  # set to blank just in case not found; avoids exception on return
     }
-    for match in re.finditer(r'type=hidden.*?name="([^"]+)".*?value="([^"]+)', html):
-        name, value = match.groups()
-        data[name] = value
-
+    data.update(helpers.get_hidden(html), include_submit=False)
     captcha_img = os.path.join(common.profile_path, IMG_FILE)
     try: os.remove(captcha_img)
     except: pass
@@ -100,8 +93,9 @@ def do_solvemedia_captcha(captcha_url):
     html = net.http_POST('http://api.solvemedia.com/papi/verify.noscript', data)
     return {'adcopy_challenge': data['adcopy_challenge'], 'adcopy_response': 'manual_challenge'}
 
+
 def do_recaptcha(captcha_url):
-    common.log_utils.log_debug('Google ReCaptcha: %s' % (captcha_url))
+    common.logger.log_debug('Google ReCaptcha: %s' % captcha_url)
     if captcha_url.startswith('//'): captcha_url = 'http:' + captcha_url
     personal_nid = common.get_setting('personal_nid')
     if personal_nid:
@@ -114,14 +108,16 @@ def do_recaptcha(captcha_url):
     solution = get_response(captcha_img)
     return {'recaptcha_challenge_field': part.group(1), 'recaptcha_response_field': solution}
 
+
 def do_recaptcha_v2(sitekey):
     token = recaptcha_v2.UnCaptchaReCaptcha().processCaptcha(sitekey, lang='en')
     if token:
         return {'g-recaptcha-response': token}
 
     return {}
+
 def do_xfilecaptcha(captcha_url):
-    common.log_utils.log_debug('XFileLoad ReCaptcha: %s' % (captcha_url))
+    common.logger.log_debug('XFileLoad ReCaptcha: %s' % captcha_url)
     if captcha_url.startswith('//'): captcha_url = 'http:' + captcha_url
     solution = get_response(captcha_url)
     return {'code': solution}

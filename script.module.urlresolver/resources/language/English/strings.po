@@ -1,9 +1,9 @@
 # Addon Name: URLResolver
 # Addon id: script.module.urlresolver
-# Addon Provider: TV Addons
+# Addon Provider:
 msgid ""
 msgstr ""
-"Project-Id-Version: TV Addons Addons\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: English\n"
@@ -46,7 +46,7 @@ msgid "Decryption Key"
 msgstr ""
 
 msgctxt "#33008"
-msgid "TheVideo.me Stream Authorization"
+msgid "Vev.io Stream Authorization"
 msgstr ""
 
 msgctxt "#33009"
@@ -181,4 +181,46 @@ msgctxt "#33041"
 msgid "No IP Authorization"
 msgstr ""
 
+msgctxt "#33042"
+msgid "Client ID"
+msgstr ""
 
+msgctxt "#33043"
+msgid "Vshare.eu Stream Authorization"
+msgstr ""
+
+msgctxt "#33044"
+msgid "Flashx Stream Authorization"
+msgstr ""
+
+msgctxt "#33045"
+msgid "AllDebrid Authorization Reset"
+msgstr ""
+
+msgctxt "#33046"
+msgid "AllDebrid Resolver Authorized"
+msgstr ""
+
+msgctxt "#33047"
+msgid "Enable PopUps"
+msgstr ""
+
+msgctxt "#33048"
+msgid "API Key"
+msgstr ""
+
+msgctxt "#33049"
+msgid "Torrent Support"
+msgstr ""
+
+msgctxt "#33050"
+msgid "Cached torrents only"
+msgstr ""
+
+msgctxt "#33051"
+msgid "Premiumize Authorization Reset"
+msgstr ""
+
+msgctxt "#33052"
+msgid "Premiumize Resolver Authorized"
+msgstr ""

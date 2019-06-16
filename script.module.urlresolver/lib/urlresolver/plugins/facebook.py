@@ -31,17 +31,15 @@ class FacebookResolver(UrlResolver):
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        link = self.net.http_GET(web_url).content
+        html = self.net.http_GET(web_url).content
 
-        if link.find('Video Unavailable') >= 0:
+        if html.find('Video Unavailable') >= 0:
             err_message = 'The requested video was not found.'
             raise ResolverError(err_message)
 
-        params = re.compile('"params","([\w\%\-\.\\\]+)').findall(link)[0]
-        html = urllib.unquote(params.replace('\u0025', '%')).decode('utf-8')
-        html = html.replace('\\', '')
-
-        videoUrl = re.compile('(?:hd_src|sd_src)\":\"([\w\-\.\_\/\&\=\:\?]+)').findall(html)
+        videoUrl = re.compile('"(?:hd_src|sd_src)":"(.+?)"').findall(html)
+        videoUrl = [urllib.unquote(i.replace('\u0025', '%')).decode('utf-8') for i in videoUrl]
+        videoUrl = [i.replace('\\', '') for i in videoUrl]
 
         vUrl = ''
         vUrlsCount = len(videoUrl)
@@ -61,16 +59,6 @@ class FacebookResolver(UrlResolver):
 
     def get_url(self, host, media_id):
         return 'https://www.facebook.com/video/embed?video_id=%s' % media_id
-
-    def get_host_and_id(self, url):
-        r = re.search(self.pattern, url)
-        if r:
-            return r.groups()
-        else:
-            return False
-
-    def valid_url(self, url, host):
-        return re.search(self.pattern, url) or self.name in host
 
     @classmethod
     def get_settings_xml(cls):

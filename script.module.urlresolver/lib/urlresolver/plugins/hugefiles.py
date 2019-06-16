@@ -20,13 +20,17 @@ import re
 import urllib
 import urllib2
 from lib import captcha_lib
+from lib import helpers
 from urlresolver import common
 from urlresolver.resolver import UrlResolver, ResolverError
 
+logger = common.log_utils.Logger.get_logger(__name__)
+logger.disable()
+
 class HugefilesResolver(UrlResolver):
     name = "hugefiles"
-    domains = ["hugefiles.net"]
-    pattern = '(?://|\.)(hugefiles\.net)/([0-9a-zA-Z/]+)'
+    domains = ["hugefiles.net", "hugefiles.cc"]
+    pattern = '(?://|\.)(hugefiles\.(?:net|cc))/([0-9a-zA-Z/]+)'
 
     def __init__(self):
         self.net = common.Net()
@@ -34,7 +38,7 @@ class HugefilesResolver(UrlResolver):
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
 
-        common.log_utils.log_debug('HugeFiles: get_link: %s' % (web_url))
+        logger.log_debug('HugeFiles: get_link: %s' % (web_url))
         html = self.net.http_GET(web_url).content
 
         r = re.findall('File Not Found', html)
@@ -42,53 +46,27 @@ class HugefilesResolver(UrlResolver):
             raise ResolverError('File Not Found or removed')
 
         # Grab data values
-        data = {}
-        r = re.findall(r'type="hidden"\s+name="(.+?)"\s+value="(.*?)"', html)
-
-        if r:
-            for name, value in r:
-                data[name] = value
-        else:
-            raise ResolverError('Unable to resolve link')
-
-        data['method_free'] = 'Free Download'
+        data = helpers.get_hidden(html)
         data.update(captcha_lib.do_captcha(html))
-
-        common.log_utils.log_debug('HugeFiles - Requesting POST URL: %s with data: %s' % (web_url, data))
+        logger.log_debug('HugeFiles - Requesting POST URL: %s with data: %s' % (web_url, data))
         html = self.net.http_POST(web_url, data).content
 
         # Re-grab data values
-        data = {}
-        r = re.findall(r'type="hidden"\s+name="(.+?)"\s+value="(.*?)"', html)
-
-        if r:
-            for name, value in r:
-                data[name] = value
-        else:
-            raise ResolverError('Unable to resolve link')
-
+        data = helpers.get_hidden(html)
         data['referer'] = web_url
-
-        headers = {'User-Agent': common.IE_USER_AGENT}
-
-        common.log_utils.log_debug('HugeFiles - Requesting POST URL: %s with data: %s' % (web_url, data))
+        headers = {'User-Agent': common.EDGE_USER_AGENT}
+        logger.log_debug('HugeFiles - Requesting POST URL: %s with data: %s' % (web_url, data))
         request = urllib2.Request(web_url, data=urllib.urlencode(data), headers=headers)
 
         try: stream_url = urllib2.urlopen(request).geturl()
         except: return
 
-        common.log_utils.log_debug('Hugefiles stream Found: %s' % stream_url)
+        logger.log_debug('Hugefiles stream Found: %s' % stream_url)
         return stream_url
 
     def get_url(self, host, media_id):
-        return 'http://hugefiles.net/%s' % media_id
+        return 'http://hugefiles.cc/%s' % media_id
 
-    def get_host_and_id(self, url):
-        r = re.search(self.pattern, url)
-        if r:
-            return r.groups()
-        else:
-            return False
-
-    def valid_url(self, url, host):
-        return re.search(self.pattern, url) or self.name in host
+    @classmethod
+    def isPopup(self):
+        return True

@@ -1,6 +1,6 @@
 """
-    urlresolver XBMC Addon
-    Copyright (C) 2011 t0mm0
+    plugin in for urlresolver
+    Copyright (C) 2018 gujal
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import re
+from lib import helpers
 from urlresolver import common
 from urlresolver.resolver import UrlResolver, ResolverError
 
@@ -30,32 +30,18 @@ class DaclipsResolver(UrlResolver):
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        """ Human Verification """
-        resp = self.net.http_GET(web_url)
-        html = resp.content
-        r = re.findall(r'<span class="t" id="head_title">404 - File Not Found</span>', html)
-        if r:
-            raise ResolverError('File Not Found or removed')
-        post_url = resp.get_url()
-        form_values = {}
-        for i in re.finditer('<input type="hidden" name="(.+?)" value="(.+?)">', html):
-            form_values[i.group(1)] = i.group(2)
-        html = self.net.http_POST(post_url, form_data=form_values).content
-        r = re.search('file: "http(.+?)"', html)
-        if r:
-            return "http" + r.group(1)
+        headers = {'User-Agent': common.FF_USER_AGENT}
+        response = self.net.http_GET(web_url, headers=headers)
+        html = response.content
+        if 'Not available' not in html:
+            if 'sources: [' not in html:
+                data = helpers.get_hidden(html)
+                headers['Cookie'] = response.get_headers(as_dict=True).get('Set-Cookie', '')
+                html = self.net.http_POST(response.get_url(), headers=headers, form_data=data).content
+            sources = helpers.scrape_sources(html)
+            return helpers.pick_source(sources) + helpers.append_headers({'User-Agent': common.FF_USER_AGENT})
         else:
-            raise ResolverError('Unable to resolve Daclips link')
+            raise ResolverError('File Not Found or removed')
 
     def get_url(self, host, media_id):
-        return 'http://daclips.in/%s' % (media_id)
-
-    def get_host_and_id(self, url):
-        r = re.search(self.pattern, url)
-        if r:
-            return r.groups()
-        else:
-            return False
-
-    def valid_url(self, url, host):
-        return re.search(self.pattern, url) or self.name in host
+        return 'https://daclips.in/%s' % (media_id)

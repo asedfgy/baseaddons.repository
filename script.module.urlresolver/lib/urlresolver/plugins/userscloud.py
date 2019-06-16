@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-    Copyright (C) 2014  smokdpi
+    Copyright (C) 2014  Lorka
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,50 +15,16 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
-import re
-from lib import jsunpack
-from urlresolver import common
-from urlresolver.resolver import UrlResolver, ResolverError
+from lib import helpers
+from urlresolver.resolver import UrlResolver
 
 class UsersCloudResolver(UrlResolver):
     name = "userscloud"
     domains = ["userscloud.com"]
-    pattern = '(?://|\.)(userscloud\.com)/(?:embed-)?([0-9a-zA-Z/]+)'
-
-    def __init__(self):
-        self.net = common.Net()
-        self.user_agent = common.IE_USER_AGENT
-        self.net.set_user_agent(self.user_agent)
-        self.headers = {'User-Agent': self.user_agent}
+    pattern = '(?://|\.)(userscloud\.com)/(?:embed-|embed/)?([0-9a-zA-Z/]+)'
 
     def get_media_url(self, host, media_id):
-        web_url = self.get_url(host, media_id)
-        stream_url = None
-        self.headers['Referer'] = web_url
-        html = self.net.http_GET(web_url, headers=self.headers).content
-        r = re.search('>(eval\(function\(p,a,c,k,e,d\).+?)</script>', html, re.DOTALL)
-        if r:
-            js_data = jsunpack.unpack(r.group(1))
-
-            stream_url = re.findall('<param\s+name="src"\s*value="([^"]+)', js_data)
-            stream_url += re.findall('file\s*:\s*[\'|\"](.+?)[\'|\"]', js_data)
-            stream_url = [i for i in stream_url if not i.endswith('.srt')]
-
-            if stream_url:
-                return stream_url[0]
-
-        raise ResolverError('File not found')
-
+        return helpers.get_media_url(self.get_url(host, media_id), patterns=["""file:\s*['"](?P<url>[^'"]+)"""]).replace(' ', '%20')
+        
     def get_url(self, host, media_id):
-        return 'https://%s/%s' % (host, media_id)
-
-    def get_host_and_id(self, url):
-        r = re.search(self.pattern, url)
-        if r:
-            return r.groups()
-        else:
-            return False
-
-    def valid_url(self, url, host):
-        return re.search(self.pattern, url) or self.name in host
+        return self._default_get_url(host, media_id, template='https://{host}/{media_id}')

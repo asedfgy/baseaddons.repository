@@ -1,6 +1,6 @@
 """
-    urlresolver XBMC Addon
-    Copyright (C) 2011 t0mm0
+    vshare resolver for URLResolver
+    Copyright (C) 2018 holisticdioxide
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 import re
 from urlresolver import common
 from urlresolver.resolver import UrlResolver, ResolverError
+from lib import jsunpack, helpers
 
 class VshareResolver(UrlResolver):
     name = "vshare"
@@ -30,25 +31,23 @@ class VshareResolver(UrlResolver):
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        link = self.net.http_GET(web_url).content
-        if link.find('404 - Error') >= 0:
-            raise ResolverError('The requested video was not found.')
-
-        video_link = str(re.compile("url[: ]*'(.+?)'").findall(link)[0])
-        if len(video_link) > 0:
-            return video_link
-        else:
-            raise ResolverError('No playable video found.')
+        headers = {'User-Agent': common.RAND_UA,
+                   'Referer': web_url}
+        html = self.net.http_GET(web_url, headers=headers).content
+        js = jsunpack.unpack(html).split(';')
+        try:
+            charcodes = [int(val) for val in js[1].split('=')[-1].replace('[', '').replace(']', '').split(',')]
+            sub = int(''.join(char for char in js[2].split('-')[1] if char.isdigit()))
+        except IndexError:
+            raise ResolverError('Video not found')
+        charcodes = [val-sub for val in charcodes]
+        try:
+            srcs = ''.join(map(unichr, charcodes))
+        except ValueError:
+            raise ResolverError('Video not found')
+        source_list = helpers.scrape_sources(srcs)
+        source = helpers.pick_source(source_list)
+        return source + helpers.append_headers(headers)
 
     def get_url(self, host, media_id):
-        return 'http://vshare.io/v/%s/width-620/height-280/' % media_id
-
-    def get_host_and_id(self, url):
-        r = re.search(self.pattern, url)
-        if r:
-            return r.groups()
-        else:
-            return False
-
-    def valid_url(self, url, host):
-        return re.search(self.pattern, url) or self.name in host
+        return self._default_get_url(host, media_id, template='http://{host}/v/{media_id}/width-750/height-400/')
