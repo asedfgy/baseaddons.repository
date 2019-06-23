@@ -19,7 +19,7 @@
                 <width>1680</width>
                 <height>950</height>
             </control>
-                <control type="label" id="102">
+            <control type="label" id="102">
                 <posx>20</posx>
                 <posy>20</posy>
                 <width>1660</width>
@@ -28,7 +28,7 @@
                 <label></label>
                 <align>center</align>
                 <aligny>center</aligny>
-				<visible>Skin.String(headertexttype)</visible>
+                <visible>Skin.String(headertexttype)</visible>
             </control>
             <control type="image" id="103">
                 <posx>20</posx>
@@ -43,11 +43,10 @@
                 <top>90</top>
                 <width>1640</width>
                 <height>790</height>
-                <font>font30</font>
-				<size>60</size>
-                <align>center</align>
-                <aligny>center</aligny>
-                <colordiffuse>FF12B2E7</colordiffuse>
+                <font>font10</font>
+                <align>left</align>
+                <aligny>top</aligny>
+                <colordiffuse>FFFF00FF</colordiffuse>
                 <pagecontrol>105</pagecontrol>
             </control>
             <control type="scrollbar" id="105">

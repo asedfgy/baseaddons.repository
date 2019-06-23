@@ -42,7 +42,7 @@
                 <font>font12</font>
                 <align>left</align>
                 <aligny>top</aligny>
-                <label>Uma vez que esta é a primeira execução do wizard, gostaria de ativar qualquer uma das seguintes configurações?</label>
+                <label>Since this is your First Run of the Wizard, Would you like to Enable any of the following Settings?</label>
             </control>
         </control>
         <control type="grouplist" id="9000">

@@ -35,7 +35,7 @@
                 <top>70</top>
                 <width>870</width>
                 <height>380</height>
-                <font>font13</font>
+                <font>font12</font>
                 <align>left</align>
                 <aligny>top</aligny>
             </control>
@@ -54,7 +54,7 @@
                 <height>60</height>
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
-                <label>Nova Instalação</label>
+                <label>Fresh Install</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
@@ -69,7 +69,7 @@
                 <height>60</height>
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
-                <label>Instalação Normal</label>
+                <label>Normal Install</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
@@ -85,7 +85,7 @@
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
                 <textoffsetx>20</textoffsetx>
-                <label>Adiar Update</label>
+                <label>Delay Update</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>

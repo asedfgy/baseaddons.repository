@@ -438,7 +438,7 @@ def firstRun():
 	class MyWindow(xbmcgui.WindowXMLDialog):
 		def __init__(self, *args, **kwargs):
 			self.title = THEME3 % ADDONTITLE
-			self.msg   = "Nenhuma build instalada do grupo %s.\n\nSelecione 'Build Menu' para instalar uma das nossas buils ou 'Ignorar' para nunca mais ver esta mensagem.\n\nObrigado por escolher o grupo %s." % (ADDONTITLE, ADDONTITLE)
+			self.msg   = "Currently no build installed from %s.\n\nSelect 'Build Menu' to install a Community Build from us or 'Ignore' to never see this message again.\n\nThank you for choosing %s." % (ADDONTITLE, ADDONTITLE)
 			self.msg   = THEME2 % self.msg
 
 		def onInit(self):
@@ -541,8 +541,8 @@ def updateWindow(name='Testing Window', current='1.0', new='1.1', icon=ICON, fan
 			self.new = kwargs['new']
 			self.icon = kwargs['icon']
 			self.fanart = kwargs['fanart']
-			self.msgupdate  = "Actualizacao disponivel para a build:\n[COLOR %s]%s[/COLOR]\n\nVersao actual: v[COLOR %s]%s[/COLOR]\nUltima versao: v[COLOR %s]%s[/COLOR]\n\n[COLOR %s]*Recomendado: Nova instalacao[/COLOR]" % (COLOR1, self.name, COLOR1, self.current, COLOR1, self.new, COLOR1)
-			self.msgcurrent = "Executando a versao mais recente da build instalada:\n[COLOR %s]%s[/COLOR]\n\nVersao actual: v[COLOR %s]%s[/COLOR]\Ultima versao: v[COLOR %s]%s[/COLOR]\n\n[COLOR %s]*Recomendado: Nova instalacao[/COLOR]" % (COLOR1, self.name, COLOR1, self.current, COLOR1, self.new, COLOR1)
+			self.msgupdate  = "Update avaliable for installed build:\n[COLOR %s]%s[/COLOR]\n\nCurrent Version: v[COLOR %s]%s[/COLOR]\nLatest Version: v[COLOR %s]%s[/COLOR]\n\n[COLOR %s]*Recommened: Fresh install[/COLOR]" % (COLOR1, self.name, COLOR1, self.current, COLOR1, self.new, COLOR1)
+			self.msgcurrent = "Running latest version of installed build:\n[COLOR %s]%s[/COLOR]\n\nCurrent Version: v[COLOR %s]%s[/COLOR]\nLatest Version: v[COLOR %s]%s[/COLOR]\n\n[COLOR %s]*Recommended: Fresh install[/COLOR]" % (COLOR1, self.name, COLOR1, self.current, COLOR1, self.new, COLOR1)
 		
 		def onInit(self):
 			self.imagefanart = 101
