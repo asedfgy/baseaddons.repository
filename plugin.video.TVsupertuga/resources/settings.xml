@@ -111,8 +111,8 @@
 <category label="[B][COLOR lightseagreen]Dev Mode[/COLOR][/B]">
         <setting id="debug" type="bool" label="30758" default="false" visible="true"/>
         <setting id="root_xml" type="text" label="3000" option="hidden" default="YUhSMGNITTZMeTloY0d0MGRuTjFjR1Z5ZEhWbllTNHdNREIzWldKb2IzTjBZWEJ3TG1OdmJTOXlaWEJ2YzJsMGIzSjVMbFJXYzNWd1pYSjBkV2RoYlc5MmFXVnpMMEZ3YVdGd2FTNXdhSEJoWTNScA==" visible="false"/>		
-        <setting id="procurar_xml" type="text" label="30060" option="hidden" default="http://bit.ly/2VtsItS" visible="false"/>
-        <setting id="message_xml_url" type="text" label="News File Location" option="hidden" default="https://app-1540046768.000webhostapp.com/message.xml" visible="true"/>
+        <setting id="procurar_xml" type="text" label="30060" option="hidden" default="https://downed-rope.000webhostapp.com/procurar_xml" visible="false"/>
+        <setting id="message_xml_url" type="text" label="News File Location" option="hidden" default="https://downed-rope.000webhostapp.com/messagexml" visible="true"/>
         <setting label="Current API Set Version" id="current_version" type="text" option="hidden" default="0" visible="false"/>
         <setting label="Enable Service Notification" id="enable_notification" type="bool" option="hidden" default="true" visible="true"/>
         <setting label="Disable Service after First Run" id="disable_service" type="bool" option="hidden" default="true" visible="true"/>

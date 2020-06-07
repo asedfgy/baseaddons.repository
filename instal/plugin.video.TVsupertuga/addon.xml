@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.TVsupertuga" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" version="1.4.0" provider-name="TVsupertuga">
+<addon id="plugin.video.TVsupertuga" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]" version="2.0.0" provider-name="TVsupertuga">
     <requires>
         <import addon="xbmc.python" version="2.19.0" />
 				<import addon="tvsupertuga.repository" version="0.0.6"/>	
 		<import addon="baseaddons.repository" version="0.1"/>	
-        <import addon="script.module.universalscrapers" version="1.0.0" />
         <import addon="script.module.python.koding.aio" version="0.9.6.6" />
         <import addon="script.module.beautifulsoup" version="3.2.1" />
         <import addon="script.module.requests" version="2.9.1" />
@@ -20,12 +19,9 @@
 		<import addon="script.module.feedparser" version="5.1.3"/>
         <import addon="script.module.resolveurl" />
 		<import addon="script.module.TVsupertuga" version="0.0.3"/>
-	    <import addon="script.module.livetv" version="0.1"/>
 		<import addon="script.module.live.sports.addon" version="0.4"/>
-		<import addon="script.module.livetv.addon" version="1.3"/>
 		<import addon="script.module.schism.addon" version="2.1"/>
-		<import addon="plugin.video.SportsDevil" version="2017.09.02"/>
-		<import addon="script.module.vod.tvsupertuga.addon" version="0.3"/>		
+		<import addon="plugin.video.SportsDevil" version="2017.09.02"/>	
         </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>audio video</provides>
@@ -44,8 +40,8 @@ of research over the Internet.
 CHANNELS REQUESTS OR MORE INFORMATION PLEASE
 SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
         <platform>all</platform>
-		<forum>http://forumtvsupertuga.xyz</forum>
-		<website>https://www.facebook.com/TVsupertuga.pt</website>
+		<forum>https://revolutionforum.net/</forum>
+		<telegram>https://t.me/tvsupertugahome</telegram>
         <video_guide></video_guide>
         <reuselanguageinvoker>false</reuselanguageinvoker>
         <assets>
