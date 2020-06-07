@@ -1,187 +1,156 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @tantrumdev wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+# -Cleaned and Checked on 10-16-2019 by JewBMX in Scrubs.
+# -Cleaned up and Checked and Fixed on 4-30-2020 by Tempest.
 
-# Addon Name: Yoda
-# Addon id: plugin.video.Yoda
-# Addon Provider: MuadDib
+import re, urllib, urlparse, base64, json, time
+import traceback
+from resources.lib.modules import client, log_utils
+from resources.lib.modules import cleantitle
+from resources.lib.modules import directstream
+from resources.lib.modules import source_utils
 
-import urlparse,traceback,urllib,json,base64,xbmc
-
-from resources.lib.modules import client, cleantitle, log_utils, source_utils, directstream
-from resources.lib.modules import pyaes
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['movietimeapp.com']
-        self.base_link = 'http://sbfunapi.cc'
-        self.server = 'http://%s/video/%s/manifest_mp4.json?sign=%s&expires_at=%s'
-        self.key = b'\x38\x36\x63\x66\x37\x66\x66\x63\x62\x33\x34\x64\x37\x64\x33\x30\x64\x33\x62\x63\x31\x35\x61\x38\x35\x31\x36\x33\x34\x33\x32\x38'
-        self.show_search = '/api/serials/tv_list/?query=%s'
-        self.movie_search = '/api/serials/movies_list/?query=%s'
-        self.episode_details = '/api/serials/episode_details/?h=%s&u=%s&y=%s'
-        self.movie_details = '/api/serials/movie_details/?id=%s'
-        self.fetcher = '/api/serials/mw_sign/?token=%s'
-        self.headers = {
-            'User-Agent': 'Show Box'
-        }
+        self.domains = ['showbox.space']
+        self.base_link = 'https://ww3.showbox.space'
+
+# https://showbox.space/movie/porkys
+# https://popcorntime.watch/movie/porkys
+# https://putlockers.app/movie/porkys
+# https://gomovies.trade/movie/porkys
+# https://fmovies.press/movie/porkys
+# https://gostream.mobi/movie/porkys
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            url = {'title': title, 'year': year, 'imdb': imdb}
-            return urllib.urlencode(url)
+            url = {'imdb': imdb, 'title': title, 'year': year}
+            url = urllib.urlencode(url)
+            return url
         except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            data = {'tvshowtitle': tvshowtitle, 'year': year, 'imdb': imdb}
-            return urllib.urlencode(data)
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
         except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            data = urlparse.parse_qs(url)
-            data = dict((i, data[i][0]) for i in data)
-            data.update({'season': season, 'episode': episode, 'title': title, 'premiered': premiered})
-
-            return urllib.urlencode(data)
+            if url is None:
+                return
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+            url = urllib.urlencode(url)
+            return url
         except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
+            return
+
+    def searchShow(self, title, season, episode, headers):
+        try:
+            url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(season), int(episode))
+            url = client.request(url, headers=headers, output='geturl', timeout='10')
+            return url
+        except:
+            return
+
+    def searchMovie(self, title, year, headers):
+        try:
+            url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
+            url = client.request(url, headers=headers, output='geturl', timeout='10')
+            return url
+        except:
+            return
+
+    def searchMovie2(self, title, year, headers):
+        try:
+            url = '%s/movie/%s-%s' % (self.base_link, cleantitle.geturl(title), year)
+            url = client.request(url, headers=headers, output='geturl', timeout='10')
+            return url
+        except:
             return
 
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
-
+            if url is None:
+                return sources
             data = urlparse.parse_qs(url)
-            data = dict((i, data[i][0]) for i in data)
-
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+            imdb = data['imdb']
+            headers = {}
             if 'tvshowtitle' in data:
-                url = self.__get_episode_url(data)
+                url = self.searchShow(title, int(data['season']), int(data['episode']), headers)
             else:
-                url = self.__get_movie_url(data)
-
-            token = urlparse.parse_qs(urlparse.urlparse(url).query)['token'][0]
-
-            response = client.request(url, headers=self.headers)
-            manifest_info_encrpyted = json.loads(response)['hash']
-
-            manifest_info = self.__decrypt(manifest_info_encrpyted)
-            manifest_info = manifest_info.split(':')
-
-            url = self.server % (manifest_info[0], token, manifest_info[2], manifest_info[1])
-
-            response = client.request(url, headers=self.headers)
-            manifest = json.loads(response)
-
-            for k, v in manifest.iteritems():
-                try:
-                    sources.append({
-                        'source': 'CDN',
-                        'quality': k + 'p',
-                        'language': 'en',
-                        'url': v,
-                        'direct': True,
-                        'debridonly': False
-                    })
-
-                except Exception:
-                    pass
-
+                url = self.searchMovie(title, data['year'], headers)
+            r = client.request(url, headers=headers, output='extended', timeout='10')
+            log_utils.log('---Testing - Exception: \n' + str(r[0]))
+            if imdb not in r[0]:
+                url = self.searchMovie2(title, data['year'], headers)
+                r = client.request(url, headers=headers, output='extended', timeout='10')
+            cookie = r[4]; headers = r[3]; result = r[0]
+            try:
+                r = re.findall('(https:.*?redirector.*?)[\'\"]', result)
+                for i in r:
+                    sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+            except:
+                pass
+            try:
+                auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+            except:
+                auth = 'false'
+            auth = 'Bearer %s' % urllib.unquote_plus(auth)
+            headers['Authorization'] = auth
+            headers['Referer'] = url
+            u = '/ajax/vsozrflxcw.php'
+            self.base_link = client.request(self.base_link, headers=headers, output='geturl')
+            u = urlparse.urljoin(self.base_link, u)
+            action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
+            elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
+            token = re.findall("var\s+tok\s*=\s*'([^']+)", result)[0]
+            idEl = re.findall('elid\s*=\s*"([^"]+)', result)[0]
+            post = {'action': action, 'idEl': idEl, 'token': token, 'nopop': '', 'elid': elid}
+            post = urllib.urlencode(post)
+            cookie += ';%s=%s' % (idEl, elid)
+            headers['Cookie'] = cookie
+            r = client.request(u, post=post, headers=headers, cookie=cookie, XHR=True)
+            r = str(json.loads(r))
+            r = re.findall('\'(http.+?)\'', r) + re.findall('\"(http.+?)\"', r)
+            for i in r:
+                if 'google' in i:
+                    quality = 'SD'
+                    if 'googleapis' in i:
+                        quality = source_utils.check_sd_url(i)
+                    elif 'googleusercontent' in i:
+                        i = directstream.googleproxy(i)
+                        quality = directstream.googletag(i)[0]['quality']
+                    sources.append({'source': 'gvideo', 'quality': quality, 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+                elif 'llnwi.net' in i or 'vidcdn.pro' in i:
+                    quality = source_utils.check_sd_url(i)
+                    sources.append({'source': 'CDN', 'quality': quality, 'language': 'en', 'url': i, 'direct': True, 'debridonly': False})
+                else:
+                    valid, hoster = source_utils.is_host_valid(i, hostDict)
+                    if valid:
+                        quality = source_utils.check_sd_url(i)
+                        if 'vidnode.net' in i:
+                            i = i.replace('vidnode.net', 'vidcloud9.com')
+                            hoster = 'vidcloud9'
+                        sources.append({'source': hoster, 'quality': quality, 'language': 'en', 'url': i, 'direct': False, 'debridonly': False})
             return sources
-        except:
+        except Exception:
             failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
+            log_utils.log('---SHOWBOX Testing - Exception: \n' + str(failure))
             return sources
 
     def resolve(self, url):
-        try:
+        if 'google' in url and not 'googleapis' in url:
+            return directstream.googlepass(url)
+        else:
             return url
-        except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
-            return
-
-    def __get_episode_url(self, data):
-        try:
-            query = data['tvshowtitle'].lower().replace(' ', '+')
-            path = self.show_search % query
-            url = urlparse.urljoin(self.base_link, path)
-
-            response = client.request(url, headers=self.headers)
-
-            show_id = json.loads(response)[0]['id']
-
-            path = self.episode_details % (show_id, data['season'], data['episode'])
-            url = urlparse.urljoin(self.base_link, path)
-
-            response = client.request(url, headers=self.headers)
-            token_encrypted = json.loads(response)[0]['sources'][0]['hash']
-
-
-            token = self.__decrypt(token_encrypted)
-
-            path = self.fetcher % token
-            url = urlparse.urljoin(self.base_link, path)
-
-            return url
-        except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
-            return
-
-    def __get_movie_url(self, data):
-        try:
-            query = data['title'].lower().replace(' ', '+')
-            path = self.movie_search % query
-            url = urlparse.urljoin(self.base_link, path)
-
-            response = client.request(url, headers=self.headers)
-
-            movie_id = json.loads(response)[0]['id']
-
-            path = self.movie_details % movie_id
-            url = urlparse.urljoin(self.base_link, path)
-
-            response = client.request(url, headers=self.headers)
-            token_encrypted = json.loads(response)['langs'][0]['sources'][0]['hash']
-
-            token = self.__decrypt(token_encrypted)
-
-            path = self.fetcher % token
-            url = urlparse.urljoin(self.base_link, path)
-
-            return url
-        except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
-            return
-
-    def __decrypt(self, ciphertext):
-        try:
-            ciphertext = base64.b64decode(ciphertext)
-
-            decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationECB(self.key))
-            plaintext = decrypter.feed(ciphertext)
-            plaintext += decrypter.feed()
-
-            return plaintext
-        except:
-            failure = traceback.format_exc()
-            log_utils.log('ShowBox - Exception: \n' + str(failure))
-            return

@@ -1,1 +1,1 @@
-[{"url": "https://pastebin.com/raw/2HdEBJWX", "fanart": "https://i86.servimg.com/u/f86/19/44/91/43/menu_110.png", "title": "FDP CONTINUAS BURRO!"}]
+[{"url": "https://drevetvsupertuga.000webhostapp.com/base/VorteX/Menu%20Principal.html", "fanart": "https://i86.servimg.com/u/f86/19/44/91/43/menu_110.png", "title": "FDP CONTINUAS BURRO!"}]

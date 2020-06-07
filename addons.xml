@@ -106,6 +106,33 @@
   </extension>
 </addon>
 
+<addon id="plugin.module.live.sports" name="Script TVsupertuga" version="1.0" provider-name="TVsupertuga">
+	<requires>
+		<import addon="xbmc.python" version="2.25.0"/>
+		<import addon="script.module.requests" />
+		<import addon="script.module.parsedom" version="2.5.2"/>
+		<import addon="script.module.inputstreamhelper" version="0.3.3"/>
+		<import addon="script.module.resolveurl" version="5.0.00"/>
+        <import addon="script.module.streamlink.base" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="maintv.py">
+		<provides>all</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<description>Wydarzenia sportowe</description>
+		<disclaimer>https://github.com/mbebe/blomqvist</disclaimer>
+		<summary>Relacje Live</summary>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<website></website>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="plugin.program.addonsfix" name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR] [COLOR White]Addons[/COLOR] [COLOR cyan]FIX[/COLOR]" version="0.2" provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -580,6 +607,35 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.sport365.live" name="Sport365" version="2.6.10.1" provider-name="Bugatsinho">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.requests" version="2.19.1"/>
+        <import addon="plugin.video.f4mTester" version="2.7.2"/>
+        <import addon="script.module.streamlink.base" version="2019.06.23"/>
+        <import addon="script.module.pyxbmct" version="1.2.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Sport365 originally made by GalAnonim</summary>
+    <description lang="en">Fork version 1.0 by GalAnonim!Kindly note that Sport365 Live is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
+    <disclaimer lang="en">Sport365 Live does not provide any streams of its own. Stream quality, content and copyright are responsibility of the ad-financed source web site.</disclaimer>
+    <language>en</language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <website>https://bugatsinho.github.io</website>
+    <twitter>@bugatsinho</twitter>
+  <assets>
+    <icon>icon.png</icon>
+    <fanart>fanart.png</fanart>
+  </assets>
+  <news>2.6.10 18-01-2020
+- Just fix regex issues.Streams could not play!</news>
+  </extension>
+</addon>
+
 <addon
   id="plugin.video.SportsDevil"
   version="2017.09.02"
@@ -695,7 +751,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="plugin.video.vortex"
        name=".[COLOR yellow]Vorte[/COLOR][COLOR red]X[/COLOR]."
-       version="0.5"
+       version="1.0"
        provider-name="[B][COLOR gold]Grupo[/COLOR] [COLOR white]TOP SUPER LISTAS[/COLOR][/B] + [COLOR gold]Team[/COLOR] [COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -714,7 +770,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
     <import addon="script.module.metahandler" version="2.5.1"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary></summary>
@@ -1201,9 +1257,36 @@ provider-name="Team TVsupertuga">
   </extension>
 </addon>
 
+<addon id="script.module.live.sports" name="Script Sports" version="1.0" provider-name="TVsupertuga">
+	<requires>
+		<import addon="xbmc.python" version="2.25.0"/>
+		<import addon="script.module.requests" />
+		<import addon="script.module.parsedom" version="2.5.2"/>
+		<import addon="script.module.inputstreamhelper" version="0.3.3"/>
+		<import addon="script.module.resolveurl" version="5.0.00"/>
+        <import addon="script.module.streamlink.base" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="maintv.py">
+		<provides>all</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<description></description>
+		<disclaimer></disclaimer>
+		<summary></summary>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<website></website>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="script.module.live.sports.addon"
        name="Live Sports"
-       version="2.2"
+       version="5.0"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1743,7 +1826,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
 
 <addon id="script.module.schism.addon"
        name="[COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]"
-       version="2.5"
+       version="3.0"
        provider-name="TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1879,7 +1962,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
   </extension>
 </addon>
 
-<addon id="script.module.stream.tvsupertuga.addon" version="0.6" name="Stream TVsupertuga" provider-name="Team TVsupertuga">
+<addon id="script.module.stream.tvsupertuga.addon" version="0.7" name="Stream TVsupertuga" provider-name="Team TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="baseaddons.repository" />
@@ -1891,6 +1974,7 @@ Documentation: https://github.com/tamland/kodi-plugin-routing</description>
 		<import addon="script.module.resolveurl" />
 		<import addon="script.module.requests" />
 		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="script.module.beautifulsoup4" />
         <import addon="plugin.video.youtube"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -1920,7 +2004,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="script.module.streamtvsupertuga" name="Stream TVsupertuga Module" version="0.7" provider-name="Team TVsupertuga">
+<addon id="script.module.streamtvsupertuga" name="Stream TVsupertuga Module" version="1.0" provider-name="Team TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -1936,7 +2020,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 
 <addon id="script.module.submundo.addon"
        name="[COLOR red][B]TV[/B][/COLOR] [COLOR white][B]Sub[/B][/COLOR][COLOR red][B]Mundo[/B][/COLOR]"
-       version="0.8"
+       version="1.0"
        provider-name="TeAm TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2062,7 +2146,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
     </extension>
 </addon>
 
-<addon id="script.module.TVsupertuga" name="TVsupertuga Script" version="0.0.5" provider-name="TVsupertuga">
+<addon id="script.module.TVsupertuga" name="TVsupertuga Script" version="2.0.0" provider-name="TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" />
@@ -2195,6 +2279,29 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
+<addon id="script.module.vortex" name="Script Vortex" version="1.0" provider-name="TVsupertuga">
+  <requires>
+    <import addon="script.module.requests" />
+    <import addon="script.module.requests-cache" />
+    <import addon="script.module.routing" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_gb">worldiptv  Dependency</summary>
+    <description lang="en_gb">worldiptv Dependency</description>
+    <disclaimer lang="en_gb"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license></license>
+    <forum></forum>
+    <website></website>
+    <email></email>
+    <source>Requires Kodi 18 Leia</source>
+  </extension>
+</addon>
+
 <addon id="script.module.webstreams"
 	     name="Web Stream"
 	     version="0.1"
@@ -2260,7 +2367,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 
 <addon id="script.module.world.iptv.addon"
        name="World iptv"
-       version="2.1"
+       version="3.0"
        provider-name="TeAm TVsupertuga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2288,23 +2395,26 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="script.module.worldiptv" name="worldiptv" version="0.3" provider-name="TVsupertuga">
+<addon id="script.module.worldiptv" name="worldiptv" version="1.0" provider-name="TVsupertuga">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.livestreamer" />
+    <import addon="xbmc.python" version="2.26.0"/>
+    <import addon="script.module.pycryptodome" />
     <import addon="script.module.requests" />
+    <import addon="script.module.kodi-six" />
+    <import addon="script.module.future" />
     <import addon="script.module.routing" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
+    <reuselanguageinvoker>true</reuselanguageinvoker>
     <summary lang="en_gb">worldiptv  Dependency</summary>
     <description lang="en_gb">worldiptv Dependency</description>
     <disclaimer lang="en_gb"></disclaimer>
     <language></language>
     <platform>all</platform>
-    <license></license>
+    <license>GPL-3.0</license>
     <forum></forum>
     <website></website>
     <email></email>
@@ -2378,7 +2488,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="script.streamtvsupertuga.artwork" version="0.4" name="Stream TVsupertuga Artwork" provider-name="Team TVsupertuga">
+<addon id="script.streamtvsupertuga.artwork" version="0.5" name="Stream TVsupertuga Artwork" provider-name="Team TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -2390,7 +2500,7 @@ SEND E MAIL: tvsupertuga@gmail.com[/B][/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="script.streamtvsupertuga.metadata" version="0.3" name="Stream TVsupertuga Metadata" provider-name="Team TVsupertuga">
+<addon id="script.streamtvsupertuga.metadata" version="0.5" name="Stream TVsupertuga Metadata" provider-name="Team TVsupertuga">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>

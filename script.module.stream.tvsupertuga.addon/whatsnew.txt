@@ -1,24 +1,23 @@
-﻿STATUS ATUAL: [B][COLOR cyan]OK[/COLOR][/B]
-
-STREAM TVSUPERTUGA CURRENT VERSION: [B][COLOR cyan]0.6[/COLOR][/B]
-
-VOD TVSUPERTUGA CURRENT VERSION: [B][COLOR cyan]1.0[/COLOR][/B]
-
-[COLOR red]-------------------------------------------------------------------------------------------------------[/COLOR]
-
-[B][COLOR white]07/06/2019[/COLOR][/B]
-
-
-[COLOR cyan]Stream TVsupertuga ver 0.5[/COLOR]
-
-	- script.module.stream.tvsupertuga.addon
-	- script.streamtvsupertuga.artwork
-	- script.module.streamtvsupertuga
-	- script.streamtvsupertuga.metadata
-	- script.module.universalscrapers
-	
-	
-	[COLOR cyan]VOD TVsupertuga ver 1.0[/COLOR]
-	
-   - em processo de atualização	
-	
+STATUS ATUAL: [B][COLOR cyan]OK[/COLOR][/B]
+
+STREAM TVSUPERTUGA CURRENT VERSION: [B][COLOR cyan]0.6[/COLOR][/B]
+
+VOD TVSUPERTUGA CURRENT VERSION: [B][COLOR cyan]1.0[/COLOR][/B]
+
+[COLOR red]-------------------------------------------------------------------------------------------------------[/COLOR]
+
+[B][COLOR white]07/06/2019[/COLOR][/B]
+
+
+[COLOR cyan]Stream TVsupertuga ver 0.5[/COLOR]
+
+	- script.module.stream.tvsupertuga.addon
+	- script.streamtvsupertuga.artwork
+	- script.module.streamtvsupertuga
+	- script.streamtvsupertuga.metadata
+	- script.module.universalscrapers
+	
+	
+	[COLOR cyan]VOD TVsupertuga ver 1.0[/COLOR]
+	
+   - em processo de atualização

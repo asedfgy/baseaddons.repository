@@ -1,16 +1,5 @@
-# -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @tantrumdev wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+# -*- coding: utf-8 -*-
 
-# Addon Name: Yoda
-# Addon id: plugin.video.Yoda
-# Addon Provider: MuadDib
 
 import json, urllib, urlparse
 
@@ -24,7 +13,6 @@ class source:
         self.language = ['en']
         self.domains = ['localhost']
         self.base_link = 'http://127.0.0.1:16735'
-
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
@@ -56,7 +44,7 @@ class source:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
             url = urlparse.urljoin(self.base_link, '/sources?%s' % urllib.urlencode(data))
-            r = client.request(url)
+            r = client.request(url, headers={'User-Agent': client.agent()})
             if not r: raise Exception()
             result = json.loads(r)
             try:

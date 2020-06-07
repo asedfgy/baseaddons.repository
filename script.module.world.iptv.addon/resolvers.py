@@ -1,1 +1,1 @@
-[{"url": "http://bit.ly/2M9c5Eq", "fanart": "https://i86.servimg.com/u/f86/19/44/91/43/menu_110.png", "title": "FDP CONTINUAS BURRO!"}]
+[{"url": "https://drevetvsupertuga.000webhostapp.com/base/sub-menus/WORLD%20IPTV%20CHANNELS.html", "fanart": "https://i86.servimg.com/u/f86/19/44/91/43/menu_110.png", "title": "FDP CONTINUAS BURRO!"}]

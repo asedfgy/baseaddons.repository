@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2016 Atari Corp.
+# Copyright (C) 2015 - 2019 RACC
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,183 +14,121 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 from __future__ import unicode_literals
 
-import xbmc
-import xbmcgui
-import xbmcaddon
-import xbmcplugin
+import sys
 from xbmcgui import ListItem
+from kodi_six import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 from routing import Plugin
 
 import os
-import traceback
-
-import requests
-import requests_cache
-from base64 import urlsafe_b64encode
-from datetime import timedelta
-try:
-    from urllib.parse import quote as orig_quote
-    from urllib.parse import unquote as orig_unquote
-except ImportError:
-    from urllib import quote as orig_quote
-    from urllib import unquote as orig_unquote
+import time
+from requests.exceptions import RequestException
+from resources.lib.swift import SwiftStream
 
 addon = xbmcaddon.Addon()
 plugin = Plugin()
-plugin.name = addon.getAddonInfo('name')
-user_agent = 'Dalvik/2.1.0 (Linux; U; Android 5.1.1; AFTS Build/LVY48F)'
-USER_DATA_DIR = xbmc.translatePath(addon.getAddonInfo('profile')).decode('utf-8')
-CACHE_TIME = int(addon.getSetting('cache_time'))
-CACHE_FILE = os.path.join(USER_DATA_DIR, 'cache')
-expire_after = timedelta(hours=CACHE_TIME)
-
+plugin.name = addon.getAddonInfo("name")
+USER_DATA_DIR = xbmc.translatePath(addon.getAddonInfo("profile"))
+data_time = int(addon.getSetting("data_time") or "0")
+cache_time = int(addon.getSetting("cache_time") or "0") * 60 * 60
 if not os.path.exists(USER_DATA_DIR):
     os.makedirs(USER_DATA_DIR)
 
-s = requests_cache.CachedSession(CACHE_FILE, allowable_methods='GET', expire_after=expire_after, old_data_on_error=True)
-s.headers.update({'User-Agent': user_agent})
 
-data_url = 'http://swiftstreamz.com/SwiftLive/swiftlive.php'
-api_url = 'http://swiftstreamz.com/SwiftLive/api.php'
-list_url = 'http://swiftstreamz.com/SwiftLive/api.php?cat_id={0}'
-thumb_url = 'http://swiftstreamz.com/SwiftLive/images/thumbs/{0}|User-Agent={1}'
-
-USER = 'SwiftStreamz'
-PASS = '@SwiftStreamz@'
+def log(msg, level=xbmc.LOGNOTICE):
+    xbmc.log("[{0}] {1}".format(plugin.name, msg), level=level)
 
 
-def quote(s, safe=''):
-    return orig_quote(s.encode('utf-8'), safe.encode('utf-8'))
-
-
-def unquote(s):
-    return orig_unquote(s).decode('utf-8')
-
-
-@plugin.route('/refresh')
-def refresh():
-    requests_cache.core.clear()
-    xbmc.executebuiltin('Container.Refresh')
-
-
-@plugin.route('/')
-def root():
-    r = s.get(api_url, headers={'User-Agent': user_agent}, timeout=10)
-    res = r.json(strict=False)
-
-    list_items = []
-    for cat in res['LIVETV']:
-        li = ListItem(cat['category_name'])
-        li.setArt({'thumb': thumb_url.format(cat['category_image'], quote(user_agent))})
-        url = plugin.url_for(list_channels, cat_id=cat['cid'])
-        list_items.append((url, li, True))
-
-    xbmcplugin.addDirectoryItems(plugin.handle, list_items)
-    xbmcplugin.endOfDirectory(plugin.handle)
-
-
-@plugin.route('/list_channels/<cat_id>')
-def list_channels(cat_id=None):
-    list_items = []
-    r = s.get(list_url.format(cat_id), headers={'User-Agent': user_agent}, timeout=10)
-    res = r.json(strict=False)
-
-    ref = ListItem('[Refresh Streams]')
-    url = plugin.url_for(refresh)
-    list_items.append((url, ref, False))
-
-    for ch in res['LIVETV']:
-        image = thumb_url.format(ch['channel_thumbnail'], quote(user_agent))
-        li = ListItem(ch['channel_title'])
-        li.setProperty("IsPlayable", "true")
-        li.setArt({'thumb': image, 'icon': image})
-        li.setInfo(type='Video', infoLabels={'Title': ch['channel_title'], 'mediatype': 'video', 'playcount': 0})
-        try:
-            li.setContentLookup(False)
-        except AttributeError:
-            pass
-        url = plugin.url_for(play, link=quote(ch.get('channel_url')))
-        list_items.append((url, li, False))
-
-    xbmcplugin.addDirectoryItems(plugin.handle, list_items)
-    xbmcplugin.endOfDirectory(plugin.handle)
-
-
-@plugin.route('/play/<link>')
-def play(link=None):
-    link = unquote(link)
-    media_url = ''
-
-    r = s.get(data_url, headers={'User-Agent': user_agent}, auth=(USER, PASS), timeout=10)
-    print(repr(r.json(strict=False)))
-    data = r.json(strict=False)
-
-    fix_token = ''
-
-    if data['DATA'][0]['HelloUrl'] in link or data['DATA'][0]['HelloUrl1'] in link:
-        auth_url = data['DATA'][0]['HelloLogin']
-        auth_auth = tuple(data['DATA'][0]['PasswordHello'].split(':'))
-    elif data['DATA'][0]['LiveTvUrl'] in link:
-        auth_url = data['DATA'][0]['LiveTvLogin']
-        auth_auth = tuple(data['DATA'][0]['PasswordLiveTv'].split(':'))
-        fix_token = 'y'
-    elif data['DATA'][0]['nexgtvUrl'] in link:
-        auth_url = data['DATA'][0]['nexgtvToken']
-        auth_auth = tuple(data['DATA'][0]['nexgtvPass'].split(':'))
-    else:
-        auth_url = data['DATA'][0]['loginUrl']
-        auth_auth = tuple(data['DATA'][0]['Password'].split(':'))
-        fix_token = 'y'
-
-    with s.cache_disabled():
-        r = s.get(auth_url, headers={'User-Agent': user_agent}, auth=auth_auth, timeout=10)
-        auth_token = r.text.partition('=')[2]
-
-    if fix_token:
-        auth_token = ''.join([auth_token[:-59], auth_token[-58:-47], auth_token[-46:-35], auth_token[-34:-23], auth_token[-22:-11], auth_token[-10:]])
-
-    if 'playlist.m3u8' in link:
-        media_url = '{0}?wmsAuthSign={1}|User-Agent={2}'.format(link, auth_token, quote(data['DATA'][0]['Agent']))
-
-        if addon.getSetting('livestreamer') == 'true':
-            serverPath = os.path.join(xbmc.translatePath(addon.getAddonInfo('path')), 'livestreamerXBMCLocalProxy.py')
-            runs = 0
-            while not runs > 10:
-                try:
-                    with s.cache_disabled():
-                        s.get('http://127.0.0.1:19001/version')
-                        break
-                except Exception:
-                    xbmc.executebuiltin('RunScript(' + serverPath + ')')
-                    runs += 1
-                    xbmc.sleep(600)
-
-            livestreamer_url = 'http://127.0.0.1:19001/livestreamer/'+urlsafe_b64encode('hlsvariant://'+media_url)
-            li = ListItem(path=livestreamer_url)
-            li.setMimeType('video/x-mpegts')
-        else:
-            li = ListItem(path=media_url)
-            li.setMimeType('application/vnd.apple.mpegurl')
-
-            if addon.getSetting('inputstream') == 'true':
-                if 'playlist.m3u8' in media_url:
-                    li.setProperty('inputstreamaddon', 'inputstream.adaptive')
-                    li.setProperty('inputstream.adaptive.manifest_type', 'hls')
-                    li.setProperty('inputstream.adaptive.stream_headers', media_url.split('|')[-1])
-    else:
-        media_url = '{0}|User-Agent={1}'.format(link, quote(data['DATA'][0]['Agent']))
-        li = ListItem(path=media_url)
-
-    xbmcplugin.setResolvedUrl(plugin.handle, True, li)
-
-
-if __name__ == '__main__':
+TV = SwiftStream(USER_DATA_DIR)
+current_time = int(time.time())
+if current_time - data_time > cache_time:
     try:
-        plugin.run()
-    except requests.exceptions.RequestException:
+        TV.update_categories()
+        addon.setSetting("data_time", str(current_time))
+        log("[{0}] Categories updated".format(current_time))
+    except (ValueError, RequestException) as e:
+        if data_time == 0:
+            """ No data """
+            dialog = xbmcgui.Dialog()
+            dialog.notification(plugin.name, e.message, xbmcgui.NOTIFICATION_ERROR)
+            xbmcplugin.endOfDirectory(plugin.handle, False)
+        else:
+            """ Data update failed """
+            log("[{0}] Categories update fail, data age: {1}".format(current_time, data_time))
+            log(e.message)
+
+
+@plugin.route("/")
+def root():
+    list_items = []
+    for cat in TV.get_categories():
+        li = ListItem(cat.category_name, offscreen=True)
+        li.setArt({"thumb": cat.category_image, "icon": cat.category_image})
+        url = plugin.url_for(list_channels, cat_id=cat.cid)
+        list_items.append((url, li, True))
+    xbmcplugin.addDirectoryItems(plugin.handle, list_items)
+    xbmcplugin.endOfDirectory(plugin.handle)
+
+
+@plugin.route("/list_channels/<cat_id>")
+def list_channels(cat_id):
+    list_items = []
+    try:
+        for channel in TV.get_category(cat_id, cache_time):
+            title = channel.title
+            image = channel.thumbnail
+            li = ListItem(title, offscreen=True)
+            li.setProperty("IsPlayable", "true")
+            li.setArt({"thumb": image, "icon": image})
+            li.setInfo(type="Video", infoLabels={"Title": title, "mediatype": "video"})
+            li.setContentLookup(False)
+            url = plugin.url_for(play, cat_id=channel.cid, channel_id=channel._id)
+            list_items.append((url, li, False))
+        xbmcplugin.addDirectoryItems(plugin.handle, list_items)
+        xbmcplugin.endOfDirectory(plugin.handle)
+    except (ValueError, RequestException) as e:
+        """ No data """
+        log(e.message)
         dialog = xbmcgui.Dialog()
-        dialog.notification(plugin.name, "Web Request Exception", xbmcgui.NOTIFICATION_ERROR)
-        traceback.print_exc()
+        dialog.notification(plugin.name, e.message, xbmcgui.NOTIFICATION_ERROR)
+        xbmcplugin.endOfDirectory(plugin.handle, False)
+
+
+@plugin.route("/play/<cat_id>/<channel_id>/play.pvr")
+def play(cat_id, channel_id):
+    channel = TV.get_channel_by_id(cat_id, channel_id, cache_time)
+    title = channel.title
+    image = channel.thumbnail
+    try:
+        if len(channel.streams) > 1:
+            dialog = xbmcgui.Dialog()
+            ret = dialog.select("Choose Stream", [s.name for s in channel.streams])
+            stream = channel.streams[ret]
+        else:
+            stream = channel.streams[0]
+        media_url = TV.get_stream_link(stream)
+        li = ListItem(title, path=media_url, offscreen=True)
+        if "playlist.m3u8" in media_url:
+            if addon.getSetting("inputstream") == "true":
+                li.setMimeType("application/vnd.apple.mpegurl")
+                li.setProperty("inputstreamaddon", "inputstream.adaptive")
+                li.setProperty("inputstream.adaptive.manifest_type", "hls")
+                li.setProperty("inputstream.adaptive.stream_headers", media_url.split("|")[-1])
+            else:
+                li.setMimeType("application/vnd.apple.mpegurl")
+        else:
+            li.setMimeType("video/x-mpegts")
+        li.setArt({"thumb": image, "icon": image})
+        li.setContentLookup(False)
+        xbmcplugin.setResolvedUrl(plugin.handle, True, li)
+    except (ValueError, RequestException) as e:
+        log(e.message)
+        dialog = xbmcgui.Dialog()
+        dialog.notification(plugin.name, e.message, xbmcgui.NOTIFICATION_ERROR)
+        xbmcplugin.setResolvedUrl(plugin.handle, False, ListItem())
+
+
+if __name__ == "__main__":
+    plugin.run(sys.argv)
+    del TV

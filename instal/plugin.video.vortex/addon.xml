@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.vortex"
        name=".[COLOR yellow]Vorte[/COLOR][COLOR red]X[/COLOR]."
-       version="0.5"
+       version="1.0"
        provider-name="[B][COLOR gold]Grupo[/COLOR] [COLOR white]TOP SUPER LISTAS[/COLOR][/B] + [COLOR gold]Team[/COLOR] [COLOR cyan]TV[/COLOR]-[COLOR red]supertuga[/COLOR]">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -20,7 +20,7 @@
     <import addon="script.module.metahandler" version="2.5.1"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides>all</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary></summary>

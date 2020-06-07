@@ -1,22 +1,11 @@
-# -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @tantrumdev wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+# -*- coding: utf-8 -*-
 
-# Addon Name: Yoda
-# Addon id: plugin.video.Yoda
-# Addon Provider: MuadDib
 
-import urllib,traceback,urlparse,json
+import urllib,urlparse,json
 
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
-from resources.lib.modules import log_utils
+
 
 class source:
     def __init__(self):
@@ -28,16 +17,12 @@ class source:
         try:
             return urllib.urlencode({'imdb': imdb, 'title': title, 'localtitle': localtitle,'year': year})
         except:
-            failure = traceback.format_exc()
-            log_utils.log('Library - Exception: \n' + str(failure))
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             return urllib.urlencode({'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'localtvshowtitle': localtvshowtitle, 'year': year})
         except:
-            failure = traceback.format_exc()
-            log_utils.log('Library - Exception: \n' + str(failure))
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
@@ -50,8 +35,6 @@ class source:
             url.update({'premiered': premiered, 'season': season, 'episode': episode})
             return urllib.urlencode(url)
         except:
-            failure = traceback.format_exc()
-            log_utils.log('Library - Exception: \n' + str(failure))
             return
 
     def sources(self, url, hostDict, hostprDict):
@@ -107,18 +90,25 @@ class source:
 
             url = r['file'].encode('utf-8')
 
-            try: quality = int(r['streamdetails']['video'][0]['width'])
-            except: quality = -1
+            try:
+                quality = int(r['streamdetails']['video'][0]['width'])
+            except:
+                quality = -1
 
-            if quality >= 2160: quality = '4K'
-            if quality >= 1440: quality = '1440p'
-            if quality >= 1080: quality = '1080p'
-            if 720 <= quality < 1080: quality = 'HD'
-            if quality < 720: quality = 'SD'
+            if quality >= 2160:
+                quality = '4K'
+            if quality >= 1080:
+                quality = '1080p'
+            if 720 <= quality < 1080:
+                quality = 'HD'
+            if quality < 720:
+                quality = 'SD'
 
             info = []
             try:
-                f = control.openFile(url) ; s = f.size() ; f.close()
+                f = control.openFile(url)
+                s = f.size()
+                f.close()
                 s = '%.2f GB' % (float(s)/1024/1024/1024)
                 info.append(s)
             except:
@@ -135,8 +125,6 @@ class source:
 
             return sources
         except:
-            failure = traceback.format_exc()
-            log_utils.log('Library - Exception: \n' + str(failure))
             return sources
 
     def resolve(self, url):

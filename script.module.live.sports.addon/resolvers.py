@@ -82,7 +82,7 @@ def OPEN_URL(url):
     return link
 		
 def scrape():
-    html = OPEN_URL('http://www.goalsarena.org/')
+    html = OPEN_URL('https://hdmatches.com/')
     match = re.compile('<a title="(.+?)".+?href="(.+?)">',re.DOTALL).findall(html)
     for name,url in match:
 		PLAY(name,url,34,'http://foot-highlights.net/wp-content/uploads/2017/03/football-highlights-video-goal.jpg' ,FANART,'','')
@@ -189,8 +189,8 @@ def Cleaner(team):
         elif 'BOAVISTA' in team:
             image = 'https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Boavista_F.C._logo.svg/737px-Boavista_F.C._logo.svg.png'
             gap = '         '
-        elif 'CHAVES' in team:
-            image = 'https://upload.wikimedia.org/wikipedia/pt/0/05/G_D_Chaves.png'
+        elif 'FAMALICAO' in team:
+            image = 'https://pbs.twimg.com/profile_images/1088806104564449280/1gcCtHg__400x400.png'
             gap = '                   '
         elif 'TONDELA' in team:
             image = 'http://freevectorlogo.net/wp-content/uploads/2013/11/cd-tondela-vector-logo-400x400.png'
@@ -201,8 +201,8 @@ def Cleaner(team):
         elif 'PORTIMONENSE' in team:
             image = 'http://www.portimonense.pt/info/imagens/logos/clubes/Portimonense.png'
             gap = '                      '
-        elif 'FEIRENSE' in team:
-            image = 'https://upload.wikimedia.org/wikipedia/pt/0/03/Logo_Feirense.png'
+        elif 'SANTA CLARA' in team:
+            image = 'https://upload.wikimedia.org/wikipedia/pt/b/bc/Logo_Santa_Clara.png'
             gap = '            '
         elif 'AVES' in team:
             image = 'https://upload.wikimedia.org/wikipedia/pt/5/54/Logo_Desportivo_das_Aves.png'
@@ -213,8 +213,8 @@ def Cleaner(team):
         elif 'MOREIRENSE' in team:
             image = 'http://myteamface.com/wp-content/uploads/2013/05/Moreirense-Futebol-Clube-logo-tattoo212.png'
             gap = '                   '
-        elif 'ESTORIL' in team:
-            image = 'http://estorilpraia.com/wp-content/uploads/2016/09/Logo_Estoril-Praia.png'
+        elif 'GIL VICENTE' in team:
+            image = 'https://upload.wikimedia.org/wikipedia/pt/thumb/2/27/Logo_Gil_Vicente.svg/358px-Logo_Gil_Vicente.svg.png'
             gap = '                   '
         elif 'VITORIA DE SETUBAL' in team:
             image = 'https://www.ogol.com.br/img/logos/equipas/35_imgbank.png'

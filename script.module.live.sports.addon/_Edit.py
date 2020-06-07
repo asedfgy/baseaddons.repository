@@ -1,5 +1,4 @@
-# encoded by pyprotect
-# http://gabrielsilva.tk/pyprotect
+
 
 import base64, codecs
 magic = 'ZXhlYygiaW1wb3J0IHJlO2ltcG9ydCBiYXNlNjQiKTtleGVjIGJhc2U2NC5hMzJkZWNvZ'

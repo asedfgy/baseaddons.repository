@@ -1,194 +1,119 @@
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
+# -Cleaned and Checked on 04-14-2020 by Tempest.
 
-'''
-    Covenant Add-on
+import re
+import urllib
+import urlparse
+import base64
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
-
-
-import re,urllib,urlparse,base64
-
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import proxy
+from resources.lib.modules import client, cleantitle, directstream
+from resources.lib.modules import dom_parser
+from resources.lib.sources import cfscrape
 
 
 class source:
     def __init__(self):
+
         self.priority = 1
         self.language = ['en']
-        self.domains = ['watchfree.to','watchfree.unblockall.org']
-        self.base_link = 'http://watchfree.unblockall.org'
-        self.moviesearch_link = '/?keyword=%s&search_section=1'
-        self.tvsearch_link = '/?keyword=%s&search_section=2'
+        self.domains = ['watchfree.biz']
+        self.base_link = 'http://watchfree.biz'
+        self.search_link = '/search-movies/%s.html'
+        self.headers = {'User-Agent': client.agent()}
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
-            query = self.moviesearch_link % urllib.quote_plus(cleantitle.query(title))
-            query = urlparse.urljoin(self.base_link, query)
-
-            result = str(proxy.request(query, 'free movies'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'free movies'))
-
-            result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
-
-            title = 'watch' + cleantitle.get(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
-
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [i for i in result if any(x in i[1] for x in years)]
-
-            r = [(proxy.parse(i[0]), i[1]) for i in result]
-
-            match = [i[0] for i in r if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
-
-            match2 = [i[0] for i in r]
-            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
-            if match2 == []: return
-
-            for i in match2[:5]:
-                try:
-                    if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'free movies')
-                    r = re.findall('(tt\d+)', r)
-                    if imdb in r: url = i ; break
-                except:
-                    pass
-
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
-        except:
+            clean_title = cleantitle.geturl(title).replace('-', '+')
+            url = urlparse.urljoin(self.base_link, (self.search_link % clean_title))
+            r = cfscrape.get(url, headers=self.headers).content
+            r = dom_parser.parse_dom(r, 'div', {'class': 'item'})
+            r = [dom_parser.parse_dom(i, 'a', req=['href']) for i in r if i]
+            r = [(i[0].attrs['href'], re.search('Release:\s*(\d+)', i[0].content)) for i in r if i]
+            r = [(i[0], i[1].groups()[0]) for i in r if i[0] and i[1]]
+            r = [(i[0], i[1]) for i in r if i[1] == year]
+            if r[0]:
+                url = r[0][0]
+                return url
+            else:
+                return
+        except Exception:
             return
-
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
-            query = self.tvsearch_link % urllib.quote_plus(cleantitle.query(tvshowtitle))
-            query = urlparse.urljoin(self.base_link, query)
-
-            result = str(proxy.request(query, 'free movies'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'free movies'))
-
-            result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
-
-            tvshowtitle = 'watch' + cleantitle.get(tvshowtitle)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
-
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [i for i in result if any(x in i[1] for x in years)]
-
-            r = [(proxy.parse(i[0]), i[1]) for i in result]
-
-            match = [i[0] for i in r if tvshowtitle == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
-
-            match2 = [i[0] for i in r]
-            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
-            if match2 == []: return
-
-            for i in match2[:5]:
-                try:
-                    if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'free movies')
-                    r = re.findall('(tt\d+)', r)
-                    if imdb in r: url = i ; break
-                except:
-                    pass
-
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
             return url
         except:
             return
-
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
-            if url == None: return
+            if url is None:
+                return
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['premiered'], url['season'], url['episode'] = premiered, season, episode
+            try:
+                clean_title = cleantitle.geturl(url['tvshowtitle']) + '-season-%d' % int(season)
+                search_url = urlparse.urljoin(self.base_link, self.search_link % clean_title.replace('-', '+'))
+                r = cfscrape.get(search_url, headers=self.headers).content
+                r = client.parseDOM(r, 'div', {'class': 'item'})
+                r = [(client.parseDOM(i, 'a', ret='href'),
+                      re.findall('<b><i>(.+?)</i>', i)) for i in r]
+                r = [(i[0][0], i[1][0]) for i in r if
+                     cleantitle.get(i[1][0]) == cleantitle.get(clean_title)]
+                url = r[0][0]
+            except:
+                pass
+            data = cfscrape.get(url, headers=self.headers).content
+            data = client.parseDOM(data, 'div', attrs={'id': 'details'})
+            data = zip(client.parseDOM(data, 'a'), client.parseDOM(data, 'a', ret='href'))
+            url = [(i[0], i[1]) for i in data if i[0] == str(int(episode))]
 
-            url = urlparse.urljoin(self.base_link, url)
-
-            result = proxy.request(url, 'tv_episode_item')
-            result = client.parseDOM(result, 'div', attrs = {'class': 'tv_episode_item'})
-
-            title = cleantitle.get(title)
-            premiered = re.compile('(\d{4})-(\d{2})-(\d{2})').findall(premiered)[0]
-            premiered = '%s %01d %s' % (premiered[1].replace('01','January').replace('02','February').replace('03','March').replace('04','April').replace('05','May').replace('06','June').replace('07','July').replace('08','August').replace('09','September').replace('10','October').replace('11','November').replace('12','December'), int(premiered[2]), premiered[0])
-
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'class': 'tv_episode_name'}), client.parseDOM(i, 'span', attrs = {'class': 'tv_num_versions'})) for i in result]
-            result = [(i[0], i[1][0], i[2]) for i in result if len(i[1]) > 0] + [(i[0], None, i[2]) for i in result if len(i[1]) == 0]
-            result = [(i[0], i[1], i[2][0]) for i in result if len(i[2]) > 0] + [(i[0], i[1], None) for i in result if len(i[2]) == 0]
-            result = [(i[0][0], i[1], i[2]) for i in result if len(i[0]) > 0]
-
-            url = [i for i in result if title == cleantitle.get(i[1]) and premiered == i[2]][:1]
-            if len(url) == 0: url = [i for i in result if premiered == i[2]]
-            if len(url) == 0 or len(url) > 1: url = [i for i in result if 'season-%01d-episode-%01d' % (int(season), int(episode)) in i[0]]
-
-            url = url[0][0]
-            url = proxy.parse(url)
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return url[0][1]
         except:
             return
-
 
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
-
-            if url == None: return sources
-
-            url = urlparse.urljoin(self.base_link, url)
-
-            result = proxy.request(url, 'link_ite')
-
-            links = client.parseDOM(result, 'table', attrs = {'class': 'link_ite.+?'})
-
-            for i in links:
+            r = cfscrape.get(url, headers=self.headers).content
+            try:
+                v = re.findall('document.write\(Base64.decode\("(.+?)"\)', r)[0]
+                b64 = base64.b64decode(v)
+                url = client.parseDOM(b64, 'iframe', ret='src')[0]
                 try:
-                    url = client.parseDOM(i, 'a', ret='href')
-                    url = [x for x in url if 'gtfo' in x][-1]
-                    url = proxy.parse(url)
-                    url = urlparse.parse_qs(urlparse.urlparse(url).query)['gtfo'][0]
-                    url = base64.b64decode(url)
-                    url = client.replaceHTMLCodes(url)
-                    url = url.encode('utf-8')
-
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    if not host in hostDict: raise Exception()
+                    host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
-
-                    quality = client.parseDOM(i, 'div', attrs = {'class': 'quality'})
-                    if any(x in ['[CAM]', '[TS]'] for x in quality): quality = 'CAM'
-                    else:  quality = 'SD'
-                    quality = quality.encode('utf-8')
-
-                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'direct': False, 'debridonly': False})
+                    sources.append({'source': host, 'quality': 'SD', 'language': 'en', 'url': url.replace('\/', '/'), 'direct': False, 'debridonly': False})
                 except:
                     pass
-
+            except:
+                pass
+            r = client.parseDOM(r, 'div', {'class': 'server_line'})
+            r = [(client.parseDOM(i, 'a', ret='href')[0],
+                  client.parseDOM(i, 'p', attrs={'class': 'server_servername'})[0]) for i in r]
+            if r:
+                for i in r:
+                    try:
+                        host = re.sub('Server|Link\s*\d+', '', i[1]).lower()
+                        url = i[0]
+                        host = client.replaceHTMLCodes(host)
+                        host = host.encode('utf-8')
+                        if 'other' in host: continue
+                        sources.append({'source': host, 'quality': 'SD', 'language': 'en', 'url': url.replace('\/', '/'), 'direct': False, 'debridonly': False})
+                    except:
+                        pass
             return sources
-        except:
+        except Exception:
             return sources
-
 
     def resolve(self, url):
+        if self.base_link in url:
+            url = cfscrape.get(url, headers=self.headers).content
+            v = re.findall('document.write\(Base64.decode\("(.+?)"\)', url)[0]
+            b64 = base64.b64decode(v)
+            url = client.parseDOM(b64, 'iframe', ret='src')[0]
         return url
