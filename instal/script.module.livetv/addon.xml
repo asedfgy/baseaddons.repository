@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.livetv" name="live TV Online" version="0.8" provider-name="Team tvsupertuga">
+<addon id="script.module.livetv" name="live TV Online" version="1.0" provider-name="Team tvsupertuga">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.livestreamer" />
+    <import addon="xbmc.python" version="2.26.0"/>
+    <import addon="script.module.pycryptodome" />
     <import addon="script.module.requests" />
+    <import addon="script.module.kodi-six" />
+    <import addon="script.module.future" />
     <import addon="script.module.routing" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
